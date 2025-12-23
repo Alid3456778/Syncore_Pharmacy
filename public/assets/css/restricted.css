@@ -1,0 +1,14 @@
+.chat-scroll {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .chat-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 3px;
+    }
+    a {
+      text-decoration: none;
+    }

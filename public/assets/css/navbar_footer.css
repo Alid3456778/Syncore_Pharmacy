@@ -1,0 +1,216 @@
+/* Navbar */
+  .navbar {
+    background-color: #ffffff;
+    color: #2eb9b5;
+    padding: 10px 20px;
+   
+  }
+  
+  .navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo img{
+    width: 50px;
+    height: auto;
+  }
+  
+  .delivery {
+    font-size: 14px;
+  }
+
+  .navbar-top-right {
+    display: flex;
+    align-content: end;
+  }
+  
+  .actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #8acaff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .a{
+    text-decoration: none;
+    color: #8acaff;
+    font-size: 17px;
+    background-color: #1e5787;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+  /* General Link Styles */
+  .aa {
+    text-decoration: none;
+    color: white;
+    display: block;
+    /* padding: 8px 15px; */
+    padding: 2px;
+    position: relative;
+  }
+
+  /* Navbar Styling */
+  .navbar-bottom ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    /* background-color: #1e5787; */
+    /* padding: 10px 0; */
+    margin: 0;
+  }
+
+  .navbar-bottom li {
+    position: relative;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .navbar-bottom a{
+    color: black;
+    margin: 10px;
+  }
+
+  .navbar-bottom ul li ul {
+    background-color: #8acaff;
+  }
+
+  /* Dropdown Menu */
+  .dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent item */
+    left: 0;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    z-index: 10;
+  }
+
+  /* Dropdown Items */
+  .dropdown li {
+    width: 150px;
+  }
+
+  .dropdown li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    font-size: 16px;
+  }
+
+  .dropdown li a:hover {
+    background-color: #1e5787;
+    color: white;
+    border-radius: 15px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-bottom ul {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    .navbar-bottom li {
+      width: 100%;
+      text-align: left;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown li {
+      width: 100%;
+    }
+  }
+
+
+  
+  /* Footer Styling */
+  .footer {
+    background-color: var(--footer-background);
+    color: white;
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 15px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+  }
+  
+  .footer-left {
+    flex: 2;
+  }
+  
+  .footer-right {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-right h3 {
+    margin-bottom: 15px;
+  }
+  
+  .payment-icons img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }

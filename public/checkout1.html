@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Mcland Pharma</title>
+
+    <link rel="icon" type="image/x-icon" href="./assets/image2/logo.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/image2/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/image2/logo.png">
+
+    <link rel="stylesheet" href="./assets/css/navbar_footer.css" />
+    <link rel="stylesheet" href="./assets/css/checkout.css" />
+    <script src="./assets/js/checkout1.js"></script>
+  </head>
+  <body>
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal1">
+      <div class="modal-content1">
+        <h2>Select Payment Method</h2>
+        <button onclick="selectPayment('Zelle')" class="Payment_Button">
+          <img src="./assets/image/zelle.png" alt="" style="max-width: 100px" />
+        </button>
+        <button onclick="selectPayment('Bitcoin')" class="Payment_Button">
+          <img
+            src="./assets/image/bitcoin.png"
+            alt=""
+            style="max-width: 100px"
+          />
+        </button>
+        <button onclick="selectPayment('Venmo')" class="Payment_Button">
+          <img src="./assets/image/venmo.png" alt="" style="max-width: 100px" />
+        </button>
+        <button onclick="confirmPayment()" class="X_button">
+          Cancel Payment
+        </button>
+        <div id="qr-container" style="margin-top: 20px; display: none">
+          <img id="qr-code" src="" alt="QR Code" style="max-width: 200px" />
+
+          <h3 id="qrtext_id"></h3>
+          <br />
+          <button onclick="confirmPayment()" class="Ok_Button">OK</button>
+          <!-- <button onclick="cancelPayment()">Cancel</button> -->
+          <button onclick="confirmPayment()" class="Cancel_Button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+      <div class="modal-content">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
+          alt="Success"
+          class="modal-img"
+        />
+        <h2>Thank you for your purchase!</h2>
+        <p>
+          Your order number is
+          <strong id="modal-order-number">#54871648754</strong>
+        </p>
+        <p>You'll get an email confirmation for your order details</p>
+        <button onclick="viewOrder()">View Order</button>
+        <button onclick="goHome()">Go to Home</button>
+      </div>
+    </div>
+
+    <header class="navbar">
+      <div class="navbar-top" id="navbar">
+        <div class="logo" onclick="window.location.href='./index.html'">
+          <img src="./assets/image2/logo.png" alt="MCland Pharma Logo" />
+        </div>
+        <div class="navbar-top-right">
+          <div class="actions">
+            <button type="button">
+              <a class="a Cart" href="./cart.html">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
+                  alt="Cart"
+                  class="cart-icon"
+                />
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Checkout Form -->
+    <main class="checkout-container">
+      <h1>Billing Details</h1>
+      <div class="checkout-card">
+        <form id="checkout-form" class="checkout-form">
+          <!-- Billing Details -->
+          <div class="form-group input-group">
+            <input
+              type="text"
+              id="first-name"
+              name="firstName"
+              placeholder=" "
+              required
+            />
+            <label for="first-name"
+              >First Name <span style="color: red">*</span></label
+            >
+            <div class="error" id="first-name-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="text"
+              id="last-name"
+              name="lastName"
+              placeholder=" "
+              required
+            />
+            <label for="last-name"
+              >Last Name <span style="color: red">*</span></label
+            >
+            <div class="error" id="last-name-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="text"
+              id="street-address"
+              name="billingStreetAddress"
+              placeholder=" "
+              required
+            />
+            <label for="street-address"
+              >Street Address <span style="color: red">*</span></label
+            >
+            <div class="error" id="street-address-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input type="text" id="city" name="city" placeholder=" " required />
+            <label for="city">City <span style="color: red">*</span></label>
+            <div class="error" id="city-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="text"
+              id="state"
+              name="billingState"
+              placeholder=" "
+              required
+            />
+            <label for="state">State <span style="color: red">*</span></label>
+            <div class="error" id="state-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="text"
+              id="zip-code"
+              name="billingZip"
+              placeholder=" "
+              required
+              pattern="[0-9]{5}(-[0-9]{4})?"
+            />
+            <label for="zip-code"
+              >ZIP Code <span style="color: red">*</span></label
+            >
+            <div class="error" id="zip-code-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <select id="country" name="country" required>
+              <option value="" disabled selected></option>
+              <option value="United States">United States (US)</option>
+              <option value="UK">UK</option>
+            </select>
+            <label for="country"
+              >Country / Region <span style="color: red">*</span></label
+            >
+            <div class="error" id="country-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder=" "
+              required
+            />
+            <label for="phone">Phone <span style="color: red">*</span></label>
+            <div class="error" id="phone-error"></div>
+          </div>
+
+          <div class="form-group input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder=" "
+              required
+            />
+            <label for="email"
+              >Email Address <span style="color: red">*</span></label
+            >
+            <div class="error" id="email-error"></div>
+          </div>
+
+          <!-- Shipping Address Checkbox -->
+          <div class="form-group">
+            <input hidden="checkbox" id="different-address" />
+            <!-- <label for="different-address">Ship to a different address?</label> -->
+          </div>
+
+          <!-- Additional Address Form -->
+          <div id="shipping-address-form" style="display: none">
+            <h3>Shipping Address</h3>
+            <div class="form-group input-group">
+              <input
+                type="text"
+                id="ship-street-address"
+                name="shipStreetAddress"
+                placeholder=" "
+              />
+              <label for="ship-street-address"
+                >Street Address <span style="color: red">*</span></label
+              >
+            </div>
+
+            <div class="form-group input-group">
+              <input
+                type="text"
+                id="ship-city"
+                name="shipCity"
+                placeholder=" "
+              />
+              <label for="ship-city"
+                >City <span style="color: red">*</span></label
+              >
+            </div>
+
+            <div class="form-group input-group">
+              <input
+                type="text"
+                id="ship-zip"
+                name="shipZip"
+                placeholder=" "
+                pattern="[0-9]{5}(-[0-9]{4})?"
+              />
+              <label for="ship-zip"
+                >ZIP Code <span style="color: red">*</span></label
+              >
+            </div>
+          </div>
+        </form>
+
+        <!-- Order Summary -->
+        <section class="order-summary">
+          <h2>Your Order</h2>
+          <div id="order-loading">Loading cart items...</div>
+          <div id="order-content" style="display: none">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody id="cart-items">
+                <!-- Cart items will be dynamically injected here -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><strong>Shipping</strong></td>
+                  <td id="shipping-cost"><strong>$0.00</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Total</strong></td>
+                  <td id="total-cost"><strong>$0.00</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- Place Order Button -->
+          <button id="place-order-btn" class="place-order-btn" type="button">
+            Place Order
+          </button>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

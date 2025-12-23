@@ -1,0 +1,112 @@
+/* */
+ /* ==== Review Section ==== */
+      .review-section {
+        margin-top: 25px;
+        background: var(--background-alt);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .review-section h3,
+      .review-section h4 {
+        margin-bottom: 10px;
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      .review-section form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .review-section input,
+      .review-section textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      .review-section textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .review-section button {
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        color: var(--text-primary);
+        border: none;
+        border-radius: 6px;
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .review-section button:hover {
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      }
+
+      /* ==== Star Rating ==== */
+      .star-rating {
+        display: flex;
+        gap: 8px;
+        font-size: 28px;
+        /* color: #ffbb00; */
+        cursor: pointer;
+        margin-bottom: 10px;
+        user-select: none;
+        transition: 0.3s ease;
+      }
+
+      .star-rating span {
+        transition: transform 0.2s ease, color 0.3s ease;
+      }
+
+      .star-rating span:hover {
+        transform: scale(1.2);
+        color: #ffbb00;
+      }
+
+      .star-rating .selected,
+      .star-rating .hovered {
+        color: #ffd700;
+      }
+
+      /* ==== Review Card ==== */
+      .review-card {
+        border: 1px solid #eee;
+        background: var(--background);
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .review-card strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      .review-card small {
+        color: var(--text-secondary);
+      }
+
+      .show-more-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 8px 16px;
+  background: var(--background);
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.show-more-btn:hover {
+  background: var(--background-alt);
+  transform: translateY(-2px);
+}

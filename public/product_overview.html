@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details - XYZ Medical</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #0066cc;
+        --secondary: #004a99;
+        --light: #e8f4fd;
+        --white: #ffffff;
+        --dark: #1a1a1a;
+        --gray: #666666;
+        --success: #26de81;
+        --warning: #ffa502;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: var(--dark);
+        background: #f8f9fa;
+      }
+
+      /* Top Navigation */
+      .top-nav {
+        background: var(--secondary);
+        color: var(--white);
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+
+      .back-btn {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.6rem 1.5rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .cart-badge {
+        position: relative;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ff4757;
+        color: var(--white);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 5%;
+        color: var(--gray);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      /* Main Product Section */
+      .product-container {
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        padding: 0 5%;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        gap: 3rem;
+        background: var(--white);
+        border-radius: 30px;
+        padding: 3rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Product Images */
+      .product-images {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+      }
+
+      .main-image-container {
+        width: 100%;
+        height: 500px;
+        background: var(--light);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
+      }
+
+      .main-image {
+        font-size: 10rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .product-badge-large {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: #ff4757;
+        color: var(--white);
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .thumbnail-images {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .thumbnail {
+        height: 100px;
+        background: var(--light);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 3px solid transparent;
+      }
+
+      .thumbnail:hover,
+      .thumbnail.active {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      /* Product Details */
+      .product-details {
+        /* width: 100%; */
+        animation: fadeInRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .product-category {
+        display: inline-block;
+        background: var(--light);
+        color: var(--primary);
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .product-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .product-meta {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--light);
+      }
+
+      .rating-section {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .stars-large {
+        color: #ffb800;
+        font-size: 1.3rem;
+      }
+
+      .rating-number {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark);
+      }
+
+      .review-count {
+        color: var(--gray);
+      }
+
+      .stock-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+      }
+
+      .stock-status.in-stock {
+        color: var(--success);
+      }
+
+      .stock-status.low-stock {
+        color: var(--warning);
+      }
+
+      .stock-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: currentColor;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .price-section {
+        margin-bottom: 2rem;
+      }
+
+      .current-price {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-right: 1rem;
+      }
+
+      .original-price {
+        font-size: 1.8rem;
+        color: var(--gray);
+        text-decoration: line-through;
+        margin-right: 1rem;
+      }
+
+      .discount-badge {
+        display: inline-block;
+        background: #ff4757;
+        color: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 700;
+      }
+
+      /* Product Options */
+      .product-options {
+        margin-bottom: 2rem;
+      }
+
+      .option-group {
+        margin-bottom: 2rem;
+      }
+
+      .option-label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .strength-options,
+      .quantity-options {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .option-btn {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid var(--light);
+        background: var(--white);
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .option-btn:hover {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .option-btn.selected {
+        background: var(--primary);
+        color: var(--white);
+        border-color: var(--primary);
+      }
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .qty-btn {
+        width: 45px;
+        height: 45px;
+        border: 2px solid var(--primary);
+        background: var(--white);
+        color: var(--primary);
+        border-radius: 10px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 700;
+      }
+
+      .qty-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .qty-input {
+        width: 80px;
+        height: 45px;
+        text-align: center;
+        border: 2px solid var(--light);
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      /* Action Buttons */
+      .action-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        flex: 1;
+        padding: 1.2rem 2rem;
+        border: none;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+      }
+
+      .btn-secondary {
+        background: var(--light);
+        color: var(--primary);
+        border: 2px solid var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      /* Product Info Tabs */
+      .product-tabs {
+        /* width: fit-content; */
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--light);
+      }
+
+      .tab-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 0.8rem 1.5rem;
+        background: var(--light);
+        border: none;
+        border-radius: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn.active {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .description-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--gray);
+      }
+
+      .info-list {
+        list-style: none;
+      }
+
+      .info-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--light);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .info-list li strong {
+        color: var(--dark);
+      }
+
+      /* Reviews Section */
+      .reviews-section {
+        max-width: 1400px;
+        margin: 4rem auto;
+        padding: 0 5%;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 2rem;
+      }
+
+      .reviews-summary {
+        background: var(--white);
+        border-radius: 25px;
+        padding: 3rem;
+        margin-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .rating-overview {
+        text-align: center;
+      }
+
+      .big-rating {
+        font-size: 4rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .rating-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .rating-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .bar-label {
+        min-width: 80px;
+        font-weight: 600;
+      }
+
+      .bar-container {
+        flex: 1;
+        height: 10px;
+        background: var(--light);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ffb800 0%, #ff8c00 100%);
+        border-radius: 10px;
+        transition: width 0.5s ease;
+      }
+
+      .bar-count {
+        min-width: 40px;
+        text-align: right;
+        color: var(--gray);
+      }
+
+      .reviews-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .review-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+
+      .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .reviewer-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .reviewer-details h4 {
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 0.2rem;
+      }
+
+      .review-date {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .review-rating {
+        color: #ffb800;
+        font-size: 1.1rem;
+      }
+
+      .review-text {
+        color: var(--gray);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+
+      .review-helpful {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .helpful-btn {
+        background: var(--light);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .helpful-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--secondary);
+        color: var(--white);
+        padding: 4rem 5% 2rem;
+        margin-top: 5rem;
+      }
+
+      .footer-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-col h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .footer-col p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-col a {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        margin-bottom: 0.8rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+        padding-left: 10px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background: var(--primary);
+        transform: translateY(-5px);
+      }
+
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+           .product-image{
+        width: 100%;
+        height: auto;
+      }
+      
+      /* Cart Button */
+.cart-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.cart-button {
+  /* background: var(--background-alt);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease; */
+  background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border-radius: 8px;
+}
+
+.cart-button:hover {
+  /* background: var(--primary); */
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+  display: none;
+}
+
+.product-table {
+  width: 90%;
+  border-collapse: collapse;
+  background: var(--background-alt);
+}
+
+.product-table th,
+.product-table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.product-table thead {
+  background: var(--background-alt);
+}
+
+.product-table tbody tr:hover {
+  background: var(--background);
+}
+
+.product-table {
+    min-width: 100%;
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  
+.btn--toggle {
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--background-alt);
+  color: var(--text-primary);
+  font-weight: 500; 
+}
+
+.btn--toggle.btn--active {
+  background: var(--primary);
+  color: var(--background);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ADD TO CART BUTTON */
+.btn--add {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn--add:hover {
+  filter: brightness(1.1);
+}
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .product-container {
+        padding: 1rem;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .product-images {
+          position: relative;
+          top: 0;
+        }
+        .reviews-summary {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+
+        .product-details{
+          max-width: 100%
+        }
+
+        .back-btn{
+          display: none;
+        }
+
+        .product-title {
+          font-size: 2rem;
+        }
+        .current-price {
+          font-size: 2.2rem;
+        }
+        .action-buttons {
+          flex-direction: column;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+ 
+    </style>
+    <link rel="stylesheet" href="./assets/css/review.css">
+    <link rel="stylesheet" href="./assets/css/searchBar.css">
+    
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="logo">XYZ</div>
+      <div class="nav-links">
+        <a href="categories.html" class="back-btn">← Back</a>
+        <div class="search">
+          <input
+            type="text"
+            placeholder="Search products..."
+            class="search__input"
+            id="search-input"
+            autocomplete="off"
+          />
+          <ul id="suggestions" class="search-suggestions"></ul>
+
+          <button class="btn btn--search" id="search-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="currentColor"
+            >
+              <path
+                d="M10 2a8 8 0 015.292 13.708l4.5 4.5a1 1 0 01-1.415 1.414l-4.5-4.5A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"
+              />
+            </svg>
+          </button>
+        </div>
+        <a href="cart" id="cart-a-section" class="cart-link">
+            <button class="btn btn--icon cart-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+            </button>
+            <span id="cart-count" class="cart-count">0</span>
+          </a>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> /
+      <a href="categories.html" id="categoryLink">Category</a> /
+      <span id="productBreadcrumb">Product</span>
+    </div>
+
+    <!-- Main Product Container -->
+    <div class="product-container">
+      <!-- Product Images -->
+      <div class="product-images">
+        <div class="main-image-container">
+          <!-- <div class="product-badge-large" id="productBadge">20% OFF</div> -->
+          <div class="main-image" id="mainImage">💊</div>
+        </div>
+        <div class="thumbnail-images">
+          <!-- <div class="thumbnail active">💊</div>
+          <div class="thumbnail">📦</div>
+          <div class="thumbnail">🔬</div>
+          <div class="thumbnail">✨</div> -->
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="product-details">
+        <!-- <span class="product-category" id="productCategory"
+          >General Health</span
+        > -->
+        <h1 class="product-title" id="productTitle">Loading Product...</h1>
+
+        <!-- <div class="product-meta">
+          <div class="rating-section">
+            <span class="stars-large">★★★★★</span>
+            <span class="rating-number" id="ratingNumber">4.8</span>
+            <span class="review-count" id="reviewCount">(234 reviews)</span>
+          </div>
+          <div class="stock-status in-stock" id="stockStatus">
+            <span class="stock-dot"></span>
+            In Stock
+          </div>
+        </div> -->
+
+        <!-- <div class="price-section">
+                <span class="current-price" id="currentPrice">$45.99</span>
+                <span class="original-price" id="originalPrice">$59.99</span>
+                <span class="discount-badge" id="discountBadge">Save 23%</span>
+            </div> -->
+        
+
+        <!-- Product Options -->
+        <!-- <div class="product-options">
+                <div class="option-group">
+                    <label class="option-label">Select Strength</label>
+                    <div class="strength-options" id="strengthOptions">
+                        <button class="option-btn selected">50mg</button>
+                        <button class="option-btn">100mg</button>
+                        <button class="option-btn">200mg</button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label class="option-label">Quantity</label>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">−</button>
+                        <input type="number" class="qty-input" id="quantityInput" value="1" min="1" max="99">
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+            </div> -->
+
+            <div id="button-container" class="mg-buttons-container">
+          <!-- JavaScript generates: 50mg, 100mg, 200mg buttons -->
+        </div>
+        <table class="variants-table product-table">
+          <thead>
+            <tr>
+              <th>Quantity</th>
+              <th>Price/Pill</th>
+              <th>Box Price</th>
+              <th>Add to Cart</th>
+            </tr>
+          </thead>
+          <tbody id="popil">
+            <!-- JavaScript populates this with variants -->
+          </tbody>
+        </table>
+
+        <!-- Action Buttons -->
+        <!-- <div class="action-buttons">
+          <button class="btn-primary" onclick="buyNow()">Buy Now</button>
+          <button class="btn-secondary" onclick="addToCart()">
+            Add to Cart
+          </button>
+        </div> -->
+
+        <!-- Product Info Tabs -->
+        <div class="product-tabs">
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('description')">
+              Description
+            </button>
+            <button class="tab-btn" onclick="switchTab('details')">
+              Details
+            </button>
+            <button class="tab-btn" onclick="switchTab('usage')">
+              How to Use
+            </button>
+          </div>
+
+          <div class="tab-content active" id="description">
+            <p class="description-text" id="productDescription">
+              Loading product description...
+            </p>
+          </div>
+
+          <div class="tab-content" id="details">
+            <ul class="info-list" id="productDetailsList">
+              <li><strong>Manufacturer:</strong> <span>Loading...</span></li>
+              <li>
+                <strong>Active Ingredient:</strong> <span>Loading...</span>
+              </li>
+              <li><strong>Form:</strong> <span>Tablets</span></li>
+              <li><strong>Prescription Required:</strong> <span>Yes</span></li>
+            </ul>
+          </div>
+
+          <div class="tab-content" id="usage">
+            <p class="description-text" id="usageInstructions">
+              Loading usage instructions...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+      <h2 class="section-title">Customer Reviews</h2>
+
+      <div class="reviews-summary">
+        <!-- <div class="rating-overview">
+          <div class="big-rating" id="avgRating">4.8</div>
+          <div class="stars-large">★★★★★</div>
+          <p style="color: var(--gray); margin-top: 0.5rem">
+            Based on <span id="totalReviews">234</span> reviews
+          </p>
+        </div> -->
+
+        <div id="rating" class="rating ">
+          <div class="big-rating" id="start-count"></div>
+          <div class="stars-large">
+          <span data-value="1">★</span><span data-value="2">★</span>
+          <span data-value="3">★</span><span data-value="4">★</span>
+          <span data-value="5">★</span>
+          </div>
+          <p style="color: var(--gray); margin-top: 0.5rem">
+            Based on <span id="totalReviews"><small class="rating__count">(0 reviews)</small></span>
+          </p>
+          
+        </div>
+
+        <!-- <div class="rating-bars">
+          <div class="rating-bar">
+            <span class="bar-label">5 Stars</span>
+            <div class="bar-container">
+              <div class="bar-fill" style="width: 75%"></div>
+            </div>
+            <span class="bar-count">175</span>
+          </div>
+          <div class="rating-bar">
+            <span class="bar-label">4 Stars</span>
+            <div class="bar-container">
+              <div class="bar-fill" style="width: 15%"></div>
+            </div>
+            <span class="bar-count">35</span>
+          </div>
+          <div class="rating-bar">
+            <span class="bar-label">3 Stars</span>
+            <div class="bar-container">
+              <div class="bar-fill" style="width: 7%"></div>
+            </div>
+            <span class="bar-count">16</span>
+          </div>
+          <div class="rating-bar">
+            <span class="bar-label">2 Stars</span>
+            <div class="bar-container">
+              <div class="bar-fill" style="width: 2%"></div>
+            </div>
+            <span class="bar-count">5</span>
+          </div>
+          <div class="rating-bar">
+            <span class="bar-label">1 Star</span>
+            <div class="bar-container">
+              <div class="bar-fill" style="width: 1%"></div>
+            </div>
+            <span class="bar-count">3</span>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="reviews-list" id="reviewsList">
+        <!-- Reviews will be loaded here -->
+      </div>
+
+      <div class="review-section">
+        <!-- <h3>Customer Reviews</h3> -->
+        <div id="review-list"></div>  
+        <div id="rating" class="rating__count"></div>
+
+        <h4>Leave a Review</h4>
+        <form id="reviewForm">
+          <!-- ⭐ Interactive Star Rating -->
+          <div class="star-rating" id="star-rating">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+          </div>
+
+          <input
+            type="text"
+            id="review-name"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            id="review-email"
+            placeholder="Your Email"
+            required
+          />
+          <textarea
+            id="review-text"
+            placeholder="Write your review..."
+            required
+          ></textarea>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
+
+      <!-- Details Sections -->
+      <section  id="differ">
+        <!-- Will be filled dynamically -->
+      </section>
+
+      <section class="three-box-section" id="three-box-section">
+        <!-- Will be filled dynamically -->
+      </section>
+      <script src="./assets/js/review.js"></script>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>XYZ Medical</h3>
+          <p>
+            Your trusted partner in health and wellness. Delivering premium
+            medical solutions since 2020 with care, precision, and dedication.
+          </p>
+          <div class="social-links">
+            <div class="social-icon">📘</div>
+            <div class="social-icon">📷</div>
+            <div class="social-icon">🐦</div>
+            <div class="social-icon">💼</div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#">About Us</a>
+          <a href="#">Shop</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="#">Help Center</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Track Order</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <a href="#">📞 1800-XXX-XXXX</a>
+          <a href="#">✉️ support@xyz.com</a>
+          <a href="#">📍 Mumbai, India</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2025 XYZ Medical. All rights reserved. | Privacy Policy | Terms
+          & Conditions
+        </p>
+      </div>
+    </footer>
+
+    <!-- <script>
+      // Sample product database (replace with your actual database/API)
+      const productDatabase = {
+        1: {
+          name: "Premium Multivitamin Complex",
+          category: "USA Premium Quality",
+          categoryId: 1,
+          price: 45.99,
+          originalPrice: 59.99,
+          rating: 4.8,
+          reviewCount: 234,
+          stock: "In Stock",
+          badge: "20% OFF",
+          description:
+            "Our Premium Multivitamin Complex is a comprehensive blend of essential vitamins, minerals, and nutrients designed to support your overall health and wellness. Formulated with high-quality, bioavailable ingredients to ensure maximum absorption and effectiveness. Perfect for filling nutritional gaps in your daily diet.",
+          manufacturer: "HealthCare Labs USA",
+          activeIngredient: "Multivitamin Complex",
+          form: "Tablets",
+          prescriptionRequired: "No",
+          strengths: ["50mg", "100mg", "200mg"],
+          usage:
+            "Take one tablet daily with food, preferably in the morning. Do not exceed the recommended dose. Consult your healthcare provider before use if you are pregnant, nursing, or taking any medications.",
+          details: {
+            manufacturer: "HealthCare Labs USA",
+            activeIngredient: "Multivitamin & Mineral Complex",
+            form: "Coated Tablets",
+            prescriptionRequired: "No",
+            packSize: "60 Tablets",
+            shelfLife: "24 Months",
+          },
+        },
+        2: {
+          name: "Omega-3 Fish Oil 1000mg",
+          category: "General Health",
+          categoryId: 2,
+          price: 29.99,
+          originalPrice: 39.99,
+          rating: 4.9,
+          reviewCount: 456,
+          stock: "In Stock",
+          badge: "Best Seller",
+          description:
+            "Pure Omega-3 Fish Oil sourced from wild-caught fish, providing essential EPA and DHA fatty acids. Supports heart health, brain function, and joint mobility. Molecularly distilled for purity and freshness.",
+          strengths: ["500mg", "1000mg", "1500mg"],
+          usage:
+            "Take 1-2 softgels daily with meals. Store in a cool, dry place away from direct sunlight.",
+          details: {
+            manufacturer: "Nordic Naturals",
+            activeIngredient: "EPA 300mg, DHA 200mg per softgel",
+            form: "Softgel Capsules",
+            prescriptionRequired: "No",
+            packSize: "120 Softgels",
+            shelfLife: "18 Months",
+          },
+        },
+      };
+
+      // Sample reviews database
+      const reviewsDatabase = {
+        1: [
+          {
+            name: "Sarah Johnson",
+            initials: "SJ",
+            rating: 5,
+            date: "2 weeks ago",
+            text: "Excellent product! I've been taking these for 3 months now and feel much more energetic. The quality is outstanding and it's great value for money.",
+            helpful: 24,
+          },
+          {
+            name: "Michael Chen",
+            initials: "MC",
+            rating: 5,
+            date: "1 month ago",
+            text: "Best multivitamin I've ever used. No upset stomach and I can really feel the difference in my energy levels throughout the day.",
+            helpful: 18,
+          },
+          {
+            name: "Emily Rodriguez",
+            initials: "ER",
+            rating: 4,
+            date: "3 weeks ago",
+            text: "Very good product overall. The tablets are easy to swallow and I haven't experienced any side effects. Would recommend!",
+            helpful: 12,
+          },
+        ],
+        2: [
+          {
+            name: "David Kumar",
+            initials: "DK",
+            rating: 5,
+            date: "1 week ago",
+            text: "Pure and effective omega-3 supplement. No fishy aftertaste which is a huge plus. Great for heart health!",
+            helpful: 31,
+          },
+        ],
+      };
+
+      // Get product ID from URL
+      function getProductIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("product_id") || "1";
+      }
+
+      // Load product data
+      function loadProductData() {
+        const productId = getProductIdFromUrl();
+        const product = productDatabase[productId];
+
+        if (!product) {
+          alert("Product not found!");
+          return;
+        }
+
+        // Update page title
+        document.title = `${product.name} - XYZ Medical`;
+
+        // Update product info
+        document.getElementById("productTitle").textContent = product.name;
+        document.getElementById("productCategory").textContent =
+          product.category;
+        document.getElementById(
+          "currentPrice"
+        ).textContent = `$${product.price}`;
+        document.getElementById("ratingNumber").textContent = product.rating;
+        document.getElementById(
+          "reviewCount"
+        ).textContent = `(${product.reviewCount} reviews)`;
+        document.getElementById("productDescription").textContent =
+          product.description;
+        document.getElementById("usageInstructions").textContent =
+          product.usage;
+        document.getElementById("productBreadcrumb").textContent = product.name;
+        document.getElementById("productBadge").textContent = product.badge;
+
+        // Update original price
+        if (product.originalPrice) {
+          document.getElementById(
+            "originalPrice"
+          ).textContent = `$${product.originalPrice}`;
+          const discount = Math.round(
+            ((product.originalPrice - product.price) / product.originalPrice) *
+              100
+          );
+          document.getElementById(
+            "discountBadge"
+          ).textContent = `Save ${discount}%`;
+        } else {
+          document.getElementById("originalPrice").style.display = "none";
+          document.getElementById("discountBadge").style.display = "none";
+        }
+
+        // Update stock status
+        const stockEl = document.getElementById("stockStatus");
+        stockEl.textContent = product.stock;
+        stockEl.className =
+          product.stock === "Low Stock"
+            ? "stock-status low-stock"
+            : "stock-status in-stock";
+        stockEl.innerHTML = `<span class="stock-dot"></span>${product.stock}`;
+
+        // Update category link
+        document.getElementById(
+          "categoryLink"
+        ).href = `categories.html?catogeries_ID=${product.categoryId}`;
+        document.getElementById("categoryLink").textContent = product.category;
+
+        // Load strength options
+        if (product.strengths) {
+          const strengthContainer = document.getElementById("strengthOptions");
+          strengthContainer.innerHTML = product.strengths
+            .map(
+              (strength, index) =>
+                `<button class="option-btn ${
+                  index === 0 ? "selected" : ""
+                }" onclick="selectStrength(this)">${strength}</button>`
+            )
+            .join("");
+        }
+
+        // Load product details
+        if (product.details) {
+          const detailsList = document.getElementById("productDetailsList");
+          detailsList.innerHTML = Object.entries(product.details)
+            .map(
+              ([key, value]) =>
+                `<li><strong>${key
+                  .replace(/([A-Z])/g, " $1")
+                  .trim()}:</strong> <span>${value}</span></li>`
+            )
+            .join("");
+        }
+
+        // Load reviews
+        loadReviews(productId);
+      }
+
+      // Load reviews
+      function loadReviews(productId) {
+        const reviews = reviewsDatabase[productId] || [];
+        const reviewsList = document.getElementById("reviewsList");
+
+        if (reviews.length === 0) {
+          reviewsList.innerHTML =
+            '<p style="text-align: center; color: var(--gray); padding: 2rem;">No reviews yet. Be the first to review this product!</p>';
+          return;
+        }
+
+        reviewsList.innerHTML = reviews
+          .map(
+            (review) => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">${
+                              review.initials
+                            }</div>
+                            <div class="reviewer-details">
+                                <h4>${review.name}</h4>
+                                <span class="review-date">${review.date}</span>
+                            </div>
+                        </div>
+                        <div class="review-rating">${"★".repeat(
+                          review.rating
+                        )}${"☆".repeat(5 - review.rating)}</div>
+                    </div>
+                    <p class="review-text">${review.text}</p>
+                    <div class="review-helpful">
+                        <button class="helpful-btn">👍 Helpful (${
+                          review.helpful
+                        })</button>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Strength selection
+      function selectStrength(button) {
+        document
+          .querySelectorAll(".strength-options .option-btn")
+          .forEach((btn) => {
+            btn.classList.remove("selected");
+          });
+        button.classList.add("selected");
+      }
+
+      // Quantity controls
+      function changeQuantity(change) {
+        const input = document.getElementById("quantityInput");
+        let value = parseInt(input.value) + change;
+        if (value < 1) value = 1;
+        if (value > 99) value = 99;
+        input.value = value;
+      }
+
+      // Tab switching
+      function switchTab(tabName) {
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((content) => content.classList.remove("active"));
+
+        event.target.classList.add("active");
+        document.getElementById(tabName).classList.add("active");
+      }
+
+      // Add to cart
+      function addToCart() {
+        const productId = getProductIdFromUrl();
+        const quantity = document.getElementById("quantityInput").value;
+        const strength = document.querySelector(
+          ".strength-options .option-btn.selected"
+        ).textContent;
+
+        alert(
+          `Added to cart!\nProduct ID: ${productId}\nStrength: ${strength}\nQuantity: ${quantity}`
+        );
+
+        // Update cart count
+        const cartCount = document.querySelector(".cart-count");
+        cartCount.textContent =
+          parseInt(cartCount.textContent) + parseInt(quantity);
+      }
+
+      // Buy now
+      function buyNow() {
+        const productId = getProductIdFromUrl();
+        const quantity = document.getElementById("quantityInput").value;
+        const strength = document.querySelector(
+          ".strength-options .option-btn.selected"
+        ).textContent;
+
+        alert(
+          `Proceeding to checkout!\nProduct ID: ${productId}\nStrength: ${strength}\nQuantity: ${quantity}`
+        );
+        // Redirect to checkout page
+        // window.location.href = 'checkout.html';
+      }
+
+      // Thumbnail image switching
+      document.querySelectorAll(".thumbnail").forEach((thumb) => {
+        thumb.addEventListener("click", function () {
+          document
+            .querySelectorAll(".thumbnail")
+            .forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+          document.getElementById("mainImage").textContent = this.textContent;
+        });
+      });
+
+      // Initialize page
+      loadProductData();
+    </script> -->
+    </script>
+    <script src="./assets/js/product_overview-fixed-v3.js"></script>
+    <script src="./assets/js/SearchBar.js"></script>
+  </body>
+</html>

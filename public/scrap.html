@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .review-section {
+  margin-top: 20px;
+}
+.review-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.review-section input,
+.review-section textarea,
+.review-section select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.review-card {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+}
+.review-card strong {
+  color: #222;
+}
+
+    </style>
+</head>
+<body>
+    <div class="review-section">
+  <h3>Customer Reviews</h3>
+  <div id="review-list"></div>
+
+  <h4>Leave a Review</h4>
+  <form id="reviewForm">
+    <div class="rating-input">
+      <label>Rating:</label>
+      <select id="review-rating" required>
+        <option value="">Select</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
+    </div>
+    <input type="text" id="review-name" placeholder="Your Name" required />
+    <input type="email" id="review-email" placeholder="Your Email" required />
+    <textarea id="review-text" placeholder="Write your review..." required></textarea>
+    <button type="submit">Submit Review</button>
+  </form>
+</div>
+<script>
+    // ============================
+// REVIEWS HANDLING
+// ============================
+async function loadReviews(productId) {
+  const reviewList = document.getElementById("review-list");
+  reviewList.innerHTML = "<p>Loading reviews...</p>";
+
+  try {
+    const response = await fetch(`/api/reviews/${productId}`);
+    const result = await response.json();
+
+    if (!result.success || result.reviews.length === 0) {
+      reviewList.innerHTML = "<p>No reviews yet. Be the first to write one!</p>";
+      return;
+    }
+
+    reviewList.innerHTML = result.reviews
+      .map(
+        (r) => `
+        <div class="review-card">
+          <strong>${r.name}</strong> - <span>${"⭐".repeat(r.rating)}</span>
+          <p>${r.review_text}</p>
+          <small>${new Date(r.created_at).toLocaleDateString()}</small>
+        </div>
+      `
+      )
+      .join("");
+  } catch (err) {
+    console.error("Error loading reviews:", err);
+    reviewList.innerHTML = "<p>Error loading reviews.</p>";
+  }
+}
+
+async function handleReviewSubmit(event) {
+  event.preventDefault();
+  const urlParams = new URLSearchParams(window.location.search);
+  const product_id = urlParams.get("product_ID");
+
+  const name = document.getElementById("review-name").value.trim();
+  const email = document.getElementById("review-email").value.trim();
+  const rating = parseInt(document.getElementById("review-rating").value);
+  const review_text = document.getElementById("review-text").value.trim();
+
+  if (!name || !email || !rating || !review_text) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product_id, name, email, rating, review_text }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      alert("Review submitted successfully!");
+      document.getElementById("reviewForm").reset();
+      loadReviews(product_id);
+    } else {
+      alert(result.message);
+    }
+  } catch (err) {
+    console.error("Error submitting review:", err);
+    alert("Error submitting review");
+  }
+}
+
+// Load reviews on product load
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("product_ID");
+  if (productId) loadReviews(productId);
+  const form = document.getElementById("reviewForm");
+  if (form) form.addEventListener("submit", handleReviewSubmit);
+});
+
+</script>
+</body>
+</html>
+
+<style>
+        .hero-slider {
+          position: relative;
+          width: 100%;
+          height: 400px;
+          /* overflow: hidden; */
+        }
+        .hero-slider 
+
+        .hero-slide {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 100%;
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          transition: all 1s ease-in-out;
+          background-size: cover;
+          background-position: center;
+          color: white;
+          font-size: 28px;
+        }
+
+        .hero-slide.active {
+          left: 0;
+          opacity: 1;
+        }
+
+        .hero-slide.exit {
+          left: -100%;
+          opacity: 0;
+        }
+      </style>
+
+      <div class="hero-slider">
+        <div class="hero-slide active">
+          <div class="hero-container">
+            <div class="security-badges">
+              <div class="security-badge">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+                Committed to Safe Healthcare
+              </div>
+              <div class="security-badge">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+                SSL Encrypted
+              </div>
+              <div class="security-badge">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Trusted Since 2024
+              </div>
+            </div>
+
+            <h1 class="hero-title">Your Trusted Healthcare Partner</h1>
+            <p class="hero-subtitle">
+              Quality medications delivered with care, discretion, and
+              pharmaceutical expertise
+            </p>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search for medicines, supplements, and health products..."
+              />
+              <button class="search-submit">Search</button>
+              <ul id="hero-suggestions" class="search-suggestions"></ul>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number">Dedicated</span>
+                <span class="stat-label">Customer Care Team</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">High</span>
+                <span class="stat-label">Customer Satisfaction</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Expert Support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .banner {
+            width: 1200px;
+            height: 500px;
+            background: linear-gradient(
+              135deg,
+              #8b4513 0%,
+              #d2691e 50%,
+              #cd853f 100%
+            );
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          }
+
+          .banner::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+          }
+
+          .banner::after {
+            content: "";
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 50%;
+          }
+
+          .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 80px;
+            color: #fff;
+          }
+
+          .pill-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+          }
+
+          @keyframes float {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+
+          .subtitle {
+            font-family: "Poppins", sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #ffe4b5;
+          }
+
+          .main-title {
+            font-family: "Playfair Display", serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+          }
+
+          .highlight {
+            display: block;
+            font-size: 90px;
+            color: #ffd700;
+            text-shadow: 3px 5px 10px rgba(0, 0, 0, 0.4);
+          }
+
+          .offer-details {
+            font-family: "Poppins", sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #fff8dc;
+          }
+
+          .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #fff;
+            color: #8b4513;
+            font-family: "Poppins", sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            align-self: flex-start;
+          }
+
+          .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: #ffd700;
+          }
+
+          .decorative-pills {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 300px;
+            opacity: 0.15;
+            z-index: 1;
+          }
+
+          .floating-pills {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            z-index: 1;
+          }
+
+          .pill1 {
+            top: 10%;
+            right: 15%;
+            animation: float 4s ease-in-out infinite;
+          }
+
+          .pill2 {
+            top: 60%;
+            right: 25%;
+            animation: float 5s ease-in-out infinite 1s;
+          }
+
+          .pill3 {
+            top: 30%;
+            right: 8%;
+            animation: float 4.5s ease-in-out infinite 0.5s;
+          }
+
+          .pill4 {
+            bottom: 15%;
+            right: 18%;
+            animation: float 5.5s ease-in-out infinite 1.5s;
+          }
+
+          .dates {
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            margin-top: 15px;
+            color: #ffe4b5;
+            font-weight: 400;
+          }
+
+          @media (max-width: 768px) {
+            .banner {
+              height: 400px;
+            }
+
+            .content {
+              padding: 0 30px;
+            }
+
+            .main-title {
+              font-size: 48px;
+            }
+
+            .highlight {
+              font-size: 60px;
+            }
+
+            .offer-details {
+              font-size: 18px;
+            }
+
+            .decorative-pills {
+              font-size: 200px;
+              right: 40px;
+            }
+
+            .floating-pills {
+              font-size: 30px;
+            }
+          }
+        </style>
+        <div class="hero-slide">
+          <div class="banner">
+            <div class="decorative-pills">💊</div>
+            <div class="floating-pills pill1">💊</div>
+            <div class="floating-pills pill2">💊</div>
+            <div class="floating-pills pill3">💊</div>
+            <div class="floating-pills pill4">💊</div>
+
+            <div class="content">
+              <div class="pill-icon"></div>
+              <div class="subtitle">Limited Time Only</div>
+              <h1 class="main-title">
+                Thanksgiving
+                <span class="highlight">Special</span>
+              </h1>
+              <p class="offer-details">
+                Up to 50% OFF on All Medicines & Wellness Products
+              </p>
+              <a href="#" class="cta-button">Shop Now</a>
+              <p class="dates">Valid Nov 21 - Nov 28, 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-slide">
+          <h1>24/7 Online Support</h1>
+          <p>Experts ready to help anytime</p>
+        </div>
+      </div>
+
+      <script>
+        let sliderInterval;
+
+        // Start slider function
+        function startSlider() {
+          sliderInterval = setInterval(showNextHero, 4000);
+        }
+
+        // Stop slider function
+        function stopSlider() {
+          clearInterval(sliderInterval);
+        }
+
+        // Start when page loads
+        startSlider();
+
+        // Get the search input
+        const searchInput = document.querySelector(".search-input");
+
+        // When user clicks inside search → stop slider
+        searchInput.addEventListener("focus", () => {
+          stopSlider();
+        });
+
+        // When user clicks outside → start slider again
+        document.addEventListener("click", (event) => {
+          if (!searchInput.contains(event.target)) {
+            startSlider();
+          }
+        });
+
+        const slides = document.querySelectorAll(".hero-slide");
+        let index = 0;
+
+        function showNextHero() {
+          slides[index].classList.remove("active");
+          slides[index].classList.add("exit");
+
+          index = (index + 1) % slides.length;
+
+          slides[index].classList.add("active");
+
+          setTimeout(() => {
+            slides.forEach((slide) => slide.classList.remove("exit"));
+          }, 1000);
+        }
+
+      </script>
+
+
+<!-- // vpn  -->
+ 
+// //Middleware to block VPN users
+// async function blockVPN(req, res, next) {
+//   try {
+//     // If cookie already says blocked → deny immediately
+//     if (req.cookies.vpn_blocked === "true") {
+//       //return res.status(403).send("Not allowed (VPN detected)");
+//       return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     // Get client IP
+//     const clientIp =
+//       req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+
+//       console.log("Client IP:", clientIp);
+//     // Check with ip-api
+//     const response = await axios.get(
+//       `http://ip-api.com/json/${clientIp}?fields=proxy,hosting`
+//     );
+
+//     const data = response.data;
+
+//     if (data.proxy || data.hosting) {
+//       // Set cookie for 1 day
+//       res.cookie("vpn_blocked", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//        return res.status(403).send("Not allowed (VPN detected)");
+//       //return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     next();
+//   } catch (error) {
+//     console.error("VPN check failed:", error.message);
+//     next();
+//   }
+// }
+
+// app.use(blockVPN);
+
+// app.use(cookieParser());
+
+// // Middleware to block VPN users
+// async function blockVPN(req, res, next) {
+//   try {
+//     // 🚨 If cookie already says blocked → deny immediately
+//     if (req.cookies.vpn_blocked === "true") {
+//       return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     // 🚨 If cookie already says valid user → allow immediately (skip API check)
+//     if (req.cookies.valid_user === "true") {
+//       console.log("Trusted valid user → skipping VPN check");
+//       return next();
+//     }
+
+//     // Get client IP
+//     const clientIp =
+//       req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+
+//     console.log("Client IP:", clientIp);
+
+//     // Check with ip-api
+//     const response = await axios.get(
+//       `http://ip-api.com/json/${clientIp}?fields=proxy,hosting`
+//     );
+
+//     const data = response.data;
+
+//     if (data.proxy && data.hosting) {
+//       // 🚨 VPN detected → block + set cookie
+//       res.cookie("vpn_blocked", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//       return res.status(403).send("Not allowed (VPN detected)");
+//       // return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     // 🚨 If user is clean → set valid_user cookie for 1 day
+//     res.cookie("valid_user", "true", { maxAge: 24 * 60 * 60 * 1000 });
+
+//     next();
+//   } catch (error) {
+//     console.error("VPN check failed:", error.message);
+//     next();
+//   }
+// }
+
+// app.use(blockVPN);
+
+// // ✅ Move cookieParser BEFORE any middleware that uses cookies
+// // app.use(express.json());
+// // app.use(cookieParser());
+
+// // ============================================
+// // IN-MEMORY CACHE FOR IP CHECKS
+// // ============================================
+// const ipCache = new Map();
+// const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+// const MAX_CACHE_SIZE = 10000; // Prevent memory overflow
+
+// // Clean old cache entries periodically
+// setInterval(() => {
+//   const now = Date.now();
+//   for (const [ip, data] of ipCache.entries()) {
+//     if (now - data.timestamp > CACHE_DURATION) {
+//       ipCache.delete(ip);
+//     }
+//   }
+// }, 60 * 60 * 1000); // Every hour
+
+// // ============================================
+// // RATE LIMITER FOR API CALLS
+// // ============================================
+// let apiCallCount = 0;
+// let lastResetTime = Date.now();
+// const MAX_API_CALLS_PER_MINUTE = 40; // Stay under ip-api's 45/min limit
+
+// function canMakeApiCall() {
+//   const now = Date.now();
+  
+//   // Reset counter every minute
+//   if (now - lastResetTime > 60000) {
+//     apiCallCount = 0;
+//     lastResetTime = now;
+//   }
+  
+//   if (apiCallCount >= MAX_API_CALLS_PER_MINUTE) {
+//     console.warn("⚠️ API rate limit reached, allowing request without check");
+//     return false;
+//   }
+  
+//   apiCallCount++;
+//   return true;
+// }
+
+// // ============================================
+// // IP WHITELIST (for your employees)
+// // ============================================
+// const EMPLOYEE_IPS = new Set([
+//   // Add your office/employee IP addresses here
+//   // "203.0.113.0",
+//   // "198.51.100.0",
+// ]);
+
+// // ============================================
+// // ROUTES TO SKIP VPN CHECK
+// // ============================================
+// const SKIP_VPN_CHECK_PATHS = [
+//   '/assets/',
+//   '/favicon.ico',
+//   '/robots.txt',
+//   '/sitemap.xml',
+//   '/restricted.html',
+//   '/retry'
+// ];
+
+// function shouldSkipVpnCheck(path) {
+//   return SKIP_VPN_CHECK_PATHS.some(skipPath => path.startsWith(skipPath));
+// }
+
+// // ============================================
+// // OPTIMIZED VPN BLOCKING MIDDLEWARE
+// // ============================================
+// async function blockVPN(req, res, next) {
+//   try {
+//     // ✅ Skip VPN check for static assets and specific routes
+//     if (shouldSkipVpnCheck(req.path)) {
+//       return next();
+//     }
+
+//     // ✅ If already blocked → deny immediately
+//     if (req.cookies.vpn_blocked === "true") {
+//       return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     // ✅ If already validated → allow immediately
+//     if (req.cookies.valid_user === "true") {
+//       return next();
+//     }
+
+//     // Get client IP
+//     const clientIp = (req.headers["x-forwarded-for"]?.split(",")[0] || 
+//                       req.socket.remoteAddress || 
+//                       req.connection.remoteAddress).trim();
+
+//     // ✅ Skip localhost/development IPs
+//     if (clientIp === "::1" || clientIp === "127.0.0.1" || clientIp.startsWith("192.168.")) {
+//       res.cookie("valid_user", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//       return next();
+//     }
+
+//     // ✅ Check employee whitelist
+//     if (EMPLOYEE_IPS.has(clientIp)) {
+//       res.cookie("valid_user", "true", { maxAge: 7 * 24 * 60 * 60 * 1000 }); // 7 days for employees
+//       return next();
+//     }
+
+//     // ✅ Check cache first
+//     const cached = ipCache.get(clientIp);
+//     if (cached) {
+//       const age = Date.now() - cached.timestamp;
+      
+//       if (age < CACHE_DURATION) {
+//         if (cached.isVpn) {
+//           res.cookie("vpn_blocked", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//           return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//         } else {
+//           res.cookie("valid_user", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//           return next();
+//         }
+//       } else {
+//         // Cache expired, remove it
+//         ipCache.delete(clientIp);
+//       }
+//     }
+
+//     // ✅ Check if we can make an API call (rate limiting)
+//     if (!canMakeApiCall()) {
+//       console.warn(`⚠️ Rate limit reached, allowing ${clientIp} without check`);
+//       return next();
+//     }
+
+//     // ✅ Make API call with timeout
+//     const controller = new AbortController();
+//     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+//     const response = await axios.get(
+//       `http://ip-api.com/json/${clientIp}?fields=proxy,hosting,status,message`,
+//       { 
+//         signal: controller.signal,
+//         timeout: 5000
+//       }
+//     );
+    
+//     clearTimeout(timeoutId);
+
+//     const data = response.data;
+
+//     // Check if API request was successful
+//     if (data.status === "fail") {
+//       console.error(`❌ IP API failed for ${clientIp}: ${data.message}`);
+//       return next(); // Allow on API failure
+//     }
+
+//     const isVpn = data.proxy === true || data.hosting === true;
+
+//     // ✅ Store in cache
+//     if (ipCache.size < MAX_CACHE_SIZE) {
+//       ipCache.set(clientIp, {
+//         isVpn,
+//         timestamp: Date.now()
+//       });
+//     }
+
+//     if (isVpn) {
+//       console.log(`🚫 VPN/Proxy detected: ${clientIp}`);
+//       res.cookie("vpn_blocked", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//       return res.sendFile(path.join(__dirname, "public", "restricted.html"));
+//     }
+
+//     // ✅ Valid user
+//     console.log(`✅ Valid user: ${clientIp}`);
+//     res.cookie("valid_user", "true", { maxAge: 24 * 60 * 60 * 1000 });
+//     next();
+
+//   } catch (error) {
+//     // ✅ Handle errors gracefully
+//     if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+//       console.error("⏱️ VPN check timeout:", error.message);
+//     } else if (error.message.includes('aborted')) {
+//       console.error("⏱️ VPN check aborted (timeout)");
+//     } else {
+//       console.error("❌ VPN check failed:", error.message);
+//     }
+    
+//     // Allow request on error (fail-open approach)
+//     next();
+//   }
+// }
+
+// // ✅ Apply VPN blocking middleware
+// app.use(blockVPN);
+
+// // ============================================
+// // RETRY ROUTE (Clear blocked cookie)
+// // ============================================
+// app.post("/retry", (req, res) => {
+//   const clientIp = (req.headers["x-forwarded-for"]?.split(",")[0] || 
+//                     req.socket.remoteAddress).trim();
+  
+//   // Clear from cache
+//   ipCache.delete(clientIp);
+  
+//   // Clear cookies
+//   res.clearCookie("vpn_blocked");
+//   res.clearCookie("valid_user");
+  
+//   console.log(`🔄 Retry requested for ${clientIp}`);
+//   res.redirect("/");
+// });
+
+// // ============================================
+// // ADMIN ENDPOINT: View Cache Stats
+// // ============================================
+// app.get("/admin/vpn-stats", (req, res) => {
+//   // Add authentication here in production!
+  
+//   res.json({
+//     cacheSize: ipCache.size,
+//     maxCacheSize: MAX_CACHE_SIZE,
+//     apiCallsThisMinute: apiCallCount,
+//     maxApiCallsPerMinute: MAX_API_CALLS_PER_MINUTE,
+//     cachedIPs: Array.from(ipCache.keys()).length,
+//     employeeIPs: EMPLOYEE_IPS.size
+//   });
+// });
+
+// // ============================================
+// // ADMIN ENDPOINT: Clear Cache
+// // ============================================
+// app.post("/admin/clear-cache", (req, res) => {
+//   // Add authentication here in production!
+  
+//   ipCache.clear();
+//   apiCallCount = 0;
+  
+//   res.json({ success: true, message: "Cache cleared" });
+// });
+
+// // ============================================
+// // ADMIN ENDPOINT: Add Employee IP
+// // ============================================
+// app.post("/admin/add-employee-ip", (req, res) => {
+//   // Add authentication here in production!
+  
+//   const { ip } = req.body;
+//   if (!ip) {
+//     return res.status(400).json({ error: "IP address required" });
+//   }
+  
+//   EMPLOYEE_IPS.add(ip);
+//   res.json({ success: true, message: `IP ${ip} added to whitelist` });
+// });
+
+
+
+// ============================
+// REVIEWS API ENDPOINTS
+// ============================
+
+// POST: Add a review
+// app.post("/api/reviews", async (req, res) => {
+//   const { product_id, name, email, rating, review_text } = req.body;
+
+//   if (!product_id || !name || !email || !rating || !review_text) {
+//     return res.status(400).json({ success: false, message: "All fields required" });
+//   }
+
+//   try {
+//     await pool.query(
+//       `INSERT INTO reviews (product_id, name, email, rating, review_text)
+//        VALUES ($1, $2, $3, $4, $5)`,
+//       [product_id, name, email, rating, review_text]
+//     );
+//     res.json({ success: true, message: "Review submitted successfully" });
+//   } catch (err) {
+//     console.error("Error inserting review:", err);
+//     res.status(500).json({ success: false, message: "Internal server error" });
+//   }
+// });
+
+// // GET: Fetch reviews for a product
+// app.get("/api/reviews/:productId", async (req, res) => {
+//   const { productId } = req.params;
+//   try {
+//     const result = await pool.query(
+//       `SELECT * FROM reviews WHERE product_id = $1 ORDER BY created_at DESC`,
+//       [productId]
+//     );
+//     res.json({ success: true, reviews: result.rows });
+//   } catch (err) {
+//     console.error("Error fetching reviews:", err);
+//     res.status(500).json({ success: false, message: "Failed to fetch reviews" });
+//   }
+// });

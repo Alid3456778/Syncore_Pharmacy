@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Access Forbidden | McLand Pharma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/restricted.css" />
+  </head>
+  <body
+    class="bg-gradient-to-b from-white to-gray-50 text-gray-900 min-h-screen flex flex-col items-center justify-center p-6"
+  >
+    <main
+      class="bg-white shadow-xl rounded-2xl p-8 md:p-10 max-w-xl w-full text-center border border-gray-200"
+    >
+      <!-- Icon / Heading -->
+      <div class="flex flex-col items-center mb-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 text-red-500 mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M18.364 5.636l-12.728 12.728M5.636 5.636l12.728 12.728"
+          />
+        </svg>
+        <h1 class="text-3xl font-bold mb-2 text-gray-800" class="error-message">Access Forbidden</h1>
+        <p class="text-gray-600 max-w-md">
+          We’re unable to process your request at this moment. This may happen
+          for a few reasons:
+        </p>
+      </div>
+
+      <!-- Reason List -->
+      <ul class="text-left list-disc list-inside space-y-2 mb-6 text-gray-700">
+        <li>Use of <strong>VPN</strong> or Proxy services</li>
+        <li>Access from a <strong>restricted region</strong></li>
+        <li>Misconfigured <strong>browser or network settings</strong></li>
+      </ul>
+
+      <!-- VPN Warning Box -->
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+        <p class="text-yellow-800 font-medium">
+          ⚠ Please turn off your VPN before accessing this website.<br />
+          Using a VPN may cause connection errors or restricted access.
+        </p>
+      </div>
+
+      <!-- Retry Button -->
+      <form action="/retry" method="POST">
+        <button
+          type="submit"
+          class="bg-[rgb(2,140,126)] hover:bg-[rgb(1,120,108)] text-white font-medium px-6 py-2.5 rounded-lg transition duration-300"
+        >
+          Retry Access
+        </button>
+      </form>
+
+      <!-- Contact Info -->
+      <section class="mt-8 text-center">
+        <h2 class="text-lg font-semibold mb-2 text-gray-800">Need Help?</h2>
+        <p class="text-gray-600 mb-3">
+          Reach out to our support team for order placement or assistance.
+        </p>
+        <a
+          href="mailto:support@mclandpharma.com"
+          class="text-[rgb(2,140,126)] font-medium hover:underline"
+        >
+          support@mclandpharma.com
+        </a>
+      </section>
+    </main>
+  </body>
+</html>

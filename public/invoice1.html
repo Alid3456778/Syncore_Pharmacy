@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/invoice.css" />
+    <script src="./assets/js/invoice.js"></script>
+    <title>Invoice</title>
+    <link rel="icon" type="image/x-icon" href="./assets/image2/logo.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/image2/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/image2/logo.png">
+  </head>
+  <body>
+    <div class="invoice-container" id="invoice">
+      <button class="download-btn" id="download-btn">Download PDF</button>
+
+      <header>
+        <h1>McLandpharma</h1>
+        <p>Your Trusted Healthcare Partner</p>
+      </header>
+
+      <div class="section-title">Order Confirmation</div>
+
+      <div
+        id="loading-message"
+        style="text-align: center; padding: 20px; color: #666"
+      >
+        Loading order details...
+      </div>
+
+      <div id="invoice-content" style="display: none">
+        <div class="customer-details">
+          <div>
+            <p><strong>First Name:</strong> <span id="firstName">N/A</span></p>
+            <p><strong>Address:</strong> <span id="address">N/A</span></p>
+            <p><strong>State:</strong> <span id="state">N/A</span></p>
+            <p><strong>Country:</strong> <span id="country">N/A</span></p>
+            <p><strong>Phone:</strong> <span id="phone">N/A</span></p>
+          </div>
+          <div>
+            <p><strong>Last Name:</strong> <span id="lastName">N/A</span></p>
+            <p><strong>City:</strong> <span id="city">N/A</span></p>
+            <p><strong>ZIP:</strong> <span id="zip">N/A</span></p>
+            <p><strong>Email:</strong> <span id="email">N/A</span></p>
+            <p><strong>Order Date:</strong> <span id="orderDate">N/A</span></p>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+            </tr>
+          </thead>
+          <tbody id="productRows">
+            <!-- Inject product rows here via JS -->
+          </tbody>
+        </table>
+
+        <div class="totals">
+          <div>
+            <p>Subtotal: <span id="subtotal">$0.00</span></p>
+            <p>Shipping: <span id="shippingTotal">$0.00</span></p>
+            <p>Total: <span id="total">$0.00</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="error-container"></div>
+
+      <!-- Debug info (hidden by default) -->
+      <div class="debug-info" id="debug-info">
+        <strong>Debug Information:</strong><br />
+        <div id="debug-content"></div>
+      </div>
+
+      <footer>Thank you for your business!</footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  </body>
+</html>

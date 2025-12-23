@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart | Mcland Pharma</title>
+
+    <link rel="icon" type="image/x-icon" href="./assets/image2/logo.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/image2/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/image2/logo.png">
+    
+    <link rel="stylesheet" href="./assets/css/navbar_footer.css" />
+    <link rel="stylesheet" href="./assets/css/cart.css" />
+        <link rel="stylesheet" href="./assets/css/snowfall.css" />
+    <link rel="stylesheet" href="./assets/css/lightDark.css" />
+    <!-- <script src="./assets/js/lightDark.js"></script> -->
+    <script src="./assets/js/snowfall.js"></script>
+    <link rel="stylesheet" href="./assets/css/root.css">
+  </head>
+  <body>
+        <!-- Christmas Effects Container -->
+    <div class="christmas-effects" id="christmasEffects"></div>
+
+    <!-- NAVBAR (unchanged) -->
+    <header class="navbar">
+      <div class="navbar-top">
+        <div
+          class="logo"
+          onclick="this.querySelector('a').click(); return true;"
+        >
+          <img src="./assets/image2/logo.png" alt="MCland Pharma Logo" />
+          <a href="./index.html"></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CART SECTION (premium markup) -->
+    <main class="cart-container">
+      <!-- Products in Cart -->
+      <section class="cart-products">
+        <h2>Your Cart</h2>
+        <!-- Dynamic cart items will be injected here -->
+        <div id="cart-items"></div>
+
+        <!-- Cart action buttons -->
+        <div class="cart-actions">
+          <button id="add-products-btn">Add More Products</button>
+        </div>
+      </section>
+
+      <!-- Bill Summary -->
+      <aside class="bill-summary">
+        <h2>Bill Summary</h2>
+        <div class="bill-item">
+          <span>Subtotal</span>
+          <span id="subtotal">$0</span>
+        </div>
+
+        <div class="bill-item total">
+          <span>Total</span>
+          <span id="total">$0</span>
+        </div>
+        <a href="./checkout1.html">
+          <button class="checkout-btn">Proceed to Checkout</button>
+        </a>
+      </aside>
+    </main>
+
+    <!-- FOOTER (unchanged) -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section resources">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns & Refunds</a></li>
+            <li><a href="#">Payment Methods</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section legal">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cancellation Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section support">
+          <h3>Support 24/7</h3>
+          <p><i class="fa fa-envelope"></i> customerinfo2024@gmail.com</p>
+          <p><i class="fa fa-phone"></i>+1 209 593 7171</p>
+        </div>
+        <div class="footer-section disclaimer">
+          <h3>Disclaimer</h3>
+          <p>
+            The services on Mcland Pharma are available for informational and
+            medicinal purposes only.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-left">
+          <p class="copyright">
+            &copy; 2024 Mcland Pharma. All rights reserved.
+          </p>
+          <p>© 2024 All rights reserved. Mcland Pharma</p>
+          <p>Mcland Pharma is committed to providing affordable healthcare.</p>
+        </div>
+        <div class="footer-right">
+          <h3>Payment modes</h3>
+          <div class="payment-icons">
+            <img src="./assets/image/cash_app.png" alt="Cash App" />
+            <img src="./assets/image/zelle.png" alt="Zelle" />
+            <img src="./assets/image/venmo.png" alt="Venmo" />
+            <!-- <img src="./assets/image/pay_pal.jpg" alt="Paypal" /> -->
+            <img src="./assets/image/bitcoin.png" alt="Bitcoin" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast hidden"></div>
+  </body>
+  <script src="./assets/js/cart.js"></script>
+</html>
