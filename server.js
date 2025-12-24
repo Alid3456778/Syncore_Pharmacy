@@ -15,7 +15,7 @@ const { simpleParser } = require("mailparser");
 const axios = require("axios");
 
 const app = express();
-
+const port = process.env.PORT;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -3067,7 +3067,7 @@ app.get("/employee", (req, res) => {
 });
 
 // Start server
-const PORT = 3000;
+const PORT = 5500;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
