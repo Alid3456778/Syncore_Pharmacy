@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(`/products?categoryID=${categoryID}`);
       const products = await response.json();
+      console.log(products);
+
 
       if (products.length === 0) {
         tableBody.innerHTML = `<p>No products found for the selected category.</p>`;
@@ -185,7 +187,7 @@ async function getProducts() {
   
   const response = await fetch("/products");
   const products = await response.json();
-
+  
   localStorage.setItem("SearchProducts", JSON.stringify(products)); // Save data
   return products;
 }
