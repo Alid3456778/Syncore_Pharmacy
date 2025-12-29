@@ -1299,6 +1299,7 @@ app.get("/products", async (req, res) => {
     if (categoryID === "all") {
       query = "SELECT * FROM products ORDER BY product_name";
     } else {
+      //chnage when needed 
 //       query =
 //         `SELECT
 //     p.*,
