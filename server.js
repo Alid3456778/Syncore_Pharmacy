@@ -1299,42 +1299,42 @@ app.get("/products", async (req, res) => {
     if (categoryID === "all") {
       query = "SELECT * FROM products ORDER BY product_name";
     } else {
-//       query =
-//         `SELECT
-//     p.*,
-//     min_price.min_offer_price AS offer_price,
-//     pr.average_rating AS rating
-// FROM
-//     products p
-// JOIN
-//     (
-//         SELECT
-//             product_id,
-//             MIN(offer_price) AS min_offer_price
-//         FROM
-//             product_variants
-//         GROUP BY
-//             product_id
-//     ) AS min_price
-//     ON p.product_id = min_price.product_id
-// LEFT JOIN -- Use LEFT JOIN to keep products even if they have no reviews
-//     (
-//         SELECT
-//             product_id,
-//             AVG(rating) AS average_rating -- Calculate the average rating
-//         FROM
-//             reviews
-//         GROUP BY
-//             product_id
-//     ) AS pr
-//     ON p.product_id = pr.product_id
-// WHERE
-//     p.category_id = $1
-// ORDER BY
-//     p.product_name;`;
-//       params = [categoryID];
-query = `SELECT * FROM products WHERE category_id = $1 ORDER BY product_name;`; 
-params = [categoryID];
+      query =
+        `SELECT
+    p.*,
+    min_price.min_offer_price AS offer_price,
+    pr.average_rating AS rating
+FROM
+    products p
+JOIN
+    (
+        SELECT
+            product_id,
+            MIN(offer_price) AS min_offer_price
+        FROM
+            product_variants
+        GROUP BY
+            product_id
+    ) AS min_price
+    ON p.product_id = min_price.product_id
+LEFT JOIN -- Use LEFT JOIN to keep products even if they have no reviews
+    (
+        SELECT
+            product_id,
+            AVG(rating) AS average_rating -- Calculate the average rating
+        FROM
+            reviews
+        GROUP BY
+            product_id
+    ) AS pr
+    ON p.product_id = pr.product_id
+WHERE
+    p.category_id = $1
+ORDER BY
+    p.product_name;`;
+      params = [categoryID];
+// query = `SELECT * FROM products WHERE category_id = $1 ORDER BY product_name;`; 
+// params = [categoryID];
     }
 
     const result = await pool.query(query, params);
