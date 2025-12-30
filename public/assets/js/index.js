@@ -50,11 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Get product data (from Local Storage or API)
 async function getProducts() {
-  const cached = localStorage.getItem("SearchProducts");
+  // const cached = localStorage.getItem("SearchProducts");
 
-  if (cached) {
-    return JSON.parse(cached); // Use localStorage data
-  }
+  // if (cached) {
+  //   return JSON.parse(cached); // Use localStorage data
+  // }
 
   const response = await fetch("/products");
   const products = await response.json();
@@ -62,7 +62,7 @@ async function getProducts() {
     throw new Error("Invalid product data");
   }
   else{
-    console.log("Fetched products from API:", products);
+    // console.log("Fetched products from API:", products);
   }
   localStorage.setItem("SearchProducts", JSON.stringify(products)); // Save data
   return products;
@@ -386,49 +386,49 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Your banner images
-const heroImages = [
-  "assets/image2/christmas.png"
-];
+// // Your banner images
+// const heroImages = [
+//   "assets/image2/christmas.png"
+// ];
 
-if (heroImages.length === 0) {
-  console.log("No hero images available.");
-} else {
-  let currentIndex = 0;
-  // Set styles for hero-section class
-  // const heropartSection = document.querySelector(".hero-container");
-  // heropartSection.style.maxWidth = "800px";
-  // heropartSection.style.margin = "0 auto";
-  // heropartSection.style.color = "black";
-  // heropartSection.style.position = "relative";
-  // heropartSection.style.zIndex = "1";
-  // heropartSection.style.animation = "fadeInDown 0.8s ease-out";
-  // heropartSection.style.ease - out;
+// if (heroImages.length === 0) {
+//   console.log("No hero images available.");
+// } else {
+//   let currentIndex = 0;
+//   // Set styles for hero-section class
+//   // const heropartSection = document.querySelector(".hero-container");
+//   // heropartSection.style.maxWidth = "800px";
+//   // heropartSection.style.margin = "0 auto";
+//   // heropartSection.style.color = "black";
+//   // heropartSection.style.position = "relative";
+//   // heropartSection.style.zIndex = "1";
+//   // heropartSection.style.animation = "fadeInDown 0.8s ease-out";
+//   // heropartSection.style.ease - out;
 
-  // Select the hero section
-  const heroSection = document.querySelector(".hero");
-  // Smooth fade animation
-  heroSection.style.transition = "background-image 1.5s ease-in-out";
+//   // Select the hero section
+//   const heroSection = document.querySelector(".hero");
+//   // Smooth fade animation
+//   heroSection.style.transition = "background-image 1.5s ease-in-out";
 
-  function changeHeroImage() {
-    currentIndex = (currentIndex + 1) % heroImages.length;
-    heroSection.style.backgroundImage = `url(assets/image2/christmas.png)`;
-    // heroSection.style.backgroundSize = "contain";
-    heroSection.style.backgroundPosition = "center";
-    // heroSection.style.height = "80vh";
-    heroSection.style.width = "100vw";
-  }
+//   function changeHeroImage() {
+//     currentIndex = (currentIndex + 1) % heroImages.length;
+//     heroSection.style.backgroundImage = `url(assets/image2/christmas.png)`;
+//     // heroSection.style.backgroundSize = "contain";
+//     heroSection.style.backgroundPosition = "center";
+//     // heroSection.style.height = "80vh";
+//     heroSection.style.width = "100vw";
+//   }
 
-  // Set first image immediately
-  heroSection.style.backgroundImage = `url(${heroImages[0]})`;
+//   // Set first image immediately
+//   heroSection.style.backgroundImage = `url(${heroImages[0]})`;
 
-  // Change image every 5 seconds
-  setInterval(changeHeroImage, 5000);
-}
+//   // Change image every 5 seconds
+//   setInterval(changeHeroImage, 5000);
+// }
 
-  document.querySelector('.hero').addEventListener('click', function(e) {
-  // Only redirect if clicking the background, not inner elements
-  if (e.target === this || e.target === this.querySelector('::before')) {
-    window.location.href = 'categories.html?catogeries_ID=1';
-  }
-});
+//   document.querySelector('.hero').addEventListener('click', function(e) {
+//   // Only redirect if clicking the background, not inner elements
+//   if (e.target === this || e.target === this.querySelector('::before')) {
+//     window.location.href = 'categories.html?catogeries_ID=1';
+//   }
+// });

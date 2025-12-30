@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(`/products?categoryID=${categoryID}`);
       const products = await response.json();
-      console.log(products);
+      // console.log(products);
 
 
       if (products.length === 0) {
