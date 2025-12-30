@@ -1,128 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cart | Mcland Pharma</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart - XYZ Medical</title>
+  <link rel="stylesheet" href="./assets/css/cart.css">
+</head>
 
-    <link rel="icon" type="image/x-icon" href="./assets/image2/logo.png"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/image2/logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/image2/logo.png">
-    
-    <link rel="stylesheet" href="./assets/css/navbar_footer.css" />
-    <link rel="stylesheet" href="./assets/css/cart.css" />
-        <link rel="stylesheet" href="./assets/css/snowfall.css" />
-    <link rel="stylesheet" href="./assets/css/lightDark.css" />
-    <!-- <script src="./assets/js/lightDark.js"></script> -->
-    <script src="./assets/js/snowfall.js"></script>
-    <link rel="stylesheet" href="./assets/css/root.css">
-  </head>
-  <body>
-        <!-- Christmas Effects Container -->
-    <div class="christmas-effects" id="christmasEffects"></div>
+<body>
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="logo">XYZ</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="categories.html">Shop</a>
+      <a href="#help">Help</a>
+    </div>
+  </nav>
 
-    <!-- NAVBAR (unchanged) -->
-    <header class="navbar">
-      <div class="navbar-top">
-        <div
-          class="logo"
-          onclick="this.querySelector('a').click(); return true;"
-        >
-          <img src="./assets/image2/logo.png" alt="MCland Pharma Logo" />
-          <a href="./index.html"></a>
-        </div>
+  <!-- Checkout Progress -->
+  <div class="checkout-progress">
+    <div class="progress-steps">
+      <div class="progress-line">
+        <div class="progress-line-fill" style="width: 33%"></div>
       </div>
-    </header>
-
-    <!-- MAIN CART SECTION (premium markup) -->
-    <main class="cart-container">
-      <!-- Products in Cart -->
-      <section class="cart-products">
-        <h2>Your Cart</h2>
-        <!-- Dynamic cart items will be injected here -->
-        <div id="cart-items"></div>
-
-        <!-- Cart action buttons -->
-        <div class="cart-actions">
-          <button id="add-products-btn">Add More Products</button>
-        </div>
-      </section>
-
-      <!-- Bill Summary -->
-      <aside class="bill-summary">
-        <h2>Bill Summary</h2>
-        <div class="bill-item">
-          <span>Subtotal</span>
-          <span id="subtotal">$0</span>
-        </div>
-
-        <div class="bill-item total">
-          <span>Total</span>
-          <span id="total">$0</span>
-        </div>
-        <a href="./checkout1.html">
-          <button class="checkout-btn">Proceed to Checkout</button>
-        </a>
-      </aside>
-    </main>
-
-    <!-- FOOTER (unchanged) -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section resources">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="#">Shipping</a></li>
-            <li><a href="#">Returns & Refunds</a></li>
-            <li><a href="#">Payment Methods</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
-        </div>
-        <div class="footer-section legal">
-          <h3>Legal</h3>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Cancellation Policy</a></li>
-          </ul>
-        </div>
-        <div class="footer-section support">
-          <h3>Support 24/7</h3>
-          <p><i class="fa fa-envelope"></i> customerinfo2024@gmail.com</p>
-          <p><i class="fa fa-phone"></i>+1 209 593 7171</p>
-        </div>
-        <div class="footer-section disclaimer">
-          <h3>Disclaimer</h3>
-          <p>
-            The services on Mcland Pharma are available for informational and
-            medicinal purposes only.
-          </p>
-        </div>
+      <div class="progress-step active completed">
+        <div class="step-circle">✓</div>
+        <span class="step-label">Shopping Cart</span>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-left">
-          <p class="copyright">
-            &copy; 2024 Mcland Pharma. All rights reserved.
-          </p>
-          <p>© 2024 All rights reserved. Mcland Pharma</p>
-          <p>Mcland Pharma is committed to providing affordable healthcare.</p>
-        </div>
-        <div class="footer-right">
-          <h3>Payment modes</h3>
-          <div class="payment-icons">
-            <img src="./assets/image/cash_app.png" alt="Cash App" />
-            <img src="./assets/image/zelle.png" alt="Zelle" />
-            <img src="./assets/image/venmo.png" alt="Venmo" />
-            <!-- <img src="./assets/image/pay_pal.jpg" alt="Paypal" /> -->
-            <img src="./assets/image/bitcoin.png" alt="Bitcoin" />
+      <div class="progress-step">
+        <div class="step-circle">2</div>
+        <span class="step-label">Checkout</span>
+      </div>
+      <div class="progress-step">
+        <div class="step-circle">3</div>
+        <span class="step-label">Order Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">Shopping Cart</h1>
+    <p class="item-count" id="itemCount">0 items in your cart</p>
+  </div>
+
+
+  
+</div>
+
+    <div class="cart-items" id="cart-items">
+      <!-- Items will be loaded here by cart.js -->
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <div class="summary-card">
+        <h2 class="summary-title">Order Summary</h2>
+
+        <!-- Promo Code (left as-is; it will do nothing unless you keep your promo JS elsewhere) -->
+        <!-- <div class="promo-code">
+          <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Have a promo code?</label>
+          <div class="promo-input-group">
+            <input type="text" class="promo-input" id="promoInput" placeholder="Enter code" />
+            <button class="apply-btn" onclick="applyPromo()">Apply</button>
           </div>
+        </div> -->
+
+        <!-- Summary Lines -->
+        <div class="summary-lines">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <!-- Already compatible with cart.js -->
+            <span id="subtotal">$0.00</span>
+          </div>
+
+          <div class="summary-line discount" id="discountLine" style="display: none;">
+            <span>Discount</span>
+            <span id="discount">-$0.00</span>
+          </div>
+
+          <!-- <div class="summary-line shipping">
+            <span>Shipping</span>
+            <span id="shipping">FREE</span>
+          </div> -->
+
+          <!-- <div class="summary-line">
+            <span>Tax (estimated)</span>
+            <span id="tax">$0.00</span>
+          </div> -->
+        </div>
+
+        <!-- Total -->
+        <div class="summary-total">
+          <span>Total</span>
+          <!-- CHANGED: id="totalAmount" -> id="total" (required by cart.js) -->
+          <span class="total-amount" id="total">$0.00</span>
+        </div>
+
+        <!-- Checkout Button -->
+         <a href="./checkout1.html">
+        <button class="checkout-btn">
+          Proceed to Checkout →
+        </button>
+        </a>
+
+        <!-- CHANGED: Continue Shopping now has the id cart.js binds to -->
+        <button class="continue-shopping" id="add-products-btn">
+          Continue Shopping
+        </button>
+
+        <!-- Secure Checkout -->
+        <div class="secure-checkout">
+          <span>🔒</span>
+          <span>Secure Checkout - SSL Encrypted</span>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+          <div class="payment-icon">💳</div>
+          <div class="payment-icon">🏦</div>
+          <div class="payment-icon">📱</div>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
 
-    <div id="toast" class="toast hidden"></div>
-  </body>
+  <!-- Trust Badges -->
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <div class="trust-badge-icon">🚚</div>
+      <h4>Free Shipping</h4>
+      <p>On orders over $50</p>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">↩️</div>
+      <h4>Easy Returns</h4>
+      <p>30-day return policy</p>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">🔒</div>
+      <h4>Secure Payment</h4>
+      <p>100% protected checkout</p>
+    </div>
+  </div>
+
+  <!-- REQUIRED by cart.js -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Load cart.js at end so DOM hooks exist (matches working page pattern) -->
   <script src="./assets/js/cart.js"></script>
+</body>
 </html>

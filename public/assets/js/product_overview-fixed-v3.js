@@ -102,7 +102,7 @@ function setupProductVariants(variants) {
 
 function displayVariantOptions(variants, selectedMg, unitType) {
   const tableBody = document.getElementById("popil");
-  
+  console.log(variants);
   if (!tableBody) {
     console.warn("popil element (table body) not found. Add: <tbody id=\"popil\"></tbody>");
     return;
@@ -172,7 +172,7 @@ function setupAddToCartButtons() {
       const price = this.getAttribute("data-price").replace(/[^0-9,.]/g, "") || "0";
 
       // ✅ USE GLOBAL VARIABLES SET FROM API WITH FALLBACK
-      const finalCategoryId = categoryIdFromButton || categoryId || 0;
+      const finalCategoryId =  categoryId;
 
       console.log("Adding to cart:", {
         variantId,
@@ -211,6 +211,7 @@ function addToCart(variantId, categoryId, quantity, mg, price, name, image_url) 
     return;
   }
 
+  console.log(categoryId);
   // Ensure numeric categoryId
   const validCategoryId = parseInt(categoryId) || 0;
 
@@ -283,7 +284,7 @@ async function loadProductDetails() {
 // UPDATE PRODUCT UI (POPULATE ALL DATA)
 // ============================================
 function updateProductUI(product, variants) {
-  // console.log("Product ",product);
+  console.log("Product ",product);
   // ✅ SET GLOBAL VARIABLES WITH FALLBACKS
   name_dabba = product.product_name || "Unknown Product";
   imgg = product.image_url || "./assets/placeholder.jpg";
