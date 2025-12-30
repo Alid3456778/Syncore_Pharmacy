@@ -289,32 +289,32 @@ function validateForm() {
     isValid = false;
   }
 
-  // Validate shipping address if different address is checked
-  const differentAddress = document.getElementById("different-address").checked;
-  console.log(`🔍 Different shipping address checked: ${differentAddress}`);
+  // // Validate shipping address if different address is checked
+  // const differentAddress = document.getElementById("different-address").checked;
+  // console.log(`🔍 Different shipping address checked: ${differentAddress}`);
 
-  if (differentAddress) {
-    const shipFields = [
-      { id: "ship-street-address", name: "Shipping Street Address" },
-      { id: "ship-city", name: "Shipping City" },
-      { id: "ship-zip", name: "Shipping ZIP Code" },
-    ];
+  // if (differentAddress) {
+  //   const shipFields = [
+  //     { id: "ship-street-address", name: "Shipping Street Address" },
+  //     { id: "ship-city", name: "Shipping City" },
+  //     { id: "ship-zip", name: "Shipping ZIP Code" },
+  //   ];
 
-    shipFields.forEach((field) => {
-      const element = document.getElementById(field.id);
-      const value = element ? element.value.trim() : "";
+  //   shipFields.forEach((field) => {
+  //     const element = document.getElementById(field.id);
+  //     const value = element ? element.value.trim() : "";
 
-      console.log(`🔍 Checking ${field.name} (${field.id}): "${value}"`);
+  //     console.log(`🔍 Checking ${field.name} (${field.id}): "${value}"`);
 
-      if (!value) {
-        console.log(
-          `❌ ${field.name} is required when shipping to different address`
-        );
-        alert(`${field.name} is required when shipping to a different address`);
-        isValid = false;
-      }
-    });
-  }
+  //     if (!value) {
+  //       console.log(
+  //         `❌ ${field.name} is required when shipping to different address`
+  //       );
+  //       alert(`${field.name} is required when shipping to a different address`);
+  //       isValid = false;
+  //     }
+  //   });
+  // }
 
   console.log(`🔍 Form validation result: ${isValid ? "VALID" : "INVALID"}`);
   return isValid;
@@ -665,12 +665,12 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCartItems();
 
   // Handle different shipping address toggle
-  document
-    .getElementById("different-address")
-    .addEventListener("change", function () {
-      const shippingForm = document.getElementById("shipping-address-form");
-      shippingForm.style.display = this.checked ? "block" : "none";
-    });
+  // document
+  //   .getElementById("different-address")
+  //   .addEventListener("change", function () {
+  //     const shippingForm = document.getElementById("shipping-address-form");
+  //     shippingForm.style.display = this.checked ? "block" : "none";
+  //   });
 
   // Handle place order button click
   document.getElementById("place-order-btn").addEventListener("click", () => {

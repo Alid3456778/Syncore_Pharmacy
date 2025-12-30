@@ -1,20 +1,978 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout | Mcland Pharma</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - XYZ Medical</title>
 
-    <link rel="icon" type="image/x-icon" href="./assets/image2/logo.png"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/image2/logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/image2/logo.png">
+  <!-- REQUIRED: load the same JS as the working checkout page -->
+ 
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <link rel="stylesheet" href="./assets/css/navbar_footer.css" />
-    <link rel="stylesheet" href="./assets/css/checkout.css" />
-    <script src="./assets/js/checkout1.js"></script>
-  </head>
-  <body>
-    <!-- Payment Modal -->
+    :root {
+        --primary: #0066CC;
+        --secondary: #004A99;
+        --light: #E8F4FD;
+        --white: #FFFFFF;
+        --dark: #1A1A1A;
+        --gray: #666666;
+        --success: #26DE81;
+        --danger: #FF4757;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        color: var(--dark);
+        background: #F8F9FA;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+        background: var(--secondary);
+        color: var(--white);
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        opacity: 0.8;
+    }
+
+    /* Progress Bar */
+    .checkout-progress {
+        max-width: 1400px;
+        margin: 3rem auto 2rem;
+        padding: 0 5%;
+    }
+
+    .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .progress-line {
+        position: absolute;
+        top: 25px;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background: var(--light);
+        z-index: 0;
+    }
+
+    .progress-line-fill {
+        height: 100%;
+        background: var(--primary);
+        width: 66%;
+        transition: width 0.5s ease;
+    }
+
+    .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 3px solid var(--light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--gray);
+        margin-bottom: 0.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .progress-step.active .step-circle {
+        background: var(--primary);
+        color: var(--white);
+        border-color: var(--primary);
+        transform: scale(1.1);
+    }
+
+    .progress-step.completed .step-circle {
+        background: var(--success);
+        color: var(--white);
+        border-color: var(--success);
+    }
+
+    .step-label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--gray);
+    }
+
+    .progress-step.active .step-label {
+        color: var(--primary);
+    }
+
+    /* Page Header */
+    .page-header {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 5%;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        color: var(--gray);
+        font-size: 1.1rem;
+    }
+
+    /* Main Checkout Container */
+    .checkout-container {
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        padding: 0 5%;
+        display: grid;
+        grid-template-columns: 1fr 450px;
+        gap: 3rem;
+    }
+
+    /* Billing Form */
+    .billing-section {
+        background: var(--white);
+        border-radius: 25px;
+        padding: 3rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        animation: fadeInLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--dark);
+        font-size: 0.95rem;
+    }
+
+    .required {
+        color: var(--danger);
+        margin-left: 0.2rem;
+    }
+
+    .form-input, .form-select {
+        padding: 1rem 1.2rem;
+        border: 2px solid var(--light);
+        border-radius: 12px;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+        background: var(--white);
+    }
+
+    .form-input:focus, .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    .form-input::placeholder {
+        color: #BDBDBD;
+    }
+
+    .form-error {
+        color: var(--danger);
+        font-size: 0.85rem;
+        margin-top: 0.4rem;
+        display: none;
+    }
+
+    .form-input.error, .form-select.error {
+        border-color: var(--danger);
+    }
+
+    .form-input.error + .form-error {
+        display: block;
+    }
+
+    /* Checkboxes */
+    .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        margin: 1.5rem 0;
+    }
+
+    .custom-checkbox {
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--light);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .custom-checkbox:checked {
+        background: var(--primary);
+        border-color: var(--primary);
+    }
+
+    .checkbox-label {
+        flex: 1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--gray);
+    }
+
+    /* Order Summary Sidebar */
+    .order-sidebar {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        animation: fadeInRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .summary-card {
+        background: var(--white);
+        border-radius: 25px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .summary-header {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--light);
+    }
+
+    .order-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--light);
+    }
+
+    .order-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .item-image-small {
+        width: 70px;
+        height: 70px;
+        background: var(--light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .item-info {
+        flex: 1;
+    }
+
+    .item-name-small {
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+        color: var(--dark);
+    }
+
+    .item-details-small {
+        font-size: 0.85rem;
+        color: var(--gray);
+        margin-bottom: 0.3rem;
+    }
+
+    .item-price-small {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 1rem;
+    }
+
+    .summary-totals {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--light);
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .summary-row.total {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--light);
+    }
+
+    .summary-row.total .amount {
+        color: var(--primary);
+    }
+
+    /* Payment Button */
+    .payment-section {
+        background: var(--white);
+        border-radius: 25px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .pay-now-btn {
+        width: 100%;
+        background: var(--primary);
+        color: var(--white);
+        border: none;
+        padding: 1.5rem;
+        border-radius: 15px;
+        font-size: 1.3rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .pay-now-btn:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0,102,204,0.3);
+    }
+
+    .pay-now-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .secure-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .payment-methods {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--light);
+    }
+
+    .payment-icon {
+        width: 50px;
+        height: 35px;
+        background: var(--light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+    /* Back to Cart Link */
+    .back-to-cart {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .back-to-cart:hover {
+        gap: 0.8rem;
+    }
+
+    /* Loading State */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .loading-content {
+        background: var(--white);
+        padding: 3rem;
+        border-radius: 25px;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid var(--light);
+        border-top: 4px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1.5rem;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .checkout-container {
+            grid-template-columns: 1fr;
+        }
+        .order-sidebar {
+            position: relative;
+            top: 0;
+        }
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .page-title { font-size: 2rem; }
+        .billing-section, .summary-card, .payment-section {
+            padding: 2rem;
+        }
+    }
+
+    /* Modal container */
+.modal1 {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal-content1 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Payment buttons container */
+.Payment_Button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s ease;
+}
+
+.modal-content1 button:hover {
+  transform: scale(1.1);
+}
+
+/* QR container */
+#qr-container {
+  margin-top: 20px;
+}
+
+/* Payment options horizontal */
+.modal-content1 > button {
+  display: inline-block;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .modal-content1 {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .modal-content1 button img {
+    max-width: 80px;
+  }
+}
+
+
+.X_button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.Ok_Button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.Cancel_Button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* pop up */
+ .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        width: 400px;
+        text-align: center;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .modal-content h2 {
+        margin-bottom: 10px;
+        color: #222;
+      }
+
+      .modal-content p {
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .modal-content button {
+        margin: 10px 5px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .modal-content button:first-of-type {
+        background-color: #004A99;
+        color: #fff;
+      }
+
+      .modal-content button:last-of-type {
+        background-color: transparent;
+        color: #0066CC;
+        border: 1px solid #004A99;
+      }
+
+      .modal-img {
+        width: 100px;
+        margin-bottom: 20px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      
+.order-summary {
+  padding: 2rem;
+  background-color: #f9f9fb;
+  border-radius: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.order-summary h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.order-summary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-summary th,
+.order-summary td {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.order-summary th {
+  background-color: #eaeaf1;
+  font-weight: 600;
+}
+
+</style>
+
+<body>
+  <!-- REQUIRED BY checkout1.js: Payment Modal
+  <div id="paymentModal" class="modal1">
+    <div class="modal-content1">
+      <h2>Select Payment Method</h2>
+
+      <button onclick="selectPayment('Zelle')" class="PaymentButton">
+        <img src="./assets/image/zelle.png" alt="Zelle" style="max-width: 100px" />
+      </button>
+
+      <button onclick="selectPayment('Bitcoin')" class="PaymentButton">
+        <img src="./assets/image/bitcoin.png" alt="Bitcoin" style="max-width: 100px" />
+      </button>
+
+      <button onclick="selectPayment('Venmo')" class="PaymentButton">
+        <img src="./assets/image/venmo.png" alt="Venmo" style="max-width: 100px" />
+      </button>
+
+      <button onclick="confirmPayment()" class="Xbutton">Cancel Payment</button>
+
+      <div id="qr-container" style="margin-top: 20px; display: none;">
+        <img id="qr-code" src="" alt="QR Code" style="max-width: 200px" />
+        <h3 id="qrtextid"></h3>
+        <br />
+        <button onclick="confirmPayment()" class="OkButton">OK</button>
+        <button onclick="confirmPayment()" class="CancelButton">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  REQUIRED BY checkout1.js: Confirmation Modal 
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
+        alt="Success"
+        class="modal-img"
+      />
+      <h2>Thank you for your purchase!</h2>
+      <p>
+        Your order number is <strong id="modal-order-number">#</strong>
+      </p>
+      <p>You'll get an email confirmation for your order details</p>
+      <button onclick="viewOrder()">View Order</button>
+      <button onclick="goHome()">Go to Home</button>
+    </div>
+  </div> -->
+<div id="confirmationModal" class="modal">
+      <div class="modal-content">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
+          alt="Success"
+          class="modal-img"
+        />
+        <h2>Thank you for your purchase!</h2>
+        <p>
+          Your order number is
+          <strong id="modal-order-number">#54871648754</strong>
+        </p>
+        <p>You'll get an email confirmation for your order details</p>
+        <button onclick="viewOrder()">View Order</button>
+        <button onclick="goHome()">Go to Home</button>
+      </div>
+    </div>
+  <!-- Top Navigation (kept) -->
+  <nav class="top-nav">
+    <div class="logo">XYZ</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </nav>
+
+  <!-- Checkout Progress (kept) -->
+  <div class="checkout-progress">
+    <div class="progress-steps">
+      <div class="progress-line">
+        <div class="progress-line-fill"></div>
+      </div>
+      <div class="progress-step completed">
+        <div class="step-circle">✓</div>
+        <span class="step-label">Shopping Cart</span>
+      </div>
+      <div class="progress-step active">
+        <div class="step-circle">2</div>
+        <span class="step-label">Checkout</span>
+      </div>
+      <div class="progress-step">
+        <div class="step-circle">3</div>
+        <span class="step-label">Order Complete</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header (kept) -->
+  <div class="page-header">
+    <a href="cart.html" class="back-to-cart">← Back to Cart</a>
+    <h1 class="page-title">Checkout</h1>
+    <p class="page-subtitle">Complete your order with secure payment</p>
+  </div>
+
+  <!-- Main Checkout Container (kept classes; updated IDs inside) -->
+  <div class="checkout-container">
+    <!-- Billing Form -->
+    <div class="billing-section">
+      <h2 class="section-title">
+        <span>📋</span>
+        Billing Details
+      </h2>
+
+      <!-- REQUIRED: checkout1.js expects id="checkout-form" -->
+      <form id="checkout-form" class="checkout-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="first-name">First Name <span class="required">*</span></label>
+            <input type="text" class="form-input" id="first-name" name="firstName" placeholder="John" required />
+            <!-- REQUIRED: error container IDs used by checkout1.js -->
+            <div class="error" id="first-name-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="last-name">Last Name <span class="required">*</span></label>
+            <input type="text" class="form-input" id="last-name" name="lastName" placeholder="Doe" required />
+            <div class="error" id="last-name-error"></div>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label class="form-label" for="street-address">Street Address <span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-input"
+            id="street-address"
+            name="billingStreetAddress"
+            placeholder="123 Main Street, Apt 4B"
+            required
+          />
+          <div class="error" id="street-address-error"></div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="city">City <span class="required">*</span></label>
+            <input type="text" class="form-input" id="city" name="city" placeholder="New York" required />
+            <div class="error" id="city-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="state">State <span class="required">*</span></label>
+            <input type="text" class="form-input" id="state" name="billingState" placeholder="NY" required />
+            <div class="error" id="state-error"></div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="zip-code">ZIP Code <span class="required">*</span></label>
+            <input
+              type="text"
+              class="form-input"
+              id="zip-code"
+              name="billingZip"
+              placeholder="10001"
+              required
+              pattern="[0-9]{5}(-[0-9]{4})?"
+            />
+            <div class="error" id="zip-code-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="country">Country / Region <span class="required">*</span></label>
+            <select class="form-select" id="country" name="country" required>
+              <option value="" disabled>Select Country</option>
+              <option value="United States" selected>United States (US)</option>
+              <option value="UK">UK</option>
+            </select>
+            <div class="error" id="country-error"></div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone <span class="required">*</span></label>
+            <input type="tel" class="form-input" id="phone" name="phone" placeholder="+1 (555) 123-4567" required />
+            <div class="error" id="phone-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+            <input type="email" class="form-input" id="email" name="email" placeholder="john.doe@example.com" required />
+            <div class="error" id="email-error"></div>
+          </div>
+        </div>
+
+        
+
+        <!-- REQUIRED BY checkout1.js: checkbox id="different-address" exists -->
+        <!-- <div class="checkbox-group">
+          <input type="checkbox" class="custom-checkbox" id="different-address" />
+          <label class="checkbox-label" for="different-address">
+            Ship to a different address
+          </label>
+        </div>
+
+        <div id="shipping-address-form" style="display: none;">
+          <div class="form-group full-width">
+            <label class="form-label" for="ship-street-address">Shipping Street Address</label>
+            <input type="text" class="form-input" id="ship-street-address" name="shipStreetAddress" placeholder="Shipping street address" />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ship-city">Shipping City</label>
+              <input type="text" class="form-input" id="ship-city" name="shipCity" placeholder="Shipping city" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ship-zip">Shipping ZIP</label>
+              <input type="text" class="form-input" id="ship-zip" name="shipZip" placeholder="Shipping ZIP" pattern="[0-9]{5}(-[0-9]{4})?" />
+            </div>
+          </div> -->
+        </div>
+      </form>
+    </div>
+
     <div id="paymentModal" class="modal1">
       <div class="modal-content1">
         <h2>Select Payment Method</h2>
@@ -48,246 +1006,71 @@
       </div>
     </div>
 
-    <!-- Confirmation Modal -->
-    <div id="confirmationModal" class="modal">
-      <div class="modal-content">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
-          alt="Success"
-          class="modal-img"
-        />
-        <h2>Thank you for your purchase!</h2>
-        <p>
-          Your order number is
-          <strong id="modal-order-number">#54871648754</strong>
-        </p>
-        <p>You'll get an email confirmation for your order details</p>
-        <button onclick="viewOrder()">View Order</button>
-        <button onclick="goHome()">Go to Home</button>
+    <!-- Order Summary Sidebar -->
+    <div class="order-sidebar">
+      <div class="summary-card">
+        <h3 class="summary-header">Order Summary</h3>
+
+        <!-- REQUIRED BY checkout1.js: loading + content containers -->
+        <div id="order-loading">Loading cart items...</div>
+
+        <div id="order-content" class="order-summary" style="display: none;">
+          <!-- checkout1.js expects a table body with id="cart-items" -->
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+
+            <tbody id="cart-items"></tbody>
+
+            <tfoot>
+              <tr>
+                <td><strong>Shipping</strong></td>
+                <td id="shipping-cost"><strong>0.00</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Total</strong></td>
+                <td id="total-cost"><strong>0.00</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payment Section -->
+      <div class="payment-section">
+        <!-- REQUIRED BY checkout1.js: it binds click to #place-order-btn -->
+        <button type="button" class="pay-now-btn" id="place-order-btn">
+          <span>🔒</span>
+          <span>Pay Now</span>
+        </button>
+
+        <div class="secure-badge">
+          <span>🔒</span>
+          <span>Secure 256-bit SSL Encrypted Payment</span>
+        </div>
+
+        <div class="payment-methods">
+          <div class="payment-icon" title="Credit Card">💳</div>
+          <div class="payment-icon" title="PayPal">🅿️</div>
+          <div class="payment-icon" title="Bank Transfer">🏦</div>
+          <div class="payment-icon" title="Mobile Payment">📱</div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <header class="navbar">
-      <div class="navbar-top" id="navbar">
-        <div class="logo" onclick="window.location.href='./index.html'">
-          <img src="./assets/image2/logo.png" alt="MCland Pharma Logo" />
-        </div>
-        <div class="navbar-top-right">
-          <div class="actions">
-            <button type="button">
-              <a class="a Cart" href="./cart.html">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
-                  alt="Cart"
-                  class="cart-icon"
-                />
-              </a>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Checkout Form -->
-    <main class="checkout-container">
-      <h1>Billing Details</h1>
-      <div class="checkout-card">
-        <form id="checkout-form" class="checkout-form">
-          <!-- Billing Details -->
-          <div class="form-group input-group">
-            <input
-              type="text"
-              id="first-name"
-              name="firstName"
-              placeholder=" "
-              required
-            />
-            <label for="first-name"
-              >First Name <span style="color: red">*</span></label
-            >
-            <div class="error" id="first-name-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="text"
-              id="last-name"
-              name="lastName"
-              placeholder=" "
-              required
-            />
-            <label for="last-name"
-              >Last Name <span style="color: red">*</span></label
-            >
-            <div class="error" id="last-name-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="text"
-              id="street-address"
-              name="billingStreetAddress"
-              placeholder=" "
-              required
-            />
-            <label for="street-address"
-              >Street Address <span style="color: red">*</span></label
-            >
-            <div class="error" id="street-address-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input type="text" id="city" name="city" placeholder=" " required />
-            <label for="city">City <span style="color: red">*</span></label>
-            <div class="error" id="city-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="text"
-              id="state"
-              name="billingState"
-              placeholder=" "
-              required
-            />
-            <label for="state">State <span style="color: red">*</span></label>
-            <div class="error" id="state-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="text"
-              id="zip-code"
-              name="billingZip"
-              placeholder=" "
-              required
-              pattern="[0-9]{5}(-[0-9]{4})?"
-            />
-            <label for="zip-code"
-              >ZIP Code <span style="color: red">*</span></label
-            >
-            <div class="error" id="zip-code-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <select id="country" name="country" required>
-              <option value="" disabled selected></option>
-              <option value="United States">United States (US)</option>
-              <option value="UK">UK</option>
-            </select>
-            <label for="country"
-              >Country / Region <span style="color: red">*</span></label
-            >
-            <div class="error" id="country-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder=" "
-              required
-            />
-            <label for="phone">Phone <span style="color: red">*</span></label>
-            <div class="error" id="phone-error"></div>
-          </div>
-
-          <div class="form-group input-group">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder=" "
-              required
-            />
-            <label for="email"
-              >Email Address <span style="color: red">*</span></label
-            >
-            <div class="error" id="email-error"></div>
-          </div>
-
-          <!-- Shipping Address Checkbox -->
-          <div class="form-group">
-            <input hidden="checkbox" id="different-address" />
-            <!-- <label for="different-address">Ship to a different address?</label> -->
-          </div>
-
-          <!-- Additional Address Form -->
-          <div id="shipping-address-form" style="display: none">
-            <h3>Shipping Address</h3>
-            <div class="form-group input-group">
-              <input
-                type="text"
-                id="ship-street-address"
-                name="shipStreetAddress"
-                placeholder=" "
-              />
-              <label for="ship-street-address"
-                >Street Address <span style="color: red">*</span></label
-              >
-            </div>
-
-            <div class="form-group input-group">
-              <input
-                type="text"
-                id="ship-city"
-                name="shipCity"
-                placeholder=" "
-              />
-              <label for="ship-city"
-                >City <span style="color: red">*</span></label
-              >
-            </div>
-
-            <div class="form-group input-group">
-              <input
-                type="text"
-                id="ship-zip"
-                name="shipZip"
-                placeholder=" "
-                pattern="[0-9]{5}(-[0-9]{4})?"
-              />
-              <label for="ship-zip"
-                >ZIP Code <span style="color: red">*</span></label
-              >
-            </div>
-          </div>
-        </form>
-
-        <!-- Order Summary -->
-        <section class="order-summary">
-          <h2>Your Order</h2>
-          <div id="order-loading">Loading cart items...</div>
-          <div id="order-content" style="display: none">
-            <table>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody id="cart-items">
-                <!-- Cart items will be dynamically injected here -->
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td><strong>Shipping</strong></td>
-                  <td id="shipping-cost"><strong>$0.00</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Total</strong></td>
-                  <td id="total-cost"><strong>$0.00</strong></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-          <!-- Place Order Button -->
-          <button id="place-order-btn" class="place-order-btn" type="button">
-            Place Order
-          </button>
-        </section>
-      </div>
-    </main>
-  </body>
+  <!-- Kept: Loading overlay (checkout1.js doesn’t use it, but leaving it doesn’t hurt) -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Processing Payment...</div>
+      <p style="color: var(--gray); margin-top: 1rem;">Please do not close this window</p>
+    </div>
+  </div>
+</body>
+ <script src="./assets/js/checkout1.js"></script>
 </html>
