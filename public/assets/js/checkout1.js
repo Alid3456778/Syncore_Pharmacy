@@ -361,7 +361,7 @@ async function loadCartItems() {
 
     if (response.success && response.data) {
       cartData = response.data;
-      console.log("✅ Cart loaded successfully:", cartData);
+      // console.log("✅ Cart loaded successfully:", cartData);
 
       if (cartData.length === 0) {
         loadingElement.innerHTML =
@@ -373,7 +373,7 @@ async function loadCartItems() {
 
       // Validate cart data structure
       const validatedCartData = cartData.map((item, index) => {
-        console.log(`🔍 Validating cart item ${index + 1}:`, item);
+        // console.log(`🔍 Validating cart item ${index + 1}:`, item);
         const cleanPrice = item.price
           .toString()
           .replace(/,/g, "")

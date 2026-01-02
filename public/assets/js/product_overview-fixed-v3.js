@@ -102,7 +102,7 @@ function setupProductVariants(variants) {
 
 function displayVariantOptions(variants, selectedMg, unitType) {
   const tableBody = document.getElementById("popil");
-  console.log(variants);
+  // console.log(variants);
   if (!tableBody) {
     console.warn("popil element (table body) not found. Add: <tbody id=\"popil\"></tbody>");
     return;
@@ -284,18 +284,18 @@ async function loadProductDetails() {
 // UPDATE PRODUCT UI (POPULATE ALL DATA)
 // ============================================
 function updateProductUI(product, variants) {
-  console.log("Product ",product);
+  // console.log("Product ",product);
   // ✅ SET GLOBAL VARIABLES WITH FALLBACKS
   name_dabba = product.product_name || "Unknown Product";
   imgg = product.image_url || "./assets/placeholder.jpg";
   categoryId = product.category_id || 0;
 
-  console.log("Product data loaded:", { 
-    name: name_dabba, 
-    image: imgg, 
-    categoryId: categoryId,
-    type: typeof categoryId
-  });
+  // console.log("Product data loaded:", { 
+  //   name: name_dabba, 
+  //   image: imgg, 
+  //   categoryId: categoryId,
+  //   type: typeof categoryId
+  // });
 
   if(document.getElementById("productBreadcrumb")){
     document.getElementById("productBreadcrumb").textContent= product.product_name || "Product";
