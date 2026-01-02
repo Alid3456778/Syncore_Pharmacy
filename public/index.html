@@ -12,174 +12,111 @@
 </head>
 <body>
 
-    <!-- Modern Navigation -->
-    <nav class="modern-nav">
-        <div class="nav-container">
-            <a href="#home" class="logo-modern">
-                <div class="logo-icon">XYZ</div>
-                <span>Medical</span>
-            </a>
-            
-            <!-- <div class="nav-menu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#shop" class="nav-link">Shop</a>
-                <a href="#categories" class="nav-link">Categories</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div> -->
-            
-            <div class="nav-actions">
-              <a href="/cart">
-                <button class="icon-btn cart-btn" title="Shopping Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="9" cy="21" r="1"></circle>
-                      <circle cx="20" cy="21" r="1"></circle>
-                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                  
-                    <!-- JS TARGET (DO NOT RENAME) -->
-                    <span class="cart-badge">0</span>
-                  </button>
-                </a>
-            </div>
-            
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </nav>
-
-    <!-- Premium Modern Hero Section -->
-    <section class="hero-modern">
-        <!-- Animated Background -->
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-        
-        <div class="hero-content-wrapper">
-            <div class="hero-content">
-                <!-- Hero Text -->
-                <div class="hero-text">
-                    <div class="badge-pill">
-                        <span class="pulse-dot"></span>
-                        Trusted by 50,000+ patients worldwide
-                    </div>
-                    
-                    <h1 class="hero-title">
-                        Your Health,
-                        <span class="gradient-text">Reimagined</span>
-                    </h1>
-                    
-                    <p class="hero-description">
-                        Experience premium pharmaceutical care with cutting-edge solutions. 
-                        Quality medicines delivered with precision, care, and unmatched expertise.
-                    </p>
-                    
-                    <!-- Hero Search Bar (CSS SAFE + JS WIRED) -->
-<div class="hero-search-container search-container">
-    <div class="search-card">
+   <!-- Minimal Premium Navigation (centered layout) -->
+<nav class="modern-nav nav-center">
+    <div class="nav-container nav-center__container">
+      <a href="#home" class="logo-modern nav-center__logo">
+        <div class="logo-icon">XYZ</div>
+        <span class="nav-center__brand">Medical</span>
+      </a>
   
-      <div class="search-input-group">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
+      <div class="nav-actions nav-center__actions">
+        <a href="/cart" class="nav-center__cartLink" aria-label="Open cart">
+          <button class="icon-btn cart-btn nav-center__cartBtn" title="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
   
-        <!-- KEEP CSS CLASS + ADD JS CLASS -->
-        <input
-          type="text"
-          class="hero-search-input search-input"
-          placeholder="Search medicines, supplements, or health products..."
-          autocomplete="off"
-        />
+            <!-- JS TARGET (DO NOT RENAME) -->
+            <span class="cart-badge">0</span>
+          </button>
+        </a>
   
-        <!-- KEEP CSS CLASS + ADD JS CLASS -->
-        <button class="search-action-btn search-submit">
-          Search
-          <span class="arrow">→</span>
-        </button>
+        <button class="mobile-menu-btn nav-center__menuBtn" aria-label="Open menu">☰</button>
       </div>
-  
-      <!-- JS TARGET (STYLE THIS IF NEEDED) -->
-      <ul id="hero-suggestions" class="hero-suggestions"></ul>
-  
-      <div class="quick-suggestions">
-        <span class="suggestion-label">Popular:</span>
-        <a href="categories.html?catogeries_ID=2"><button class="suggestion-tag">General Health</button></a>
-        <a href="categories.html?catogeries_ID=3"><button class="suggestion-tag">Pain Relief</button></a>
-        <a href="categories.html?catogeries_ID=4"><button class="suggestion-tag">Cardiac Care</button></a>
-      </div>
-  
     </div>
-  </div>
+  </nav>
   
-                    <!-- Trust Indicators -->
-                    <div class="trust-indicators">
-                        <div class="trust-item">
-                            <div class="trust-icon">✓</div>
-                            <span>FDA Approved</span>
-                        </div>
-                        <div class="trust-item">
-                            <div class="trust-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="1" y="3" width="15" height="13"></rect>
-                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                                </svg>
-                            </div>
-                            <span>Free Shipping</span>
-                        </div>
-                        <div class="trust-item">
-                            <div class="trust-icon">⚡</div>
-                            <span>Fast Delivery</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hero Visual -->
-                <div class="hero-visual">
-                    <div class="visual-card card-1">
-                        <div class="card-icon">Rx</div>
-                        <div class="card-content">
-                            <div class="card-title">Premium Quality</div>
-                            <div class="card-desc">USA Grade Medicines</div>
-                        </div>
-                        <div class="card-badge">Good Staring</div>
-                    </div>
-                    
-                    <div class="visual-card card-2">
-                        <div class="card-icon">24/7</div>
-                        <div class="card-content">
-                            <div class="card-title">Expert Consultation</div>
-                            <div class="card-desc">Always Available</div>
-                        </div>
-                    </div>
-                    
-                    <div class="visual-card card-3">
-                        <div class="card-icon">ISO</div>
-                        <div class="card-content">
-                            <div class="card-title">Certified Quality</div>
-                            <div class="card-desc">ISO Certified</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Central Illustration -->
-                    <div class="hero-illustration">
-                        <div class="illustration-circle">
-                            <span class="main-icon">⚕</span>
-                        </div>
-                    </div>
-                </div>
+  <!-- Centered Minimal Hero -->
+  <section class="hero-modern hero-center" id="home">
+    <div class="hero-center__bg" aria-hidden="true"></div>
+  
+    <div class="hero-content-wrapper hero-center__wrap">
+      <div class="hero-center__inner">
+        <div class="hero-center__badge">
+          <span class="hero-center__badgeDot"></span>
+          Verified products • Discreet packaging • Fast support
+        </div>
+  
+        <h1 class="hero-title hero-center__title">
+          Find the right medicine,
+          <span class="gradient-text">quickly</span>
+        </h1>
+  
+        <p class="hero-description hero-center__desc">
+          Search by product name, compare strengths, and checkout securely — built with a premium, minimal experience.
+        </p>
+  
+        <!-- Hero Search Bar (CSS SAFE + JS WIRED) -->
+        <div class="hero-search-container search-container hero-center__search">
+          <div class="search-card hero-center__searchCard">
+            <div class="search-input-group hero-center__searchRow">
+              <svg class="search-icon hero-center__searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+  
+              <!-- KEEP CSS CLASS + ADD JS CLASS -->
+              <input
+                type="text"
+                class="hero-search-input search-input"
+                placeholder="Search medicines (e.g., Modafinil 200mg)"
+                autocomplete="off"
+              />
+  
+              <!-- KEEP CSS CLASS + ADD JS CLASS -->
+              <button class="search-action-btn search-submit">
+                Search
+              </button>
             </div>
+  
+            <!-- JS TARGET -->
+            <ul id="hero-suggestions" class="hero-suggestions hero-center__suggestions"></ul>
+  
+            <div class="quick-suggestions hero-center__chips">
+              <span class="suggestion-label">Popular:</span>
+              <a href="categories.html?catogeries_ID=2"><button class="suggestion-tag">General Health</button></a>
+              <a href="categories.html?catogeries_ID=3"><button class="suggestion-tag">Pain Relief</button></a>
+              <a href="categories.html?catogeries_ID=4"><button class="suggestion-tag">Cardiac Care</button></a>
+            </div>
+          </div>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <span class="scroll-text">Explore</span>
-            <div class="scroll-arrow"></div>
+  
+        <div class="hero-center__meta">
+          <div class="hero-center__metaItem">
+            <span class="hero-center__metaLine"></span>
+            Quality checked
+          </div>
+          <div class="hero-center__metaItem">
+            <span class="hero-center__metaLine"></span>
+            Secure checkout
+          </div>
+          <div class="hero-center__metaItem">
+            <span class="hero-center__metaLine"></span>
+            Worldwide shipping
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  
+    <div class="scroll-indicator hero-center__scroll">
+      <span class="scroll-text">Explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+  
 
     <!-- Banner Slider -->
     <section class="banner-section">

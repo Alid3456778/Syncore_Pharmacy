@@ -1189,3 +1189,187 @@ body {
   overflow-y: scroll;
   margin-bottom: 9px;
 }
+/* ===== NAV: centered + minimal ===== */
+.nav-center {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+  }
+  
+  .nav-center__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .nav-center__brand {
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+  
+  .nav-center__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .nav-center__cartLink {
+    text-decoration: none;
+  }
+  
+  .nav-center__cartBtn {
+    border: 1px solid rgba(0, 102, 204, 0.16);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* ===== HERO: centered premium minimal ===== */
+  .hero-center {
+    background: linear-gradient(180deg, #F7FBFF 0%, #FFFFFF 72%);
+    text-align: center;
+  }
+  
+  .hero-center__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(900px 520px at 50% 15%, rgba(0, 102, 204, 0.16), transparent 60%),
+      radial-gradient(900px 520px at 50% 90%, rgba(0, 168, 232, 0.08), transparent 60%);
+  }
+  
+  .hero-center__wrap {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-center__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5.5rem 5% 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  
+  .hero-center__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(0, 102, 204, 0.08);
+    border: 1px solid rgba(0, 102, 204, 0.12);
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  
+  .hero-center__badgeDot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: rgba(0, 102, 204, 0.85);
+  }
+  
+  .hero-center__title {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -1.6px;
+    margin-top: 0.4rem;
+  }
+  
+  .hero-center__desc {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--gray);
+    font-size: 1.12rem;
+    line-height: 1.85;
+  }
+  
+  /* search card centered + elegant */
+  .hero-center__search {
+    width: min(840px, 100%);
+    margin-top: 0.6rem;
+  }
+  
+  .hero-center__searchCard {
+    border-radius: 18px;
+    box-shadow: 0 18px 55px rgba(0, 74, 153, 0.12);
+    border: 1px solid rgba(0, 102, 204, 0.10);
+  }
+  
+  .hero-center__searchRow {
+    border-bottom: none;
+    padding-bottom: 0;
+    gap: 0.8rem;
+  }
+  
+  .hero-center__searchIcon {
+    color: var(--primary);
+    opacity: 0.9;
+  }
+  
+  .hero-center__suggestions {
+    margin-top: 0.75rem;
+    list-style: none;
+    padding: 0;
+    text-align: left; /* suggestions look better left-aligned */
+  }
+  
+  /* suggestion dropdown (simple) */
+  .hero-center__suggestions li {
+    margin-top: 0.55rem;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(0, 102, 204, 0.10);
+    padding: 0.85rem 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .hero-center__suggestions li:hover {
+    background: rgba(0, 102, 204, 0.06);
+    border-color: rgba(0, 102, 204, 0.18);
+  }
+  
+  .hero-center__chips {
+    justify-content: center;
+    margin-top: 0.9rem;
+  }
+  
+  /* bottom meta row */
+  .hero-center__meta {
+    margin-top: 0.6rem;
+    display: flex;
+    gap: 1.3rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: rgba(26, 26, 26, 0.78);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .hero-center__metaItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  
+  .hero-center__metaLine {
+    width: 26px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(0, 102, 204, 0.35);
+  }
+  
+  /* responsive nav */
+  @media (max-width: 768px) {
+    .nav-center__menuBtn {
+      display: inline-flex;
+    }
+  }
+  
