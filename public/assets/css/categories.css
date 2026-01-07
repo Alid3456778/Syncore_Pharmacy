@@ -109,6 +109,11 @@
         animation: bounce 2s ease-in-out infinite;
       }
 
+      .category-icon-large img{
+        width: 200px;
+        height: 200px;
+      }
+
       @keyframes bounce {
         0%,
         100% {

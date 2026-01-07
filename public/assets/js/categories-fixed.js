@@ -345,55 +345,55 @@ const categoryData = {
   },
   1: {
     name: "USA Premium Quality",
-    icon: "💊",
+    icon: "./assets/image/USA-Premium.png",
     description:
       "Authentic American pharmaceutical products of the highest standard",
   },
   2: {
     name: "General Health",
-    icon: "💊",
+    icon: "./assets/image/general-health.png",
     description:
       "Essential medicines for everyday wellness and general healthcare",
   },
   3: {
     name: "Pain Relief",
-    icon: "🩹",
+    icon: "./assets/image/pain-medication.png",
     description: "Effective solutions for pain management and relief",
   },
   4: {
     name: "Cardiac Care",
-    icon: "❤️",
+    icon: "./assets/image/cardiac-care.png",
     description:
       "Trusted medications for heart health and cardiovascular wellness",
   },
   5: {
     name: "Mental Health",
-    icon: "🧠",
+    icon: "./assets/image/mental-health.png",
     description: "Support for emotional, psychological, and mental wellness",
   },
   6: {
     name: "Sexual Wellness",
-    icon: "💗",
+    icon: "./assets/image/sexual-wellness.png",
     description: "Confidential solutions for intimate health and wellness",
   },
   7: {
     name: "Skincare",
-    icon: "✨",
+    icon: "./assets/image/skincare.png",
     description: "Advanced dermatological treatments and skincare solutions",
   },
   8: {
     name: "Steroids",
-    icon: "💪",
+    icon: "./assets/image/steroids.png",
     description: "Performance enhancement and bodybuilding products",
   },
   9: {
     name: "Women's Health",
-    icon: "👩",
+    icon: "./assets/image/women-health.pngA",
     description: "Specialized care and products for women's wellness",
   },
   10: {
     name: "Men's Health",
-    icon: "👨",
+    icon: "./assets/image/mens-health.png",
     description: "Targeted solutions for men's vitality and health",
   },
 };
@@ -410,7 +410,7 @@ function loadCategoryInfo() {
   const category = categoryData[categoryId];
 
   if (category) {
-    document.getElementById("categoryIcon").textContent = category.icon;
+    document.getElementById("categoryIcon").innerHTML = `<img src="${category.icon}" alt="💊"></img>`;
     document.getElementById("categoryTitle").textContent = category.name;
     document.getElementById("categoryDescription").textContent =
       category.description;
