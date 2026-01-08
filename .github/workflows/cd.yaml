@@ -27,12 +27,7 @@ jobs:
           username: mclanduser
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd apps/Webiste_Land
+            cd apps/Syncore_Pharmacy
             git pull origin main
             npm install
-            pm2 restart website_land
-
-  # ============================
-  # 3) VPN Check — RUNS AFTER Deploye and see the vpn is rinning or not
-  # ============================
-  
+            pm2 restart Syncore_Pharmacy

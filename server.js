@@ -3045,8 +3045,8 @@ async function blockVPN(req, res, next) {
   }
 }
 
-// ✅ Apply VPN blocking middleware (ONLY ONCE)
-app.use(blockVPN);
+// // ✅ Apply VPN blocking middleware (ONLY ONCE)
+// app.use(blockVPN);
 
 // ============================================
 // RETRY ROUTE (Clear blocked cookie)
