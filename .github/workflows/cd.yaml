@@ -1,0 +1,25 @@
+name: Test SSH Connection
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # Adds the server to known_hosts to avoid the "Host verification failed" error
+          ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Run Test Command
+        run: |
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "echo 'Successfully connected to $(hostname) at $(date)'"
