@@ -1,26 +1,38 @@
-name: Test SSH Connection on Push
+name: CI CD Pipeline
 
 on:
   push:
-    branches:
-      - main  # Change this to 'master' if your default branch uses that name
-  workflow_dispatch: # Keeps the manual "Run" button active just in case
+    branches: ["main"]
 
 jobs:
-  test-connection:
+
+  # ============================
+  # 1) CI JOB — CHECK DATABASE_URL
+  # ============================
+  # ============================
+  # 2) DEPLOYMENT JOB — RUNS AFTER CI SUCCESS
+  # ============================
+  deploy:
+     # ← CI must pass first
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 147.93.105.151
+          username: mclanduser
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd apps/Webiste_Land
+            git pull origin main
+            npm install
+            pm2 restart website_land
 
-      - name: Run Test Command
-        run: |
-          ssh -i ~/.ssh/id_ed25519 ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "echo 'Push received! Connection verified to $(hostname) at $(date)'"
+  # ============================
+  # 3) VPN Check — RUNS AFTER Deploye and see the vpn is rinning or not
+  # ============================
+  
