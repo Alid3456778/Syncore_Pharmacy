@@ -1,8 +1,10 @@
-name: Test SSH Connection
+name: Test SSH Connection on Push
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # Change this to 'master' if your default branch uses that name
+  workflow_dispatch: # Keeps the manual "Run" button active just in case
 
 jobs:
   test-connection:
@@ -17,9 +19,8 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          # Adds the server to known_hosts to avoid the "Host verification failed" error
           ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
 
       - name: Run Test Command
         run: |
-          ssh -i ~/.ssh/id_ed25519 ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "echo 'Successfully connected to $(hostname) at $(date)'"
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "echo 'Push received! Connection verified to $(hostname) at $(date)'"
