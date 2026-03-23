@@ -71,7 +71,7 @@ body {
 .logo-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    /* background: linear-gradient(135deg, var(--primary), var(--secondary)); */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -79,6 +79,10 @@ body {
     color: var(--white);
     font-weight: 700;
     font-size: 1.2rem;
+}
+
+.logo-icon img{
+    width: 100px;
 }
 
 .nav-menu {
@@ -1028,6 +1032,10 @@ body {
     font-weight: 700;
 }
 
+.footer-col img{
+    width: 400px;
+}
+
 .footer-col p {
     color: rgba(255,255,255,0.8);
     line-height: 1.8;
@@ -1156,7 +1164,7 @@ body {
     }
     
     .search-action-btn {
-        padding: 0.8rem 1.5rem;
+        padding: 0.2rem 0.5rem;
         font-size: 0.9rem;
     }
 
@@ -1181,7 +1189,7 @@ body {
     }
 
     .nav-actions .icon-btn:first-child {
-        display: none;
+        display: block;
     }
 }
 .hero-suggestions{
@@ -1245,7 +1253,8 @@ body {
   }
   
   .hero-center__inner {
-    max-width: 900px;
+    /* max-width: 900px; */
+    width: 100%;
     margin: 0 auto;
     padding: 5.5rem 5% 3rem;
     display: flex;
@@ -1308,7 +1317,7 @@ body {
   }
   
   .hero-center__searchIcon {
-    color: var(--primary);
+    color: var(--light);
     opacity: 0.9;
   }
   

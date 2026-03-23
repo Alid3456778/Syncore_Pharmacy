@@ -6,7 +6,7 @@ on:
 
 jobs:
   # ============================
-  # 2) DEPLOYMENT JOB — RUNS AFTER CI SUCCESS
+  # 1) DEPLOYMENT JOB — RUNS AFTER CI SUCCESS
   # ============================
   deploy:
      # ← CI must pass first

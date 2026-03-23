@@ -11,18 +11,20 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
 // ============================================
 // GLOBAL VARIABLES FOR PRODUCT DATA
 // ============================================
-let name_dabba = "";        // Product name
-let imgg = "";              // Product image URL
-let categoryId = 0;         // Category ID
+let name_dabba = ""; // Product name
+let imgg = ""; // Product image URL
+let categoryId = 0; // Category ID
 
 // ============================================
 // CART COUNT FUNCTIONALITY
 // ============================================
 document.addEventListener("DOMContentLoaded", async () => {
   const cartCountSpan = document.getElementById("cart-count");
-  
+
   if (!cartCountSpan) {
-    console.warn("cart-count element not found in HTML. Add: <span id=\"cart-count\">0</span> to navbar");
+    console.warn(
+      'cart-count element not found in HTML. Add: <span id="cart-count">0</span> to navbar'
+    );
     return;
   }
 
@@ -59,9 +61,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function setupProductVariants(variants) {
   const buttonContainer = document.getElementById("button-container");
-  
+
   if (!buttonContainer) {
-    console.warn("button-container element not found. Add: <div id=\"button-container\"></div>");
+    console.warn(
+      'button-container element not found. Add: <div id="button-container"></div>'
+    );
     return;
   }
 
@@ -84,7 +88,7 @@ function setupProductVariants(variants) {
       document
         .querySelectorAll(".btn--toggle")
         .forEach((btn) => btn.classList.remove("btn--active"));
-      
+
       button.classList.add("btn--active");
 
       const [unitValue, unitType] = variant.split(" ");
@@ -104,7 +108,9 @@ function displayVariantOptions(variants, selectedMg, unitType) {
   const tableBody = document.getElementById("popil");
   // console.log(variants);
   if (!tableBody) {
-    console.warn("popil element (table body) not found. Add: <tbody id=\"popil\"></tbody>");
+    console.warn(
+      'popil element (table body) not found. Add: <tbody id="popil"></tbody>'
+    );
     return;
   }
 
@@ -169,10 +175,11 @@ function setupAddToCartButtons() {
       const quantity = this.getAttribute("data-quantity") || 1;
       const categoryIdFromButton = this.getAttribute("data-catogary-id");
       const mg = this.getAttribute("data-mg") || "default_mg_value";
-      const price = this.getAttribute("data-price").replace(/[^0-9,.]/g, "") || "0";
+      const price =
+        this.getAttribute("data-price").replace(/[^0-9,.]/g, "") || "0";
 
       // ✅ USE GLOBAL VARIABLES SET FROM API WITH FALLBACK
-      const finalCategoryId =  categoryId;
+      const finalCategoryId = categoryId;
 
       console.log("Adding to cart:", {
         variantId,
@@ -181,7 +188,7 @@ function setupAddToCartButtons() {
         mg,
         price,
         name: name_dabba,
-        image: imgg
+        image: imgg,
       });
 
       // Call addToCart with all required parameters
@@ -201,11 +208,20 @@ function setupAddToCartButtons() {
 // ============================================
 // ADD TO CART - SEND TO BACKEND
 // ============================================
-function addToCart(variantId, categoryId, quantity, mg, price, name, image_url) {
+function addToCart(
+  variantId,
+  categoryId,
+  quantity,
+  mg,
+  price,
+  name,
+  image_url
+) {
   // Validate parameters - be lenient, use fallbacks
   if (!variantId || !quantity) {
     console.error("Missing critical parameters:", {
-      variantId, quantity
+      variantId,
+      quantity,
     });
     alert("Error: Missing product information. Please try again.");
     return;
@@ -225,16 +241,18 @@ function addToCart(variantId, categoryId, quantity, mg, price, name, image_url) 
       price: price || "0",
       name: name || "Unknown Product",
       image_url: image_url || "./assets/placeholder.jpg",
-      categoryId: validCategoryId,  // ✅ Ensure it's a number
+      categoryId: validCategoryId, // ✅ Ensure it's a number
     }),
   })
     .then((response) => response.json())
     .then((result) => {
       if (result.success) {
         // Update cart count in navbar
-        const cartCount = result.cartCount || parseInt(localStorage.getItem("cartCount") || 0) + 1;
+        const cartCount =
+          result.cartCount ||
+          parseInt(localStorage.getItem("cartCount") || 0) + 1;
         localStorage.setItem("cartCount", cartCount);
-        
+
         const cartCountSpan = document.getElementById("cart-count");
         if (cartCountSpan) {
           cartCountSpan.textContent = cartCount;
@@ -271,7 +289,7 @@ async function loadProductDetails() {
     buildProductSearch();
     updateProductUI(product, variants);
     updateMetaTags(product);
-    
+
     // ✅ SAFE: Won't crash if API doesn't exist
     loadReviewsIfAvailable(productID);
   } catch (error) {
@@ -290,50 +308,85 @@ function updateProductUI(product, variants) {
   imgg = product.image_url || "./assets/placeholder.jpg";
   categoryId = product.category_id || 0;
 
-  // console.log("Product data loaded:", { 
-  //   name: name_dabba, 
-  //   image: imgg, 
+  // console.log("Product data loaded:", {
+  //   name: name_dabba,
+  //   image: imgg,
   //   categoryId: categoryId,
   //   type: typeof categoryId
   // });
 
-  if(document.getElementById("productBreadcrumb")){
-    document.getElementById("productBreadcrumb").textContent= product.product_name || "Product";
+  if (document.getElementById("productBreadcrumb")) {
+    document.getElementById("productBreadcrumb").textContent =
+      product.product_name || "Product";
+  }
+
+  const categories = {
+    1: "USA Premium Quality",
+    2: "General Health",
+    3: "Pain Relief",
+    4: "Cardiac Care",
+    5: "Mental Health",
+    6: "Sexual Wellness",
+    7: "Skincare",
+    8: "Steroids",
+    9: "Women's Health",
+    10: "Men's Health",
+  };
+
+  const backButton = document.getElementById("BackButton");
+  const categoryLink = document.getElementById("categoryLink");
+
+  if (backButton && categories[categoryId]) {
+    backButton.href = `categories.html?catogeries_ID=${categoryId}`;
+  }
+
+  if (categoryLink && categories[categoryId]) {
+    categoryLink.textContent = categories[categoryId];
+    categoryLink.href = `categories.html?catogeries_ID=${categoryId}`;
   }
 
   // Update product title
   if (document.getElementById("productTitle")) {
-    document.getElementById("productTitle").textContent = product.product_name || "Product";
+    document.getElementById("productTitle").textContent =
+      product.product_name || "Product";
   }
 
   // Update product category
   if (document.getElementById("productCategory")) {
-    document.getElementById("productCategory").textContent = product.category_name || "Uncategorized";
+    document.getElementById("productCategory").textContent =
+      product.category_name || "Uncategorized";
   }
 
   // Update pricing
   if (document.getElementById("currentPrice")) {
-    document.getElementById("currentPrice").textContent = `$${product.price || 0}`;
+    document.getElementById("currentPrice").textContent = `$${
+      product.price || 0
+    }`;
   }
 
   if (document.getElementById("originalPrice") && product.original_price) {
-    document.getElementById("originalPrice").textContent = `$${product.original_price}`;
+    document.getElementById(
+      "originalPrice"
+    ).textContent = `$${product.original_price}`;
   }
 
   // Update ratings
   if (document.getElementById("ratingNumber")) {
-    document.getElementById("ratingNumber").textContent = product.rating || "4.5";
+    document.getElementById("ratingNumber").textContent =
+      product.rating || "4.5";
   }
 
   if (document.getElementById("reviewCount")) {
-    document.getElementById("reviewCount").textContent = `(${product.review_count || 0} reviews)`;
+    document.getElementById("reviewCount").textContent = `(${
+      product.review_count || 0
+    } reviews)`;
   }
 
   // ============================================
   // ✅ POPULATE TAB 1: DESCRIPTION
   // ============================================
   if (document.getElementById("productDescription")) {
-    document.getElementById("productDescription").textContent = 
+    document.getElementById("productDescription").textContent =
       product.product_description || "No description available";
   }
 
@@ -361,8 +414,9 @@ function updateProductUI(product, variants) {
     `;
   }
 
-  if(document.getElementById("description-text")){
-    document.getElementById("description-text").textContent= product.usage_instructions;
+  if (document.getElementById("description-text")) {
+    document.getElementById("description-text").textContent =
+      product.usage_instructions;
   }
 
   // ============================================
@@ -370,19 +424,18 @@ function updateProductUI(product, variants) {
   // ============================================
   if (document.getElementById("usage")) {
     const usageInstructions = product.usage_instructions || [];
-    
-      document.getElementById("usage").innerHTML = `
+
+    document.getElementById("usage").innerHTML = `
         <div class="description-text">
           ${usageInstructions}
         </div>
       `;
-   
   }
 
   // Update stock status
   if (document.getElementById("stockStatus")) {
     if (product.stocks === 0) {
-      document.getElementById("stockStatus").innerHTML = 
+      document.getElementById("stockStatus").innerHTML =
         '<span style="color: red;">❌ Out of Stock</span>';
     }
   }
@@ -402,19 +455,33 @@ function updateProductUI(product, variants) {
   if (document.getElementById("thumbnail-images")) {
     document.getElementById("thumbnail-images").innerHTML = `
       <div class="thumbnail active" data-image="${product.image_url}">
-        <img src="${product.image_url}" class="product-image" alt="Product main image">
+        <img src="${
+          product.image_url
+        }" class="product-image" alt="Product main image">
       </div>
-      <div class="thumbnail" data-image="${product.addtional_img1 || product.image_url}">
-        <img src="${product.addtional_img1 || product.image_url}" class="product-image" alt="Product image 2">
+      <div class="thumbnail" data-image="${
+        product.addtional_img1 || product.image_url
+      }">
+        <img src="${
+          product.addtional_img1 || product.image_url
+        }" class="product-image" alt="Product image 2">
       </div>
-      <div class="thumbnail" data-image="${product.addtional_img2 || product.image_url}">
-        <img src="${product.addtional_img2 || product.image_url}" class="product-image" alt="Product image 3">
+      <div class="thumbnail" data-image="${
+        product.addtional_img2 || product.image_url
+      }">
+        <img src="${
+          product.addtional_img2 || product.image_url
+        }" class="product-image" alt="Product image 3">
       </div>
-      <div class="thumbnail" data-image="${product.addtional_img3 || product.image_url}">
-        <img src="${product.addtional_img3 || product.image_url}" class="product-image" alt="Product image 4">
+      <div class="thumbnail" data-image="${
+        product.addtional_img3 || product.image_url
+      }">
+        <img src="${
+          product.addtional_img3 || product.image_url
+        }" class="product-image" alt="Product image 4">
       </div>
     `;
-    
+
     // ✅ ATTACH EVENT LISTENERS AFTER CREATING THUMBNAILS!
     setupThumbnailListeners();
   }
@@ -497,7 +564,8 @@ function updateMetaTags(product) {
 }
 
 function showError(message) {
-  const container = document.querySelector(".product-container") || document.body;
+  const container =
+    document.querySelector(".product-container") || document.body;
   container.innerHTML = `
     <div style="padding: 2rem; text-align: center; color: #d32f2f; background: #ffebee; border-radius: 8px; margin: 2rem;">
       <h2>⚠️ Error</h2>
@@ -550,101 +618,116 @@ function switchTab(tabName) {
 // ============================================
 
 function loadReviewsIfAvailable(productID) {
-  const reviewsList = document.getElementById('reviews-list');
+  const reviewsList = document.getElementById("reviews-list");
   if (!reviewsList) return;
 
   fetch(`/api/product/${productID}/reviews`)
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         console.warn(`Reviews API not available: ${response.status}`);
-        reviewsList.innerHTML = '<p class="no-reviews">Reviews coming soon!</p>';
+        reviewsList.innerHTML =
+          '<p class="no-reviews">Reviews coming soon!</p>';
         return null;
       }
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       if (data && data.reviews) {
         displayReviews(data.reviews);
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.warn("Reviews API not yet implemented:", error.message);
-      const reviewsList = document.getElementById('reviews-list');
+      const reviewsList = document.getElementById("reviews-list");
       if (reviewsList) {
-        reviewsList.innerHTML = '<p class="no-reviews">Reviews coming soon!</p>';
+        reviewsList.innerHTML =
+          '<p class="no-reviews">Reviews coming soon!</p>';
       }
     });
 }
 
 function displayReviews(reviews) {
-  const reviewsList = document.getElementById('reviews-list');
+  const reviewsList = document.getElementById("reviews-list");
   if (!reviewsList) return;
 
   if (!reviews || reviews.length === 0) {
-    reviewsList.innerHTML = '<p class="no-reviews">No reviews yet. Be the first to review!</p>';
+    reviewsList.innerHTML =
+      '<p class="no-reviews">No reviews yet. Be the first to review!</p>';
     return;
   }
 
-  reviewsList.innerHTML = reviews.map(review => `
+  reviewsList.innerHTML = reviews
+    .map(
+      (review) => `
     <div class="review-item">
       <div class="review-header">
         <div class="reviewer-info">
-          <p class="reviewer-name">${review.reviewer_name || 'Anonymous'}</p>
-          <p class="review-date">${new Date(review.created_at).toLocaleDateString()}</p>
+          <p class="reviewer-name">${review.reviewer_name || "Anonymous"}</p>
+          <p class="review-date">${new Date(
+            review.created_at
+          ).toLocaleDateString()}</p>
         </div>
-        <div class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+        <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(
+        5 - review.rating
+      )}</div>
       </div>
       <h4 class="review-title">${review.review_title}</h4>
       <p class="review-text">${review.review_comment}</p>
     </div>
-  `).join('');
+  `
+    )
+    .join("");
 }
 
 function setupReviewForm() {
-  const reviewForm = document.getElementById('review-form');
+  const reviewForm = document.getElementById("review-form");
   if (!reviewForm) return;
 
-  reviewForm.addEventListener('submit', async (e) => {
+  reviewForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const productID = new URLSearchParams(window.location.search).get('product_ID');
+    const productID = new URLSearchParams(window.location.search).get(
+      "product_ID"
+    );
     const formData = {
       product_id: productID,
-      reviewer_name: document.getElementById('reviewer-name').value,
-      reviewer_email: document.getElementById('reviewer-email').value,
+      reviewer_name: document.getElementById("reviewer-name").value,
+      reviewer_email: document.getElementById("reviewer-email").value,
       rating: document.querySelector('input[name="rating"]:checked').value,
-      review_title: document.getElementById('reviewer-title').value,
-      review_comment: document.getElementById('reviewer-comment').value,
+      review_title: document.getElementById("reviewer-title").value,
+      review_comment: document.getElementById("reviewer-comment").value,
     };
 
     try {
-      const response = await fetch('/api/reviews/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/reviews/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-      const messageEl = document.getElementById('review-message');
+      const messageEl = document.getElementById("review-message");
 
       if (result.success) {
-        messageEl.className = 'review-message success';
-        messageEl.textContent = '✓ Review submitted successfully!';
+        messageEl.className = "review-message success";
+        messageEl.textContent = "✓ Review submitted successfully!";
         reviewForm.reset();
-        
+
         setTimeout(() => {
           loadReviewsIfAvailable(productID);
-          messageEl.className = 'review-message';
-          messageEl.textContent = '';
+          messageEl.className = "review-message";
+          messageEl.textContent = "";
         }, 1500);
       } else {
-        messageEl.className = 'review-message error';
-        messageEl.textContent = '✗ Error: ' + result.message;
+        messageEl.className = "review-message error";
+        messageEl.textContent = "✗ Error: " + result.message;
       }
     } catch (error) {
-      document.getElementById('review-message').className = 'review-message error';
-      document.getElementById('review-message').textContent = '✗ Reviews API not yet available';
-      console.warn('Reviews API not yet implemented:', error.message);
+      document.getElementById("review-message").className =
+        "review-message error";
+      document.getElementById("review-message").textContent =
+        "✗ Reviews API not yet available";
+      console.warn("Reviews API not yet implemented:", error.message);
     }
   });
 }
@@ -659,7 +742,9 @@ async function buildProductSearch() {
     const searchButton = document.getElementById("search-button");
 
     if (!searchInput) {
-      console.warn("search-input element not found. Search functionality disabled.");
+      console.warn(
+        "search-input element not found. Search functionality disabled."
+      );
       return;
     }
 
@@ -791,15 +876,20 @@ function setupCarousel() {
 
   if (prevButton) {
     prevButton.addEventListener("click", () => {
-      currentSlide = (currentSlide - 1 + carousel.querySelectorAll(".zoom-container").length) % 
-                     carousel.querySelectorAll(".zoom-container").length;
+      currentSlide =
+        (currentSlide -
+          1 +
+          carousel.querySelectorAll(".zoom-container").length) %
+        carousel.querySelectorAll(".zoom-container").length;
       showSlide(currentSlide);
     });
   }
 
   if (nextButton) {
     nextButton.addEventListener("click", () => {
-      currentSlide = (currentSlide + 1) % carousel.querySelectorAll(".zoom-container").length;
+      currentSlide =
+        (currentSlide + 1) %
+        carousel.querySelectorAll(".zoom-container").length;
       showSlide(currentSlide);
     });
   }
