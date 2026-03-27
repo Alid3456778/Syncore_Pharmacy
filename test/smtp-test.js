@@ -5,8 +5,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: 'orderconfirmation@mclandpharma.com',
-    pass: 'Order$123mcland',
+    user: 'support@syncorepharmacy.com',
+    pass: 'Syn123@office',
   },
 });
 
