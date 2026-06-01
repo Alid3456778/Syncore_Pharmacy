@@ -25,12 +25,17 @@ function selectPayment(method) {
     qr_text_id.textContent = "Yet Not Available";
     qr.src = "./assets/image/";
   } else if (method === "Bitcoin") {
-    qr.src = "./assets/image/bitcoinScanner.jpg";
+    qr.src = "./assets/image/bitcoinScanner.jpeg";
     qr_text_id.textContent =
-      "Bitcoin (BTC) Address: bc1q4mgysdwjsxhw3qwzycnzgtvh2xc2akf5xfaras";
+      "Bitcoin (BTC) Address: 112FdeNrNu3emKuw8gA8HPKU75AcjHBnSe";
   } else if (method === "Venmo") {
     qr_text_id.textContent = "Yet Not Available";
     // qr.src = "./assets/image/venom.jpg";
+  }
+   else if(method === "tether"){
+    qr.src = "./assets/image/trxScanner.jpeg";
+    qr_text_id.innerHTML =
+      'Tether (USDT) Address:<br><code>TDPEiBKdNFKVo2HfZL2qaixT2a6kdME9a3</code>';
   }
 }
 
