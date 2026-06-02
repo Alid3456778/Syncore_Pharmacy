@@ -993,6 +993,7 @@
     <div id="paymentModal" class="modal1">
       <div class="modal-content1">
         <h2>Select Payment Method</h2>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;"> 
         <button onclick="selectPayment('Zelle')" class="Payment_Button">
           <img src="./assets/image/zelle.png" alt="" style="max-width: 100px" />
         </button>
@@ -1007,8 +1008,9 @@
           <img src="./assets/image/venmo.png" alt="" style="max-width: 100px" />
         </button>
         <button onclick="selectPayment('tether')" class="Payment_Button">
-        <img src="./assets/image/tether.png" alt="Tether"  />
-      </button>
+            <img src="./assets/image/tether.png" alt="Tether" style="max-width: 100px"/>
+        </button>
+        </div>
         <button onclick="confirmPayment()" class="X_button">
           Cancel Payment
         </button>
