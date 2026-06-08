@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cholesterol Levels - Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;overflow-x:hidden;color:#111;}
+header{width:100%;background:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.07);position:sticky;top:0;z-index:1000;}
+.logo-text{font-size:22px;font-weight:700;color:#23479b;display:flex;align-items:center;gap:10px;}
+nav{display:flex;align-items:center;gap:2px;}
+nav a{text-decoration:none;color:#111;font-weight:600;font-size:14px;padding:6px 13px;transition:.2s;}
+nav a:hover{color:#c0392b;}
+.nav-sep{color:#bbb;font-size:13px;padding:0 2px;}
+.article-wrap{max-width:1380px;margin:0 auto;padding:40px 5% 60px;}
+.article-title{font-size:24px;font-weight:700;color:#111;margin-bottom:18px;line-height:1.35;}
+.img-right{float:right;margin:0 0 28px 36px;width:300px;border-radius:4px;overflow:hidden;}
+.img-right img{width:100%;height:240px;object-fit:cover;display:block;}
+.article-body p{font-size:15px;line-height:1.9;color:#111;margin-bottom:14px;}
+.article-body h2{font-size:17px;font-weight:700;color:#111;margin:26px 0 10px;}
+.article-body h3{font-size:15.5px;font-weight:700;color:#111;margin:18px 0 8px;}
+.article-body strong{font-weight:700;}
+.article-body ul{list-style:disc;padding-left:22px;margin-bottom:14px;}
+.article-body ul li{font-size:15px;line-height:1.85;color:#111;margin-bottom:6px;}
+.article-divider{clear:both;border:none;border-top:2px solid #e8edf5;margin:50px 0;}
+.cf::after{content:'';display:block;clear:both;}
+.level-table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:13.5px;}
+.level-table th{background:#23479b;color:#fff;padding:10px 12px;text-align:left;font-weight:600;}
+.level-table td{padding:9px 12px;border-bottom:1px solid #e2e8f0;vertical-align:top;line-height:1.6;}
+.level-table tr:nth-child(even) td{background:#f7f9fc;}
+.resources a{color:#2266cc;text-decoration:none;}
+.resources a:hover{text-decoration:underline;}
+footer{background:#0d1117;color:#fff;padding:52px 5% 0;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.footer-box h3{color:#2f65e6;margin-bottom:14px;font-size:17px;font-weight:700;}
+.footer-box p{color:#bbb;line-height:1.85;font-size:13.5px;margin-bottom:6px;}
+.footer-box a.read-more{color:#2f65e6;font-size:13.5px;text-decoration:none;font-weight:600;}
+.footer-box ul{list-style:none;}
+.footer-box ul li{color:#bbb;font-size:13.5px;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
+.footer-box ul li:hover{color:#fff;}
+.f-arrow{font-size:9px;color:#2f65e6;margin-top:5px;flex-shrink:0;}
+.contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.contact-icon{font-size:15px;margin-top:2px;flex-shrink:0;}
+.contact-text{color:#bbb;font-size:13.5px;line-height:1.6;}
+.footer-bottom{margin-top:40px;background:#2f65e6;margin-left:-5%;width:calc(100% + 10%);text-align:center;padding:14px;font-size:13.5px;color:#fff;}
+.whatsapp{position:fixed;right:22px;bottom:22px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,0.18);z-index:999;transition:.25s;}
+.whatsapp:hover{transform:scale(1.1);}
+@media(max-width:900px){.img-right{width:200px;}.footer-grid{grid-template-columns:repeat(2,1fr);}.level-table{font-size:12px;}}
+@media(max-width:600px){nav{display:none;}.img-right{float:none;width:100%;margin:0 0 20px 0;}.footer-grid{grid-template-columns:1fr;}.level-table{display:block;overflow-x:auto;}}
+
+      .logo img {
+        width: 100px;
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        nav a {
+          padding: 8px 10px;
+        }
+        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
+          padding: 30px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
+  </nav>
+</header>
+
+<div class="article-wrap">
+<div class="article-body cf">
+
+  <div class="img-right">
+    <img src="https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?q=80&w=600&auto=format&fit=crop" alt="Healthy cholesterol and heart care" loading="lazy"/>
+  </div>
+
+  <h1 class="article-title">Cholesterol Levels</h1>
+
+  <h2>Comprehending the Cholesterol Standards for the Healthy Heart</h2>
+  <p>Cholesterol is often discussed in relation to heart health because it serves several functions in the body but can also contribute to disease when levels are unbalanced. This guide focuses on HDL and LDL cholesterol, how cholesterol is measured, the main risk factors for abnormal levels, and lifestyle changes that support a healthier heart.</p>
+
+  <h2>Definition</h2>
+  <p>Cholesterol is a waxy, fat-like substance found in every cell of the body. It is essential for producing hormones, vitamin D, and substances that help digest food. Cholesterol is carried in the bloodstream by lipoproteins, and the body makes all the cholesterol it needs, although dietary sources also provide some.</p>
+
+  <h2>Different Types</h2>
+  <h3>High-Density Lipoprotein (HDL)</h3>
+  <p>HDL is often called “good” cholesterol because it transports cholesterol away from the arteries and back to the liver, where it is processed and removed from the body. Higher levels of HDL are associated with a lower risk of heart disease.</p>
+  <h3>Low-Density Lipoprotein (LDL)</h3>
+  <p>LDL is often called “bad” cholesterol. When too much LDL is present in the blood, it can lodge in the arteries and contribute to atherosclerosis, narrowing blood vessels and increasing the risk of heart disease and stroke.</p>
+
+  <h2>Measurement of Cholesterol Levels</h2>
+  <p>Cholesterol levels are usually evaluated by a blood test called a lipid panel. The test reports total cholesterol, HDL, LDL, and triglycerides.</p>
+
+  <table class="level-table">
+    <thead>
+      <tr><th>Measure</th><th>Healthy Range</th><th>Higher-Risk Range</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Total cholesterol</td><td>Less than 200 mg/dL</td><td>200 to 239 borderline high; 240+ high</td></tr>
+      <tr><td>HDL cholesterol</td><td>60 mg/dL and above</td><td>Below 40 mg/dL is a risk factor</td></tr>
+      <tr><td>LDL cholesterol</td><td>Less than 100 mg/dL</td><td>100 to 129 near optimal; 130+ increasingly high</td></tr>
+      <tr><td>Triglycerides</td><td>Less than 150 mg/dL</td><td>150 to 199 borderline high; 200+ high</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Risk Factors</h2>
+  <ul>
+    <li><strong>Diet:</strong> High intake of saturated fats, trans fats, and cholesterol can raise LDL levels.</li>
+    <li><strong>Physical inactivity:</strong> A sedentary lifestyle can contribute to weight gain and lower HDL.</li>
+    <li><strong>Obesity:</strong> Excess body weight tends to increase LDL and reduce HDL.</li>
+    <li><strong>Cigarette smoking:</strong> Smoking is linked to lower HDL cholesterol.</li>
+    <li><strong>Age and gender:</strong> Cholesterol levels often rise with age, and menopause can affect women’s levels.</li>
+    <li><strong>Genetics:</strong> Family history can affect how the body processes LDL.</li>
+    <li><strong>Chronic illness:</strong> Conditions such as diabetes can influence cholesterol levels.</li>
+  </ul>
+
+  <h2>Recommendations</h2>
+  <p><strong>Healthy diet.</strong> Focus on fruits, vegetables, whole grains, healthy fats such as olive oil and nuts, lean proteins like fish and poultry, and fewer saturated or trans fats.</p>
+  <p><strong>Regular exercise.</strong> Aim for at least 150 minutes each week of moderate-intensity aerobic activity such as walking, cycling, swimming, or jogging.</p>
+  <p><strong>Weight management.</strong> Even modest weight loss can improve LDL, triglycerides, and HDL.</p>
+  <p><strong>Avoid tobacco smoke.</strong> Quitting smoking helps raise HDL and improves heart health overall.</p>
+  <p><strong>Regular health checkups.</strong> Periodic cholesterol screening helps track risk and guide changes in diet, exercise, or treatment.</p>
+
+  <h2>Conclusion</h2>
+  <p>Understanding HDL, LDL, triglycerides, and the factors that influence them makes it easier to protect heart health. Healthy eating, regular physical activity, weight management, and avoiding tobacco are practical ways to improve cholesterol levels and reduce cardiovascular risk.</p>
+
+  <h2>Resources</h2>
+  <p class="resources">
+    <a href="https://www.heart.org/" target="_blank" rel="noopener noreferrer">American Heart Association</a><br>
+    <a href="https://www.cdc.gov/" target="_blank" rel="noopener noreferrer">Centers for Disease Control and Prevention</a><br>
+    <a href="https://www.nhlbi.nih.gov/" target="_blank" rel="noopener noreferrer">National Heart, Lung, and Blood Institute</a>
+  </p>
+
+  <hr class="article-divider"/>
+
+  <div class="img-right">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop" alt="Healthcare delivery and pharmacy products" loading="lazy"/>
+  </div>
+
+  <p>We also deliver products in entire USA.</p>
+  <p><strong>Buy out products from our website</strong></p>
+  <ul>
+    <li>US to US Delivery</li>
+    <li>Tramadol Treken 100mg</li>
+    <li>Tramadol Citra loose 100mg</li>
+    <li>Tramadol Yandc 100mg</li>
+    <li>Ambien Belbien Zolpidem 10mg</li>
+  </ul>
+
+</div>
+</div>
+
+<footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <a href="about.html" class="read-more">Read More</a>
+        </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
+            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
+            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
+            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
+            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
+        </div>
+      </div>
+      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+    </footer>
+
+<a href="https://wa.me/12095937171" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
+
+</body>
+</html>

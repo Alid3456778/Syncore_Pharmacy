@@ -1,174 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopping Cart -Syncore Pharmacy Medical - Premium Healthcare Solutions</title>
- 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/assets/image2/logo.png"
-    />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cart - Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/assets/image2/logo.png"
-    />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/assets/image2/logo.png"
-    />
-  <link rel="stylesheet" href="./assets/css/cart.css">
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f3f3f3;overflow-x:hidden;}
+
+/* NAVBAR */
+header{width:100%;background:#fff;padding:20px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:1000;}
+.logo{font-size:42px;font-weight:700;color:#23479b;}
+.logo span{color:#333;}
+nav{display:flex;gap:35px;}
+nav a{text-decoration:none;color:#111;font-weight:600;transition:.3s;font-size:15px;}
+nav a:hover{color:#ff7300;}
+
+/* CART BANNER */
+.cart-banner{
+    width:100%;
+    min-height:200px;
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1550572017-edd951b55104?q=80&w=1400&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:40px 6%;
+}
+.cart-banner h1{color:#fff;font-size:38px;font-weight:700;}
+
+/* MAIN CONTENT */
+.cart-section{
+    width:100%;
+    padding:50px 6% 60px;
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+}
+
+/* SHOPPING CART TABLE */
+.section-title{
+    font-size:30px;
+    font-weight:600;
+    color:#111;
+    margin-bottom:20px;
+}
+
+.cart-table-wrap{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,0.07);
+}
+
+.cart-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.cart-table thead tr{
+    background:#2f65e6;
+    color:#fff;
+}
+
+.cart-table thead th{
+    padding:16px 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+.cart-table tbody tr{
+    border-bottom:1px solid #eee;
+}
+
+.cart-table tbody tr:last-child{
+    border-bottom:none;
+}
+
+.cart-table tbody td{
+    padding:18px 20px;
+    font-size:15px;
+    color:#333;
+    vertical-align:middle;
+}
+
+.product-name{
+    color:#2f65e6;
+    font-weight:600;
+    font-size:15px;
+    display:block;
+}
+
+.product-sub{
+    color:#888;
+    font-size:13px;
+}
+
+.delete-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:20px;
+    color:#999;
+    transition:.3s;
+    padding:4px 8px;
+}
+
+.delete-btn:hover{
+    color:#e03030;
+}
+
+/* TOTALS */
+.totals-section{
+    width:100%;
+}
+
+.totals-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    border-radius:0 0 10px 10px;
+}
+
+.totals-table td{
+    padding:14px 20px;
+    font-size:15px;
+    color:#333;
+    border-top:1px solid #eee;
+}
+
+.totals-table .label{
+    text-align:right;
+    color:#555;
+    width:70%;
+}
+
+.totals-table .value{
+    text-align:left;
+    font-weight:500;
+    color:#111;
+}
+
+.totals-table .grand-total .label{
+    font-weight:700;
+    color:#111;
+    font-size:16px;
+}
+
+.totals-table .grand-total .value{
+    font-weight:700;
+    color:#111;
+    font-size:16px;
+}
+
+/* PAYMENT TABLE */
+.payment-table-wrap{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,0.07);
+}
+
+.payment-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.payment-table thead tr{
+    background:#2f65e6;
+    color:#fff;
+}
+
+.payment-table thead th{
+    padding:16px 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+.payment-table tbody tr{
+    border-bottom:1px solid #eee;
+    transition:.2s;
+}
+
+.payment-table tbody tr:last-child{
+    border-bottom:none;
+}
+
+.payment-table tbody tr:hover{
+    background:#f5f8ff;
+}
+
+.payment-table tbody td{
+    padding:18px 20px;
+    font-size:15px;
+    color:#333;
+    vertical-align:middle;
+}
+
+.payment-name{
+    color:#2f65e6;
+    font-weight:600;
+    font-size:15px;
+    display:block;
+}
+
+.payment-sub{
+    color:#888;
+    font-size:13px;
+}
+
+.discount-badge{
+    font-weight:600;
+    color:#333;
+}
+
+.payment-amount{
+    font-weight:600;
+    color:#111;
+}
+
+/* CHECKOUT BUTTONS */
+.checkout-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#fff;
+    border:2px solid #ddd;
+    border-radius:8px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    color:#333;
+    text-decoration:none;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.checkout-btn:hover{
+    border-color:#2f65e6;
+    box-shadow:0 4px 12px rgba(47,101,230,0.15);
+    transform:translateY(-2px);
+}
+
+.checkout-btn img{
+    height:22px;
+    width:auto;
+    object-fit:contain;
+}
+
+/* FOOTER */
+footer{background:#05070f;color:#fff;padding:70px 6% 25px;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.footer-box h3{color:#2f65e6;margin-bottom:20px;}
+.footer-box p,.footer-box li{color:#d6d6d6;line-height:1.9;list-style:none;}
+.footer-box ul li{margin-bottom:12px;}
+.copyright{text-align:center;margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);padding-top:25px;color:#bbb;}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;right:25px;bottom:25px;width:75px;height:75px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;text-decoration:none;box-shadow:0 10px 25px rgba(0,0,0,0.2);z-index:999;}
+
+/* EMPTY CART */
+.empty-cart{
+    text-align:center;
+    padding:60px 20px;
+    color:#999;
+    font-size:18px;
+}
+.empty-cart span{
+    display:block;
+    font-size:60px;
+    margin-bottom:16px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    nav{display:none;}
+    .cart-banner h1{font-size:28px;}
+    .cart-table thead th,.cart-table tbody td,
+    .payment-table thead th,.payment-table tbody td{
+        padding:12px 12px;
+        font-size:13px;
+    }
+    .checkout-btn{padding:8px 12px;font-size:12px;}
+    .section-title{font-size:22px;}
+}
+
+
+      .logo img {
+        width: 100px;
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        nav a {
+          padding: 8px 10px;
+        }
+        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
+          padding: 30px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+</style>
 </head>
-
 <body>
-  <!-- Top Navigation -->
-  <nav class="top-nav">
-   <a href="/"> <div class="logo"> <img src="./assets/image2/logo.png" alt=""> </div></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="categories.html">Shop</a>
-      <a href="#help">Help</a>
-    </div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span>
+    <a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
   </nav>
+</header>
 
-  <!-- Checkout Progress -->
-  <div class="checkout-progress">
-    <div class="progress-steps">
-      <div class="progress-line">
-        <div class="progress-line-fill" style="width: 33%"></div>
-      </div>
-      <div class="progress-step active completed">
-        <div class="step-circle">✓</div>
-        <span class="step-label">Shopping Cart</span>
-      </div>
-      <div class="progress-step">
-        <div class="step-circle">2</div>
-        <span class="step-label">Checkout</span>
-      </div>
-      <div class="progress-step">
-        <div class="step-circle">3</div>
-        <span class="step-label">Order Complete</span>
-      </div>
-    </div>
-  </div>
+<!-- CART BANNER -->
+<section class="cart-banner">
+    <h1>Cart</h1>
+</section>
 
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Shopping Cart</h1>
-    <p class="item-count" id="itemCount">0 items in your cart</p>
-  </div>
+<!-- MAIN CART SECTION -->
+<section class="cart-section">
 
+    <!-- SHOPPING CART TABLE -->
+    <div>
+        <h2 class="section-title">Shopping Cart</h2>
 
-  
-</div>
+        <div class="cart-table-wrap">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                </tbody>
+            </table>
 
-    <div class="cart-items" id="cart-items">
-      <!-- Items will be loaded here by cart.js -->
-    </div>
-
-    <!-- Order Summary -->
-    <div class="order-summary">
-      <div class="summary-card">
-        <h2 class="summary-title">Order Summary</h2>
-
-        <!-- Promo Code (left as-is; it will do nothing unless you keep your promo JS elsewhere) -->
-        <!-- <div class="promo-code">
-          <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Have a promo code?</label>
-          <div class="promo-input-group">
-            <input type="text" class="promo-input" id="promoInput" placeholder="Enter code" />
-            <button class="apply-btn" onclick="applyPromo()">Apply</button>
-          </div>
-        </div> -->
-
-        <!-- Summary Lines -->
-        <div class="summary-lines">
-          <div class="summary-line">
-            <span>Subtotal</span>
-            <!-- Already compatible with cart.js -->
-            <span id="subtotal">$0.00</span>
-          </div>
-
-          <div class="summary-line discount" id="discountLine" style="display: none;">
-            <span>Discount</span>
-            <span id="discount">-$0.00</span>
-          </div>
-
-          <!-- <div class="summary-line shipping">
-            <span>Shipping</span>
-            <span id="shipping">FREE</span>
-          </div> -->
-
-          <!-- <div class="summary-line">
-            <span>Tax (estimated)</span>
-            <span id="tax">$0.00</span>
-          </div> -->
+            <!-- TOTALS -->
+            <table class="totals-table" id="totalsTable">
+            </table>
         </div>
 
-        <!-- Total -->
-        <div class="summary-total">
-          <span>Total</span>
-          <!-- CHANGED: id="totalAmount" -> id="total" (required by cart.js) -->
-          <span class="total-amount" id="total">$0.00</span>
+    </div>
+
+    <!-- PAYMENT OPTIONS TABLE -->
+    <div id="paymentSection" style="display:none;">
+        <div class="payment-table-wrap">
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>Payment</th>
+                        <th>Discount</th>
+                        <th>Fee</th>
+                        <th>Amount</th>
+                        <th>Checkout</th>
+                    </tr>
+                </thead>
+                <tbody id="paymentTableBody">
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <!-- Checkout Button -->
-         <a href="./checkout1.html">
-        <button class="checkout-btn">
-          Proceed to Checkout →
-        </button>
-        </a>
+</section>
 
-        <!-- CHANGED: Continue Shopping now has the id cart.js binds to -->
-        <button class="continue-shopping" id="add-products-btn">
-          Continue Shopping
-        </button>
-
-        <!-- Secure Checkout -->
-        <div class="secure-checkout">
-          <span>🔒</span>
-          <span>Secure Checkout - SSL Encrypted</span>
+<!-- FOOTER -->
+<footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <a href="about.html" class="read-more">Read More</a>
         </div>
-
-        <!-- Payment Methods -->
-        <div class="payment-methods">
-          <div class="payment-icon">💳</div>
-          <div class="payment-icon">🏦</div>
-          <div class="payment-icon">📱</div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
+            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
+            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
+            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
+            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+    </footer>
 
-  <!-- Trust Badges -->
-  <div class="trust-badges">
-    <div class="trust-badge">
-      <div class="trust-badge-icon">🚚</div>
-      <h4>Free Shipping</h4>
-      <p>On orders over $50</p>
-    </div>
-    <div class="trust-badge">
-      <div class="trust-badge-icon">↩️</div>
-      <h4>Easy Returns</h4>
-      <p>30-day return policy</p>
-    </div>
-    <div class="trust-badge">
-      <div class="trust-badge-icon">🔒</div>
-      <h4>Secure Payment</h4>
-      <p>100% protected checkout</p>
-    </div>
-  </div>
+<a href="https://wa.me/12095937171" class="whatsapp">💬</a>
 
-  <!-- REQUIRED by cart.js -->
-  <div id="toast" class="toast hidden"></div>
+<script>
+/* =========================================
+PAYMENT METHODS
+========================================= */
 
-  <!-- Load cart.js at end so DOM hooks exist (matches working page pattern) -->
-  <script src="./assets/js/cart.js"></script>
+const paymentMethods = [
+    {
+        name: "Paypal",
+        sub: "(Instant Order Approval and Shipping)",
+        discount: 10,
+        logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg",
+        logoAlt: "PayPal"
+    },
+    {
+        name: "Venmo",
+        sub: "(Instant Order Approval and Shipping)",
+        discount: 10,
+        logo: "https://upload.wikimedia.org/wikipedia/commons/8/84/Venmo_logo.svg",
+        logoAlt: "Venmo"
+    },
+    {
+        name: "Bitcoin (BTC)",
+        sub: "(Instant Order Approval and Shipping)",
+        discount: 10,
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg",
+        logoAlt: "Bitcoin"
+    }
+];
+
+let cart = [];
+
+/* =========================================
+PRICE HELPER
+========================================= */
+
+function extractPrice(value) {
+
+    if (!value) return 0;
+
+    return parseFloat(
+        String(value).replace(/[^0-9.]/g, "")
+    ) || 0;
+}
+
+/* =========================================
+LOAD CART
+========================================= */
+
+async function loadCart() {
+
+    try {
+
+        const response = await fetch("/api/cart");
+
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error("Failed to load cart");
+        }
+
+        cart = result.data.map(item => ({
+
+            id: item.id,
+
+            name: item.name,
+
+            pills: item.quantity || 0,
+
+            quantity: 1,
+
+            mg: item.mg || "",
+
+            image: item.image_url || "",
+
+            unitPrice: extractPrice(item.price)
+
+        }));
+
+        renderCart();
+
+    } catch (err) {
+
+        console.error(err);
+
+        document.getElementById("cartTableBody").innerHTML = `
+            <tr>
+                <td colspan="5">
+                    Error loading cart.
+                </td>
+            </tr>
+        `;
+    }
+}
+
+/* =========================================
+SUBTOTAL
+========================================= */
+
+function getSubTotal() {
+
+    return cart.reduce(
+        (sum, item) =>
+            sum + (item.unitPrice * item.quantity),
+        0
+    );
+}
+
+/* =========================================
+RENDER CART
+========================================= */
+
+function renderCart() {
+
+    const tbody = document.getElementById("cartTableBody");
+    const totalsTable = document.getElementById("totalsTable");
+    const paymentSection = document.getElementById("paymentSection");
+
+    if (cart.length === 0) {
+
+        tbody.innerHTML = `
+        <tr>
+            <td colspan="5">
+                <div class="empty-cart">
+                    <span>🛒</span>
+                    Your cart is empty.
+                </div>
+            </td>
+        </tr>
+        `;
+
+        totalsTable.innerHTML = "";
+        paymentSection.style.display = "none";
+
+        return;
+    }
+
+    tbody.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+        const subtotal =
+            item.unitPrice * item.quantity;
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>
+                <span class="product-name">
+                    ${item.name}
+                </span>
+
+                <span class="product-sub">
+                    ${item.mg} MG
+                </span>
+            </td>
+
+            <td>
+                ${item.pills}
+            </td>
+
+            <td>
+                $${item.unitPrice.toFixed(2)}
+            </td>
+
+            <td>
+                $${subtotal.toFixed(2)}
+            </td>
+
+            <td>
+                <button
+                    class="delete-btn"
+                    onclick="removeItem('${item.id}', ${index})"
+                >
+                    🗑
+                </button>
+            </td>
+
+        </tr>
+        `;
+    });
+
+    const subTotal = getSubTotal();
+
+    const shipping = 29;
+    const discount = 29;
+
+    const grandTotal =
+        subTotal + shipping - discount;
+
+    totalsTable.innerHTML = `
+    <tr>
+        <td class="label">Sub Total</td>
+        <td class="value">$${subTotal.toFixed(2)}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Shipping & Handling</td>
+        <td class="value">$${shipping.toFixed(2)}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Discount</td>
+        <td class="value">-$${discount.toFixed(2)}</td>
+    </tr>
+
+    <tr class="grand-total">
+        <td class="label">Grand Total</td>
+        <td class="value">
+            $${grandTotal.toFixed(2)}
+        </td>
+    </tr>
+    `;
+
+    paymentSection.style.display = "block";
+
+    renderPayments(grandTotal);
+}
+
+/* =========================================
+REMOVE ITEM
+========================================= */
+
+async function removeItem(id, index) {
+
+    try {
+
+        const response =
+            await fetch("/remove-from-cart", {
+
+                method: "DELETE",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    id: id
+                })
+            });
+
+        const result =
+            await response.json();
+
+        if (result.success) {
+
+            cart.splice(index, 1);
+
+            renderCart();
+
+        } else {
+
+            alert(result.message);
+        }
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Failed to remove item");
+    }
+}
+
+/* =========================================
+PAYMENTS
+========================================= */
+
+function renderPayments(grandTotal) {
+
+    const tbody =
+        document.getElementById(
+            "paymentTableBody"
+        );
+
+    tbody.innerHTML = "";
+
+    paymentMethods.forEach(method => {
+
+        const discountAmt =
+            (grandTotal * method.discount) / 100;
+
+        const finalAmt =
+            grandTotal - discountAmt;
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>
+                <span class="payment-name">
+                    ${method.name}
+                </span>
+
+                <span class="payment-sub">
+                    ${method.sub}
+                </span>
+            </td>
+
+            <td>
+                -${method.discount}%
+            </td>
+
+            <td>-</td>
+
+            <td>
+                $${finalAmt.toFixed(2)}
+            </td>
+
+            <td>
+                <a href="checkout1.html"
+                   class="checkout-btn">
+                    ${method.logoAlt}
+                </a>
+            </td>
+
+        </tr>
+        `;
+    });
+}
+
+/* =========================================
+INIT
+========================================= */
+
+loadCart();
+</script>
+
 </body>
 </html>

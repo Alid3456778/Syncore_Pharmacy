@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syncore Pharmacy - Old Orders</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    header {
+        width: 100%;
+        background: #fff;
+        padding: 14px 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 100px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #2f62d6;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2f62d6;
+    }
+
+    nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+
+    .nav a.active,
+    .nav a:hover {
+      color: #2f62d6;
+    }
+
+    .hero {
+      position: relative;
+      height: 250px;
+      background: linear-gradient(90deg, rgba(34,34,34,0.55), rgba(34,34,34,0.15)),
+                  url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 48px;
+      font-weight: 800;
+    }
+
+    .main-content {
+      padding: 45px 0 60px;
+    }
+
+    .search-card {
+      background: #fff;
+      padding: 26px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      margin-bottom: 30px;
+    }
+
+    .search-card label {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .form-row input {
+      flex: 1;
+      min-width: 260px;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid #cfcfcf;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-row input:focus {
+      border-color: #2f62d6;
+      box-shadow: 0 0 0 3px rgba(47,98,214,0.12);
+    }
+
+    .form-row button {
+      height: 44px;
+      padding: 0 22px;
+      border: none;
+      border-radius: 6px;
+      background: #2f62d6;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .form-row button:hover {
+      background: #2450b7;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .orders-section h2 {
+      font-size: 28px;
+      margin-bottom: 18px;
+      color: #222;
+    }
+
+    .orders-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .order-card {
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: 14px;
+      box-shadow: 0 12px 24px rgba(15, 31, 86, 0.06);
+      overflow: hidden;
+    }
+
+    .order-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 1px;
+      background: linear-gradient(90deg, #2f62d6, #58a6ff);
+      color: #fff;
+      padding: 18px 20px;
+    }
+
+    .order-summary div {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 100px;
+    }
+
+    .order-summary span {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.85;
+    }
+
+    .order-summary strong {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .order-details {
+      padding: 20px;
+    }
+
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .product-table th,
+    .product-table td {
+      border: 1px solid #ebedf0;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .product-table th {
+      background: #f5f7fb;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    .product-table tbody tr:nth-child(odd) {
+      background: #f8fbff;
+    }
+
+    .product-table tfoot td {
+      font-weight: 700;
+      border-top: 2px solid #e2e6ef;
+      background: #fafbff;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .footer {
+      background: #101010;
+      color: #ddd;
+      margin-top: 20px;
+    }
+
+    .footer-grid {
+      padding: 40px 0 30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+    }
+
+    .footer h3 {
+      color: #2f62d6;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    .footer p,
+    .footer li,
+    .footer a {
+      font-size: 14px;
+      color: #ddd;
+      text-decoration: none;
+      line-height: 1.7;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 14px 10px;
+      background: #2f62d6;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-wrap {
+        height: auto;
+        padding: 16px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        height: 180px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .order-head,
+      .order-body {
+        grid-template-columns: 70px 1fr;
+      }
+
+      .order-products {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .logo-text {
+        font-size: 22px;
+      }
+
+      .nav {
+        gap: 14px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        height: 150px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
+  </nav>
+</header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Old Orders</h1>
+    </div>
+  </section>
+
+  <main class="container main-content">
+    <div class="search-card">
+      <label for="emailInput">Enter Email Address To See Old Orders</label>
+      <div class="form-row">
+        <input id="emailInput" type="email" placeholder="Enter your email address" />
+        <button id="submitBtn">Submit</button>
+      </div>
+      <p id="message" class="message"></p>
+    </div>
+
+    <section id="ordersSection" class="orders-section hidden">
+      <h2>Old Orders Data</h2>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>About Us</h3>
+        <p>Syncore Pharmacy delivers trusted medication and easy order tracking for customers everywhere.</p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Our Products</h3>
+        <ul>
+          <li><a href="product_overview.html#pain">Tramadol</a></li>
+          <li><a href="product_overview.html#sleep">Ambien</a></li>
+          <li><a href="product_overview.html#pain">Soma</a></li>
+          <li><a href="product_overview.html#pain">Tapentadol</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Get in touch</h3>
+        <p>Syncore Pharmacy Support</p>
+        <p>support@syncorepharmacy.com</p>
+        <p>+1 209 593 7171</p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      Copyright © 2026 Syncore Pharmacy. All Rights Reserved.
+    </div>
+  </footer>
+
+ <script>
+  const emailInput = document.getElementById("emailInput");
+  const submitBtn = document.getElementById("submitBtn");
+  const message = document.getElementById("message");
+  const ordersSection = document.getElementById("ordersSection");
+  const ordersList = document.getElementById("ordersList");
+
+  function formatDate(dateValue) {
+    if (!dateValue) return "Unknown date";
+    const d = new Date(dateValue);
+    if (Number.isNaN(d.getTime())) return String(dateValue);
+    return d.toLocaleString();
+  }
+
+  function formatPrice(value) {
+    const num = Number(value || 0);
+    return `$${num.toFixed(2)}`;
+  }
+
+  async function loadOrdersByEmail() {
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      message.textContent = "Please enter an email address.";
+      message.style.color = "#c0392b";
+      ordersSection.classList.add("hidden");
+      ordersList.innerHTML = "";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Loading...";
+    message.textContent = "";
+    ordersList.innerHTML = "";
+
+    try {
+      const response = await fetch(
+        `/api/orders/by-email/${encodeURIComponent(email)}`
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "No orders found");
+      }
+
+      const orders = result.orders || [];
+
+      if (orders.length === 0) {
+        ordersSection.classList.add("hidden");
+        message.textContent = "No old orders found for this email.";
+        message.style.color = "#c0392b";
+        return;
+      }
+
+      message.textContent = `Found ${orders.length} order(s) for ${result.customer.first_name || ""} ${result.customer.last_name || ""}.`;
+      message.style.color = "#2c7a2c";
+      ordersSection.classList.remove("hidden");
+
+      ordersList.innerHTML = orders
+        .map((order) => {
+          const itemsHtml = (order.items || [])
+            .map(
+              (item) => `
+                <tr>
+                  <td>${item.name || "-"}</td>
+                  <td>${item.mg || "-"}</td>
+                  <td>${item.quantity || 0}</td>
+                  <td>${formatPrice(item.price)}</td>
+                </tr>
+              `
+            )
+            .join("");
+
+          return `
+            <div class="order-card">
+              <div class="order-summary">
+                <div>
+                  <span>Order ID</span>
+                  <strong>${order.order_id || "-"}</strong>
+                </div>
+                <div>
+                  <span>Date</span>
+                  <strong>${formatDate(order.created_at)}</strong>
+                </div>
+                <div>
+                  <span>Status</span>
+                  <strong>${order.payment_status || "Pending"}</strong>
+                </div>
+                <div>
+                  <span>Total</span>
+                  <strong>${formatPrice(order.total_amount)}</strong>
+                </div>
+              </div>
+
+              <div class="order-details">
+                <table class="product-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>MG</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${itemsHtml || `<tr><td colspan="4">No items found</td></tr>`}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2"></td>
+                      <td>Shipping</td>
+                      <td>${formatPrice(order.shipping)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    } catch (err) {
+      ordersSection.classList.add("hidden");
+      ordersList.innerHTML = "";
+      message.textContent = err.message || "No old orders found for this email.";
+      message.style.color = "#c0392b";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit";
+    }
+  }
+
+  submitBtn.addEventListener("click", loadOrdersByEmail);
+
+  emailInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") loadOrdersByEmail();
+  });
+</script>
+</body>
+</html>

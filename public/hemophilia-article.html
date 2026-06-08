@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Understanding Hemophilia - Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;overflow-x:hidden;color:#111;}
+
+/* NAVBAR */
+header{width:100%;background:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.07);position:sticky;top:0;z-index:1000;}
+.logo-text{font-size:22px;font-weight:700;color:#23479b;display:flex;align-items:center;gap:10px;}
+nav{display:flex;align-items:center;gap:2px;}
+nav a{text-decoration:none;color:#111;font-weight:600;font-size:14px;padding:6px 13px;transition:.2s;}
+nav a:hover{color:#c0392b;}
+.nav-sep{color:#bbb;font-size:13px;padding:0 2px;}
+
+/* ARTICLE */
+.article-wrap{max-width:1380px;margin:0 auto;padding:40px 5% 60px;}
+.article-title{font-size:24px;font-weight:700;color:#111;margin-bottom:6px;line-height:1.35;}
+.article-subtitle{font-size:16px;font-weight:600;color:#111;margin-bottom:18px;line-height:1.4;}
+
+.img-right{float:right;margin:0 0 28px 36px;width:300px;border-radius:4px;overflow:hidden;}
+.img-right img{width:100%;height:240px;object-fit:cover;display:block;}
+
+.article-body p{font-size:15px;line-height:1.9;color:#111;margin-bottom:14px;}
+.article-body h2{font-size:17px;font-weight:700;color:#111;margin:26px 0 10px;clear:none;}
+.article-body h3{font-size:15.5px;font-weight:700;color:#111;margin:18px 0 8px;}
+.article-body strong{font-weight:700;}
+.article-body ul{list-style:disc;padding-left:22px;margin-bottom:14px;}
+.article-body ul li{font-size:15px;line-height:1.85;color:#111;margin-bottom:5px;}
+.article-body ol{list-style:decimal;padding-left:22px;margin-bottom:14px;}
+.article-body ol li{font-size:15px;line-height:1.85;color:#111;margin-bottom:5px;}
+.cf::after{content:'';display:block;clear:both;}
+
+/* FAQ */
+.faq-item{margin-bottom:16px;}
+.faq-item p.q{font-weight:700;font-size:15px;margin-bottom:4px;}
+.faq-item p.a{font-size:15px;line-height:1.85;color:#111;}
+
+/* PRODUCT LINKS */
+.product-links{clear:both;margin-top:30px;padding-top:20px;}
+.product-links p{font-size:15px;color:#111;margin-bottom:6px;font-weight:500;}
+.product-links a{display:block;color:#2266cc;font-size:15px;text-decoration:none;margin-bottom:4px;transition:.2s;width:fit-content;}
+.product-links a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:#0d1117;color:#fff;padding:52px 5% 0;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.footer-box h3{color:#2f65e6;margin-bottom:14px;font-size:17px;font-weight:700;}
+.footer-box p{color:#bbb;line-height:1.85;font-size:13.5px;margin-bottom:6px;}
+.footer-box a.read-more{color:#2f65e6;font-size:13.5px;text-decoration:none;font-weight:600;}
+.footer-box ul{list-style:none;}
+.footer-box ul li{color:#bbb;font-size:13.5px;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
+.footer-box ul li:hover{color:#fff;}
+.f-arrow{font-size:9px;color:#2f65e6;margin-top:5px;flex-shrink:0;}
+.contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.contact-icon{font-size:15px;margin-top:2px;flex-shrink:0;}
+.contact-text{color:#bbb;font-size:13.5px;line-height:1.6;}
+.footer-bottom{margin-top:40px;background:#2f65e6;margin-left:-5%;width:calc(100% + 10%);text-align:center;padding:14px;font-size:13.5px;color:#fff;}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;right:22px;bottom:22px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,0.18);z-index:999;transition:.25s;}
+.whatsapp:hover{transform:scale(1.1);}
+
+@media(max-width:900px){.img-right{width:200px;}.footer-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){nav{display:none;}.img-right{float:none;width:100%;margin:0 0 20px 0;}.footer-grid{grid-template-columns:1fr;}}
+
+      .logo img {
+        width: 100px;
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        nav a {
+          padding: 8px 10px;
+        }
+        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
+          padding: 30px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
+  </nav>
+</header>
+
+<div class="article-wrap">
+<div class="article-body cf">
+
+  <!-- Float image top-right -->
+  <div class="img-right">
+    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop" alt="Medical care" loading="lazy"/>
+  </div>
+
+  <h1 class="article-title">Understanding Hemophilia</h1>
+  <p class="article-subtitle">Understanding Hemophilia: A Thorough Guide for Parents and Caregivers</p>
+
+  <p>Hemophilia is a genetic bleeding disorder that primarily impedes the normal function of clotting blood; hence, even slight bruises can become dangerous. This guide caters to parents and caregivers of children with hemophilia, explaining the disorder clearly, including its types, causes, therapies, and long-term treatment. When you understand hemophilia, its symptoms, and treatment options, you can better help in managing the condition and ensure your child's health and well-being.</p>
+
+  <h2>What is Hemophilia?</h2>
+  <p>Hemophilia is an autosomal bleeding disorder in which there is a partial or total absence of a clotting factor in the blood. Clotting factors are proteins instrumental in preventing bleeding and in the healing process. Due to the absence of these clotting factors, prolonged bleeding after an injury or surgery does set in for the affected individuals; sometimes, they suffer from spontaneous internal bleeding.</p>
+  <p>This disorder is mostly inherited. From a genetic perspective, it is often inherited through an X-linked recessive pattern, which means mostly males are affected while females are carriers. Though it mainly is a genetic disorder, new medical treatment procedures enable patients to cope with it successfully.</p>
+
+  <h2>Types of Hemophilia</h2>
+  <p>There are different types of hemophilia, with Hemophilia A and Hemophilia B being the two more common ones. Knowing the differences between these types is crucial for establishing an effective treatment plan.</p>
+
+  <h3>Hemophilia A</h3>
+  <p>Hemophilia A is caused by a deficiency of clotting factor VIII. It is more common and varies in physical and clinical presentation. Depending on his severity, a mild case may only manifest bleeding problems in surgery or after significant injuries, whereas the more severe might include spontaneous bleeding into joints and muscles.</p>
+
+  <h3>Hemophilia B</h3>
+  <p>Hemophilia B, also known as Christmas disease, is caused by a deficiency of clotting factor IX. Clinical manifestations may resemble those of Hemophilia A even though it is less common. Severity shall also vary from mild to severe, depending on how often and intensity of infections of bleeding raise.</p>
+  <p>Other types, combined or acquired bleeding disorders, are rare. However, this book focuses mainly on the inherited types—Hemophilia A and Hemophilia B—and their implication for children.</p>
+
+  <h2>Causes and Genetic Inheritance</h2>
+  <p>It is inherited mainly as an X-linked recessive disorder. Since a male has only one X and one Y chromosome, a single altered gene on his X chromosome can cause the disease, which is why most hemophilia sufferers are males. Usually, females are carriers of the disease; although they may show slight symptoms, attributed to the action of the normal gene, very rarely can they present bleeding symptoms.</p>
+  <p>This genetic aspect represents one of the major risk factors for a person who may have a family history of hemophilia. Genetic counseling is strongly advised for parents with a family history of hemophilia, as it can help establish risks for the present and future children.</p>
+
+  <h2>Recognizing Hemophilia Symptoms</h2>
+  <p>The most critical thing as a caregiver is identifying signs and symptoms of hemophilia early on. Early identification can be the difference between appropriate therapy or treatment, especially in the event of sudden bleeding.</p>
+
+  <h3>Common Hemophilia Symptoms</h3>
+  <ul>
+    <li><strong>Easy or excessive bruising:</strong> Children with hemophilia can get bruises very easily from minor bumps or falls.</li>
+    <li><strong>Frequent nosebleeds:</strong> Frequent nosebleeds that are very difficult to keep under control may be an indicator for a bleeding disorder.</li>
+    <li><strong>Joint swelling and pain:</strong> Swelling, stiffness, and pain due to bleeding into joints and muscles are more common in severe forms.</li>
+    <li><strong>Prolonged bleeding:</strong> Longer bleeding after being injured or a surgical procedure is a classic symptom.</li>
+    <li><strong>Internal bleeding:</strong> In the more serious cases, spontaneous internal bleeding may occur without any obvious trauma.</li>
+  </ul>
+  <p>Frequent causes of hemophilia symptoms, these symptoms ought to be recognized and treated swiftly to minimize complications. Remember that while bruise marks are somewhat common in children, the pattern of bruising, frequency, or degree of bleeding should always be brought before a health care worker.</p>
+
+  <h2>Diagnosis and Early Testing</h2>
+  <p>In patients suffering from hemophilia, an array of blood tests will be performed to find out the levels of clotting factors. Early diagnosis is therefore crucial. A newborn screening becomes paramount in families with a history of hemophilia for early intervention. Genetic testing can also identify the particular type of hemophilia as well as its likely degree of severity. Most pediatricians would recommend that children with degrees of the condition in their families undergo testing early on so that, should they ever exhibit symptoms, a plan is in place to act upon them quickly.</p>
+
+  <h2>Hemophilia Treatment: Immediate and Long-Term Strategies</h2>
+  <p>The main goal in treating hemophilia is to prevent or control bleeding episodes and to protect the joints and muscles from damage later on. Treatment can be for immediate intervention during bleeding episodes or for long-term management that reduces the frequency of such episodes.</p>
+
+  <h3>Factor Replacement Therapy</h3>
+  <p>This is the bedrock on which hemophilia treatment rests. Factor substitution therapy entails intravenous infusion of whichever clotting factor the child is deficient in, VIII for Hemophilia A or IX for Hemophilia B. Treatment can thus be:</p>
+  <ul>
+    <li><strong>On-demand:</strong> Administered in response to a bleeding episode.</li>
+    <li><strong>Prophylactic:</strong> Given routinely to prevent bleeding episodes before they occur.</li>
+  </ul>
+  <p>Prophylactic treatment actually shows that it greatly cuts down on joint damage and gives people a better quality of life, but then the patient must adhere religiously to a treatment schedule and be very much under the eye of the healthcare team.</p>
+
+  <h3>Non-Factor Therapies</h3>
+  <p>Besides the standard therapy, in factor replacement we now see emerging from the researches non-factor therapies; these intend to reduce bleed frequencies through alternative mechanisms such as rebalancing of clotting. They may be of particular help to those who develop inhibitors (antibodies) to the infused clotting factors occurring in some patients.</p>
+
+  <h3>Managing Bleeding Episodes</h3>
+  <p>When bleeding occurs, immediate treatment is essential. If factor replacement is immediately available, it can be administered to lessen the extent of bleeding and avoid complications. It is equally crucial to follow the hematologist's treatment plan. Hemophilia is just one of many bleeding disorders, and its management requires informed and immediate actions in emergencies.</p>
+
+  <!-- Float image 2 -->
+  <div class="img-right">
+    <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=600&auto=format&fit=crop" alt="Child healthcare" loading="lazy"/>
+  </div>
+
+  <h2>Long-Term Management and Lifestyle Adjustments</h2>
+  <p>Living with hemophilia is a lifelong affair and requires continuous management. With regular follow-ups, physical therapy, and lifestyle changes, a comprehensive care plan helps children enjoy an active and fruitful life.</p>
+
+  <h3>Regular Medical Monitoring</h3>
+  <p>Long-term management consists of regular visits to the healthcare team, including hematologists, physical therapists, and genetic counselors. These visits monitor joint integrity and ensure treatment relevance over time.</p>
+
+  <h3>Physical Therapy and Exercise</h3>
+  <p>Physical therapy is recommended to keep the joints healthy and improve mobility. Low-impact activities such as swimming and bicycling are good for children with Hemophilia. A customized exercise program devised by rehabilitation specialists can be directed at the child's needs to strengthen the muscles and support joint stability.</p>
+
+  <h3>Nutrition and Diet</h3>
+  <p>According to the International Society on Thrombosis and Haemostasis (ISTH), a balanced diet will assist the body's recovery and in general well-being. Minerals like calcium and vitamin D are required to maintain strong bones, while antioxidants in fruits and vegetables work on the well-being of an individual. Consideration of nutrition does not translate as replacing medical treatment but rather complementing the whole health approach for children with hemophilia.</p>
+
+  <h3>Psychosocial Support</h3>
+  <p>Hemophilia can affect more than physical health. Parents or caregivers should attend to the child's emotional and psychosocial needs as well. Support groups and counseling as well as educational resources will assist families attempting the challenges of a chronic condition. Community resources provide both emotional support and practical suggestions on coping with everyday life with a bleeding disorder.</p>
+
+  <h2>When to Seek Medical Help</h2>
+  <p>Preventatives and home remedies are always good but at some point, one will require an emergency treatment. Consider:</p>
+  <ul>
+    <li>Uncontrolled or excessive bleeding for minor injuries.</li>
+    <li>When pain and swellings in joints or muscles do not improve with time or rather worse.</li>
+    <li>Obvious or spontaneous bruises and bleeds.</li>
+    <li>Signs and symptoms of internal bleeding such as headaches, vomiting blood, and distention of the abdomen.</li>
+  </ul>
+  <p>If you observe any of these symptoms, contact the child's physician regarding medical intervention. Early intervention can prevent complications and long-term joint damage. It is therefore very important that parents understand hemophilia and the symptoms, and are prepared to act if they arise.</p>
+
+  <h2>Advances in Research and Future Therapies</h2>
+  <p>More and more prospects arise in treatment for hemophilia, with a focus on gene therapy and other novel modalities of treatment. In gene therapy, long-term correction is anticipated at the DNA level after addressing the underlying mutation that causes hemophilia. While these interventions are not yet widely available, they promise enhanced outcomes and the possibility of a cure in the near future.</p>
+  <p>Many new developments in both factor and non-factor therapeutics are being tested in clinical trials to reduce treatment burden and improve the quality of life of the patients. With the advancement of research, parents and caregivers taking care of hemophilia should be kept up to date through discussions with healthcare professionals.</p>
+
+  <h2>Living with Hemophilia: A Collaborative Approach</h2>
+  <p>Hemophilia is not something that a patient is expected to manage independently. Families, friends, medical personnel, and support bodies form the larger hemophilia support network for better management of the condition. Parents and caregivers who grasp the nature of the condition and actively seek treatment and lifestyle accommodations can greatly enhance the child's growth and quality of life.</p>
+  <p>Educational programs, support groups, and referrals to specialized treatment centers are available to help families in care and treatment. When families interact with other families sharing similar concerns, they may be able to build a supportive community framework contributing so much toward the management of a chronic bleeding disorder.</p>
+
+  <h2>Frequently Asked Questions (FAQs)</h2>
+
+  <div class="faq-item">
+    <p class="q">Q: How is hemophilia diagnosed?</p>
+    <p class="a">A: Diagnosis of hemophilia is made by blood tests that measure clotting factor levels and may include genetic tests if the family history calls for it.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Q: What are the main differences between Hemophilia A and B?</p>
+    <p class="a">A: Hemophilia A results in deficiency of factor VIII, while Hemophilia B results in deficiency of factor IX. The symptoms of the two are mostly similar, but the treatment may vary depending on the type of factor involved.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Q: When should I call the doctor?</p>
+    <p class="a">A: If your child experiences excessive bleeding with no obvious cause, excessive joint pain, or any other concerning symptoms, call your health care provider immediately. Early recognition of hemophilia signs is critical in avoiding complications.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Q: What does long-term management consist of?</p>
+    <p class="a">A: Long-term management consists of regular factor replacement therapy, physical therapy, and sometimes lifestyle adjustments. Regular monitoring and adjustment by the healthcare team are necessary to ensure that the treatment solution continues to serve well as the child grows.</p>
+  </div>
+
+  <h2>Conclusion</h2>
+  <p>Hemophilia certainly is difficult, but with the right care and a proactive attitude, children from hemophilia can have an active and healthy life. In this guide, we have attempted to offer a comprehensive overview of hemophilia covering types, etiology, symptoms, and initial and long-term treatment. For the parents and caregivers, knowledge is a good weapon. Staying informed about hemophilia symptoms and treatment, including factor and non-factor therapies, and long-term management strategies equip you to make the necessary decisions in the best interest of your child's health.</p>
+  <p>Remember, delicate care with timely medical intervention is necessary for the conduct of the disorders that involve haemorrhage, while on the other hand treatment outcomes are being improved by ongoing research. Always maintain close contact with your child's health team and participate in support groups to share experiences and insights with families who face the same problems. Your proactive involvement will help them get the best care and start the road to a brighter, healthier future.</p>
+  <p>This educational resource intends to provide a comprehensive guide integrating detailed medical information along with guidelines on how to identify symptoms and treat them as a long-term treatment. Be informed, be empowered, and know that you cannot do this journey alone.</p>
+
+  <!-- PRODUCT LINKS -->
+  <div class="product-links">
+    <p>We also deliver products in entire USA.<br>Buy out products from our website</p>
+    <a href="#">US to US Delivery</a>
+    <a href="#">Tramadol Treken 100mg</a>
+    <a href="#">Phentermine K25</a>
+    <a href="#">Fioricet Butalbital 40mg</a>
+    <a href="#">Percocet E712</a>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <a href="about.html" class="read-more">Read More</a>
+        </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
+            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
+            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
+            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
+            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
+        </div>
+      </div>
+      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+    </footer>
+
+<a href="https://wa.me/12095937171" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
+
+</body>
+</html>

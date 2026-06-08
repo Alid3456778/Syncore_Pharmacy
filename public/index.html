@@ -1,396 +1,1028 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syncore Pharmacy Medical - Premium Healthcare Solutions</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/assets/image2/logo.png"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
     />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #f3f3f3;
+        overflow-x: hidden;
+      }
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/assets/image2/logo.png"
-    />
+      /* ===== NAVBAR ===== */
+      header {
+        width: 100%;
+        background: #fff;
+        padding: 14px 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/assets/image2/logo.png"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/index.css">
+      a {
+        text-decoration: none;
+      }
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: #23479b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo img {
+        width: 100px;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      nav a:hover {
+        color: #ff7300;
+      }
+      .nav-sep {
+        color: #ccc;
+        font-size: 13px;
+      }
 
-</head>
-<body>
+      /* ===== HERO ===== */
+      .hero {
+        width: 100%;
+        min-height: 420px;
+        background: linear-gradient(135deg, #e8841f 0%, #f0a33a 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .heroSection {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 7%;
+        transition:
+          transform 0.7s ease,
+          opacity 0.7s ease;
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: hidden;
+      }
+      .heroSection.active {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .heroSection.out-right {
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+      }
+      .hero-content {
+        width: 50%;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-content h1 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin-bottom: 18px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .hero-content p {
+        font-size: 13.5px;
+        line-height: 1.9;
+        max-width: 460px;
+        opacity: 0.93;
+      }
+      .hero-right {
+        width: 46%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-right img {
+        width: 320px;
+        max-width: 100%;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
+      }
+      .hero-badge {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 12px 18px;
+        text-align: center;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #23479b;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        text-transform: uppercase;
+      }
 
-   <!-- Minimal Premium Navigation (centered layout) -->
-<nav class="modern-nav nav-center">
-    <div class="nav-container nav-center__container">
-      <a href="#home" class="logo-modern nav-center__logo">
-        <div class="logo-icon"> <img src="./assets/image2/logo.png" alt="">  </div>
-      
-      </a>
-  
-      <div class="nav-actions nav-center__actions">
-        <a href="/cart" class="nav-center__cartLink" aria-label="Open cart">
-          <button class="icon-btn cart-btn nav-center__cartBtn" title="Shopping Cart">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-  
-            <!-- JS TARGET (DO NOT RENAME) -->
-            <span class="cart-badge">0</span>
-          </button>
-        </a>
-  
-        <!-- <button class="mobile-menu-btn nav-center__menuBtn" aria-label="Open menu">☰</button> -->
-      </div>
-    </div>
+      /* ===== FEATURES ===== */
+      .features {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        padding: 20px 7%;
+      }
+      .feature-box {
+        background: #c92d3d;
+        color: #fff;
+        padding: 18px 22px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .feature-icon {
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+      .feature-text h3 {
+        font-size: 13.5px;
+        font-weight: 700;
+        margin-bottom: 2px;
+        text-transform: uppercase;
+      }
+      .feature-text p {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      /* ===== MAIN LAYOUT ===== */
+      .main {
+        width: 100%;
+        display: flex;
+        gap: 30px;
+        padding: 16px 7% 60px;
+      }
+
+      /* ===== SIDEBAR ===== */
+      .sidebar {
+        width: 250px;
+        flex-shrink: 0;
+      }
+      .sidebar-title {
+        color: #2f65e6;
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #ddd;
+      }
+      .category-box {
+        margin-bottom: 10px;
+      }
+      .category-header {
+        border: 1.5px solid #2f65e6;
+        border-radius: 6px;
+        padding: 10px 13px;
+        color: #2f65e6;
+        font-size: 14.5px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: 0.25s;
+        background: #fff;
+      }
+      .category-header:hover,
+      .category-header.open {
+        background: #2f65e6;
+        color: #fff;
+      }
+      .arrow {
+        transition: 0.3s;
+        font-size: 11px;
+        margin-left: 6px;
+      }
+      .category-box.active .arrow {
+        transform: rotate(90deg);
+      }
+      .category-products {
+        margin-top: 8px;
+        padding-left: 10px;
+        max-height: 210px;
+        overflow-y: auto;
+      }
+      .category-products::-webkit-scrollbar {
+        width: 4px;
+      }
+      .category-products::-webkit-scrollbar-thumb {
+        background: #2f65e6;
+        border-radius: 20px;
+      }
+      .category-products li {
+        margin-bottom: 9px;
+        color: #222;
+        font-size: 13px;
+        line-height: 1.5;
+        cursor: pointer;
+        list-style: none;
+        padding-left: 14px;
+        position: relative;
+      }
+      .category-products li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #2f65e6;
+      }
+      .category-products li:hover {
+        color: #2f65e6;
+      }
+
+      /* ===== PRODUCTS AREA ===== */
+      .products {
+        flex: 1;
+        min-width: 0;
+      }
+      .products-title {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #111;
+      }
+      .product-scroll {
+        /* height: 1500px;
+        overflow-y: auto; */
+        padding-right: 6px;
+      }
+      .product-scroll::-webkit-scrollbar {
+        width: 5px;
+      }
+      .product-scroll::-webkit-scrollbar-thumb {
+        background: #2f65e6;
+        border-radius: 20px;
+      }
+
+      /* FIXED 3-column grid */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      /* ===== PRODUCT CARD ===== */
+      .product-card {
+        background: #fff;
+        border: 1.5px solid #c8d6f8;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: 0.25s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(47, 101, 230, 0.14);
+      }
+      .product-top {
+        background: #2f65e6;
+        color: #fff;
+        text-align: center;
+        padding: 11px 10px;
+        font-size: 14.5px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .product-image {
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+        background: #f7f7f7;
+        flex-shrink: 0;
+      }
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s;
+      }
+      .product-card:hover .product-image img {
+        transform: scale(1.04);
+      }
+      .product-body {
+        padding: 14px 16px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .tablet-label {
+        font-size: 12px;
+        color: #2f65e6;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .price-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .price-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+      }
+      .price-value {
+        font-size: 17px;
+        font-weight: 700;
+        color: #111;
+      }
+      .old-price {
+        color: #aaa;
+        text-decoration: line-through;
+        font-size: 13px;
+      }
+      .save-line {
+        color: #e03030;
+        font-weight: 600;
+        font-size: 12.5px;
+        margin: 4px 0 10px;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: auto;
+        background: #111;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 24px;
+        border-radius: 50px;
+        transition: 0.25s;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+      }
+      .btn:hover {
+        background: #ff7300;
+      }
+
+      /* ===== PAYMENT BOX ===== */
+      .payment-box {
+        margin-top: 36px;
+        background: #fff;
+        padding: 18px;
+        border-radius: 10px;
+      }
+      .payment-box h3 {
+        color: #1d52cb;
+        margin-bottom: 14px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .payments {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .payments div {
+        background: #f3f3f3;
+        height: 52px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        color: #333;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #05070f;
+        color: #fff;
+        padding: 52px 7% 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 34px;
+      }
+      .footer-box h3 {
+        color: #2f65e6;
+        margin-bottom: 14px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .footer-box p,
+      .footer-box li {
+        color: #ccc;
+        line-height: 1.85;
+        list-style: none;
+        font-size: 13.5px;
+      }
+      .footer-box ul li {
+        margin-bottom: 9px;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 34px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 20px;
+        color: #aaa;
+        font-size: 13px;
+      }
+
+      /* ===== WHATSAPP ===== */
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 58px;
+        height: 58px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+        z-index: 999;
+        transition: 0.25s;
+      }
+      .whatsapp:hover {
+        transform: scale(1.1);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 1100px) {
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          gap: 24px;
+        }
+        .hero-content,
+        .hero-right {
+          width: 100%;
+        }
+        .hero-right {
+          justify-content: center;
+        }
+        .hero-content h1 {
+          font-size: 24px;
+        }
+        .main {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+        }
+        .product-scroll {
+          height: auto;
+          overflow: visible;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+        }
+        .hero-content h1 {
+          font-size: 20px;
+        }
+        .features {
+          grid-template-columns: 1fr;
+        }
+        .products-title {
+          font-size: 20px;
+        }
+        .product-grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
   </nav>
-  
-  <!-- Centered Minimal Hero -->
-  <section class="hero-modern hero-center" id="home">
-    <div class="hero-center__bg" aria-hidden="true"></div>
-  
-    <div class="hero-content-wrapper hero-center__wrap">
-      <div class="hero-center__inner">
-        <div class="hero-center__badge">
-          <span class="hero-center__badgeDot"></span>
-          Verified products • Discreet packaging • Fast support
+</header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="heroSection">
+        <div class="hero-content">
+          <h1>USA Shipping!</h1>
+          <p>
+            - 10% ~ 15% OFF if pay with Zelle, WU or Bitcoin
+            <br />
+
+            - No Prescription Needed
+            <br />
+            - Discreet Packaging
+            <br />
+            - Full online tracking of order
+          </p>
         </div>
-  
-        <h1 class="hero-title hero-center__title">
-          Find the right medicine,
-          <span class="gradient-text">quickly</span>
-        </h1>
-  
-        <p class="hero-description hero-center__desc">
-          Search by product name, compare strengths, and checkout securely — built with a premium, minimal experience.
-        </p>
-  
-        <!-- Hero Search Bar (CSS SAFE + JS WIRED) -->
-        <div class="hero-search-container search-container hero-center__search">
-          <div class="search-card hero-center__searchCard">
-            <div class="search-input-group hero-center__searchRow">
-              <!-- <svg class="search-icon hero-center__searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg> -->
-  
-              <!-- KEEP CSS CLASS + ADD JS CLASS -->
-              <input
-                type="text"
-                class="hero-search-input search-input"
-                placeholder="Search medicines (e.g., Modafinil 200mg)"
-                autocomplete="off"
-              />
-  
-              <!-- KEEP CSS CLASS + ADD JS CLASS -->
-              <button class="search-action-btn search-submit">
-                <svg class="search-icon hero-center__searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-              </button>
-            </div>
-  
-            <!-- JS TARGET -->
-            <ul id="hero-suggestions" class="hero-suggestions hero-center__suggestions"></ul>
-  
-            <div class="quick-suggestions hero-center__chips">
-              <span class="suggestion-label">Popular:</span>
-              <a href="categories.html?catogeries_ID=2"><button class="suggestion-tag">General Health</button></a>
-              <a href="categories.html?catogeries_ID=3"><button class="suggestion-tag">Pain Relief</button></a>
-              <a href="categories.html?catogeries_ID=4"><button class="suggestion-tag">Cardiac Care</button></a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="hero-center__meta">
-          <div class="hero-center__metaItem">
-            <span class="hero-center__metaLine"></span>
-            Quality checked
-          </div>
-          <div class="hero-center__metaItem">
-            <span class="hero-center__metaLine"></span>
-            Secure checkout
-          </div>
-          <div class="hero-center__metaItem">
-            <span class="hero-center__metaLine"></span>
-            Worldwide shipping
-          </div>
+        <div class="hero-right">
+          <img
+            src="https://usafarmacia.net/wp-content/uploads/2024/09/banner-03.png"
+            alt="Delivery Man"
+            loading="lazy"
+            width="320"
+            height="360"
+          />
         </div>
       </div>
-    </div>
-  
-    <div class="scroll-indicator hero-center__scroll">
-      <span class="scroll-text">Explore</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
-  
-
-    <!-- Banner Slider -->
-    <section class="banner-section">
-        <div class="banner-slider">
-            <div class="banner-track" id="bannerTrack">
-                <div class="banner-slide">
-                    <div class="banner-content">
-                        <span class="banner-tag">MEGA SALE</span>
-                        <h2>Winter Wellness Up to 40% Off</h2>
-                        <p>Stock up on immunity boosters, vitamins, and essential supplements this season</p>
-                        <button class="banner-btn">Shop Now</button>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <div class="banner-content">
-                        <span class="banner-tag">NEW SERVICE</span>
-                        <h2>Instant Prescription Upload</h2>
-                        <p>Upload your prescription and get medicines delivered within hours</p>
-                        <button class="banner-btn">Learn More</button>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <div class="banner-content">
-                        <span class="banner-tag">24/7 SUPPORT</span>
-                        <h2>Expert Pharmacist Consultation</h2>
-                        <p>Get professional medical advice anytime, anywhere from certified pharmacists</p>
-                        <button class="banner-btn">Consult Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="banner-nav">
-                <div class="banner-arrow" onclick="changeBanner(-1)">←</div>
-                <div class="banner-arrow" onclick="changeBanner(1)">→</div>
-            </div>
+      <div class="heroSection">
+        <div class="hero-content">
+          <h1>USPS OVERNIGHT AVAILABLE FOR SELECTED MEDICATION</h1>
+          <p>
+            You can purchase medical products directly from our website.
+            Physical Pharmacies or Medical Supply stores in your area mayn't
+            supply products that we have.
+          </p>
         </div>
+        <div class="hero-right">
+          <img
+            src="https://usafarmacia.net/wp-content/uploads/2024/09/banner-04.png"
+            alt="Delivery Man"
+            loading="lazy"
+            width="320"
+            height="360"
+          />
+        </div>
+      </div>
+      <div class="heroSection">
+        <div class="hero-content">
+          <h1>ONE OF THE MOST AFFORDABLE USA PHARMACY</h1>
+          <p>
+            
+                                        Combined services where telehealth consultations result in prescriptions that are then delivered to the patient's doorstep. Deliveries are discreet, ensuring patient privacy.                                    
+          </p>
+        </div>
+        <div class="hero-right">
+          <img
+            src="https://usafarmacia.net/wp-content/uploads/2024/09/banner-01.png"
+            alt="Delivery Man"
+            loading="lazy"
+            width="320"
+            height="360"
+          />
+        </div>
+      </div>
+      <div class="heroSection">
+        <div class="hero-content">
+          <h1>Superfast Service<br />Along With Proper<br />Updates</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the when an unknown printer took a galley of type it to
+            make a type specimen book.
+          </p>
+        </div>
+        <div class="hero-right">
+          <img
+            src="https://usafarmacia.net/wp-content/uploads/2024/09/banner-02.png"
+            alt="Delivery Man"
+            loading="lazy"
+            width="320"
+            height="360"
+          />
+        </div>
+      </div>
     </section>
 
-    <section class="categories-section categories-carousel" id="categories">
-      <div class="section-header categories-carousel__header">
-        <h2>Explore Categories</h2>
-        <p>Premium pharmaceutical products for every health need</p>
-      </div>
-    
-      <div class="categories-carousel__wrap">
-        <button class="categories-carousel__btn" type="button" data-dir="left" aria-label="Scroll left">‹</button>
-    
-        <div class="categories-carousel__track" id="categoryTrack">
-          <a class="cat-slide is-featured" href="categories.html?catogeries_ID=1">
-            <div class="cat-slide__img">
-              <img src="./assets/image/USA-Premium.png" alt="USA Premium Quality" loading="lazy">
-            </div>
-            <div class="cat-slide__titleRow">
-              <div class="cat-slide__title">USA Premium Quality</div>
-              <span class="cat-slide__pill">Featured</span>
-            </div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=2">
-            <div class="cat-slide__img">
-              <img src="assets/image/general-health.png" alt="General Health" loading="lazy">
-            </div>
-            <div class="cat-slide__title">General Health</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=3">
-            <div class="cat-slide__img">
-              <img src="assets/image/pain-medication.png" alt="Pain Relief" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Pain Relief</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=4">
-            <div class="cat-slide__img">
-              <img src="assets/image/cardiac-care.png" alt="Cardiac Care" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Cardiac Care</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=5">
-            <div class="cat-slide__img">
-              <img src="assets/image/mental-health.png" alt="Mental Health" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Mental Health</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=6">
-            <div class="cat-slide__img">
-              <img src="assets/image/sexual-wellness.png" alt="Sexual Wellness" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Sexual Wellness</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=7">
-            <div class="cat-slide__img">
-              <img src="assets/image/skincare.png" alt="Skincare" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Skincare</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=8">
-            <div class="cat-slide__img">
-              <img src="assets/image/steroids.png" alt="Steroids" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Steroids</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=9">
-            <div class="cat-slide__img">
-              <img src="assets/image/women-health.png" alt="Women’s Health" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Women’s Health</div>
-          </a>
-    
-          <a class="cat-slide" href="categories.html?catogeries_ID=10">
-            <div class="cat-slide__img">
-              <img src="assets/image/mens-health.png" alt="Men’s Health" loading="lazy">
-            </div>
-            <div class="cat-slide__title">Men’s Health</div>
-          </a>
+    <!-- ===== FEATURES ===== -->
+    <section class="features">
+      <div class="feature-box">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-text">
+          <h3>This Site Is 100% Secure</h3>
+          <p>All Transactions Are Protected</p>
         </div>
-    
-        <button class="categories-carousel__btn" type="button" data-dir="right" aria-label="Scroll right">›</button>
       </div>
-    
-      <div class="categories-carousel__hint">Scroll to explore</div>
+      <div class="feature-box">
+        <div class="feature-icon">📦</div>
+        <div class="feature-text">
+          <h3>No Contact Shipping</h3>
+          <p>Fast &amp; safe delivery</p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🚚</div>
+        <div class="feature-text">
+          <h3>Free Delivery</h3>
+          <p>On All Products</p>
+        </div>
+      </div>
     </section>
-<script>(() => {
-  const track = document.getElementById("categoryTrack");
-  if (!track) return;
 
-  document.querySelectorAll(".categories-carousel__btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const dir = btn.dataset.dir;
-      const slide = track.querySelector(".cat-slide");
-      const step = slide ? (slide.getBoundingClientRect().width + 14) : 260; // 14 = gap
-      track.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
-    });
-  });
-})();
-</script>    
-    
-   <!-- Reviews Section (CSS SAFE + JS WIRED) -->
-<section class="reviews-section">
-    <div class="section-header">
-      <h2>Trusted by Many</h2>
-      <p>Real experiences from real customers</p>
-    </div>
-  
-    <!-- 
-      JS TARGET
-      JS will inject .testimonial cards here
-      KEEP existing CSS by styling .testimonial to match .review-card
-    -->
-    <div class="reviews-container" id="testimonials-grid">
-      <!-- JS will populate reviews here -->
-    </div>
-  </section>
-  
+    <!-- ===== MAIN ===== -->
+    <section class="main">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <h2 class="sidebar-title">Category</h2>
+        <div id="categoryContainer"></div>
+        <div class="payment-box">
+          <h3>We Accept</h3>
+          <div class="payments">
+            <div>PayPal</div>
+            <div>Venmo</div>
+            <div>CashApp</div>
+            <div>Bitcoin</div>
+            <div>Tether</div>
+            <div>MoneyGram</div>
+          </div>
+        </div>
+      </aside>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3> <img src="./assets/image2/logo.png" alt=""></h3>
-                <p>Your trusted partner in health and wellness. Delivering premium medical solutions since 2020 with care, precision, and dedication.</p>
-                <div class="social-links">
-                    <button class="social-btn">f</button>
-                    <button class="social-btn">in</button>
-                    <button class="social-btn">tw</button>
-                    <button class="social-btn">yt</button>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <a href="#">About Us</a>
-                <a href="#">Shop</a>
-                <a href="#">Blog</a>
-                <a href="#">Careers</a>
-            </div>
-            <div class="footer-col">
-                <h3>Support</h3>
-                <a href="#">Help Center</a>
-                <a href="#">Shipping</a>
-                <a href="#">Returns</a>
-                <a href="#">Track Order</a>
-            </div>
-            <div class="footer-col">
-                <h3>Contact</h3>
-                <a href="tel:1209 593 7171">Phone: +1 209 593 7171</a>
-                <a href="mailto:customerinfo2024@gmail.com">Email: customerinfo2024@gmail.com</a>
-                <a href="#">Location: Mumbai, India</a>
-            </div>
+      <!-- PRODUCTS -->
+      <div class="products">
+        <h2 class="products-title">Our Product</h2>
+        <div class="product-scroll">
+          <div class="product-grid" id="productGrid"></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 SyncorePharmacy. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>
+            Syncore Pharmacy provides fast, secure, and trusted medicine
+            delivery with USA shipping and premium customer support.
+          </p>
+          <a href="about.html" class="read-more">Read More</a>
         </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li>
+              <a href="product_overview.html?product_ID=11"
+                >Alprazolam-Ksalol Usa To Usa 1MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=5"
+                >Armodafinil Usa To Usa 150MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=2"
+                >Cialis USA to USA 20MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=15"
+                >Diazepam-Bensidine Usa To Usa 10MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=13"
+                >Lorazepam-Ativan Usa To Usa 2MG</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
+        </div>
+      </div>
+      <div class="copyright">
+        Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
+      </div>
     </footer>
 
+    <a
+      href="https://wa.me/12095937171"
+      class="whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      >💬</a
+    >
+
     <script>
-        // Banner Slider
-        let currentBanner = 0;
-        const totalBanners = 3;
+      const categoryContainer = document.getElementById("categoryContainer");
+      const productGrid = document.getElementById("productGrid");
 
-        function changeBanner(direction) {
-            currentBanner += direction;
-            if (currentBanner < 0) currentBanner = totalBanners - 1;
-            if (currentBanner >= totalBanners) currentBanner = 0;
-            
-            const track = document.getElementById('bannerTrack');
-            track.style.transform = `translateX(-${currentBanner * 100}%)`;
+      let allProducts = [];
+      let categoriesMap = {};
+
+      // ============================================
+      // LOAD PRODUCTS FROM DATABASE
+      // ============================================
+      async function loadProducts() {
+        try {
+          const response = await fetch("/products?categoryID=all");
+          const products = await response.json();
+
+          allProducts = products;
+
+          // Create categories from real database data
+          categoriesMap = {};
+
+          products.forEach((product) => {
+            const categoryId = product.category_id;
+            const categoryNames = {
+              1: "USA Premium Quality",
+              2: "General Health",
+              3: "Pain Relief",
+              4: "Cardiac Care",
+              5: "Mental Health",
+              6: "Sexual Wellness",
+              7: "Skincare",
+              8: "Steroids",
+              9: "Women's Health",
+              10: "Men's Health",
+            };
+
+            if (!categoriesMap[categoryId]) {
+              categoriesMap[categoryId] = {
+                id: categoryId,
+                name: categoryNames[categoryId] || `Category ${categoryId}`,
+                products: [],
+              };
+            }
+
+            categoriesMap[categoryId].products.push(product);
+          });
+
+          renderCategories();
+
+          const firstCategoryId = Object.keys(categoriesMap)[0];
+
+          if (firstCategoryId) {
+            const firstCategoryProducts = allProducts.filter(
+              (p) => String(p.category_id) === String(firstCategoryId),
+            );
+
+            renderProducts(firstCategoryProducts);
+          }
+        } catch (err) {
+          console.error("Error loading products:", err);
         }
+      }
 
-        // Auto-rotate banners
-        setInterval(() => changeBanner(1), 6000);
+      // ============================================
+      // RENDER CATEGORIES
+      // ============================================
+      function renderCategories() {
+        categoryContainer.innerHTML = "";
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        Object.values(categoriesMap).forEach((category) => {
+          const box = document.createElement("div");
+
+          box.className = "category-box active";
+
+          box.innerHTML = `
+      <div class="category-header open"
+           data-category="${category.id}">
+        <span>${category.name}</span>
+        <span class="arrow">&#9658;</span>
+      </div>
+
+      <ul class="category-products">
+        ${category.products
+          .map(
+            (p) => `
+              <a href="/product_overview.html?product_ID=${p.product_id}">
+                <li data-category="${category.id}">
+                  ${p.product_name}
+                </li>
+              </a>
+            `,
+          )
+          .join("")}
+      </ul>
+    `;
+
+          categoryContainer.appendChild(box);
         });
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Category click
+        document.querySelectorAll(".category-header").forEach((header) => {
+          header.addEventListener("click", () => {
+            const categoryId = header.dataset.category;
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+            const filtered = allProducts.filter(
+              (p) => String(p.category_id) === String(categoryId),
+            );
 
-        document.querySelectorAll('.bento-item, .review-card').forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) ${index * 0.1}s`;
-            observer.observe(el);
+            renderProducts(filtered);
+          });
         });
+      }
+
+      // ============================================
+      // RENDER PRODUCTS
+      // ============================================
+      function renderProducts(products) {
+        productGrid.innerHTML = "";
+        // console.log("Rendering products:", products);
+        products.forEach((product) => {
+          const image =
+            product.image_url ||
+            "https://via.placeholder.com/400x300?text=Medicine";
+
+          const card = document.createElement("div");
+
+          card.className = "product-card";
+
+          card.innerHTML = `
+      <div class="product-top">
+        ${product.product_name}
+      </div>
+
+      <div class="product-image">
+        <img
+          src="${image}"
+          alt="${product.product_name}"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="product-body">
+        <div class="tablet-label">
+          ${product.trade_names || ""}
+        </div>
+
+        ${
+          product.stocks !== 0
+            ? `
+          <a
+            href="/product_overview.html?product_ID=${product.product_id}"
+            class="btn"
+          >
+            MORE INFO
+          </a>
+        `
+            : ` <a class="btn">
+            OUT OF STOCK
+          </a>`
+        }
+      </div>
+    `;
+
+          productGrid.appendChild(card);
+        });
+      }
+
+      // ============================================
+      // START
+      // ============================================
+      loadProducts();
+
+      // ===== HERO SLIDER =====
+      const heroSection = document.querySelector(".hero");
+      const heroSlides = Array.from(document.querySelectorAll(".heroSection"));
+      let currentHeroIndex = 0;
+      let heroTimer = null;
+      let heroTouchStartX = 0;
+      let heroLastTap = 0;
+
+      function showHeroSlide(index) {
+        if (index === currentHeroIndex) return;
+        const previousIndex = currentHeroIndex;
+        const nextIndex = (index + heroSlides.length) % heroSlides.length;
+        heroSlides.forEach((slide, slideIndex) => {
+          slide.classList.remove("active", "out-right");
+          if (slideIndex === previousIndex) {
+            slide.classList.add("out-right");
+          }
+          if (slideIndex === nextIndex) {
+            slide.classList.add("active");
+          }
+        });
+        currentHeroIndex = nextIndex;
+      }
+
+      function nextHeroSlide() {
+        showHeroSlide(currentHeroIndex + 1);
+      }
+
+      function prevHeroSlide() {
+        showHeroSlide(currentHeroIndex - 1);
+      }
+
+      function resetHeroTimer() {
+        clearInterval(heroTimer);
+        heroTimer = setInterval(nextHeroSlide, 5000);
+      }
+
+      function initHeroSlider() {
+        if (!heroSlides.length) return;
+        heroSlides.forEach((slide, index) => {
+          slide.classList.remove("active", "out-right");
+          if (index === 0) {
+            slide.classList.add("active");
+          }
+        });
+        resetHeroTimer();
+
+        heroSection.addEventListener("touchstart", (event) => {
+          heroTouchStartX = event.touches[0].clientX;
+        });
+
+        heroSection.addEventListener("touchend", (event) => {
+          const touchEndX = event.changedTouches[0].clientX;
+          const deltaX = touchEndX - heroTouchStartX;
+          const now = Date.now();
+
+          if (Math.abs(deltaX) > 50) {
+            if (deltaX < 0) {
+              nextHeroSlide();
+            } else {
+              prevHeroSlide();
+            }
+            resetHeroTimer();
+            return;
+          }
+
+          if (now - heroLastTap < 300) {
+            nextHeroSlide();
+            resetHeroTimer();
+          }
+          heroLastTap = now;
+        });
+
+        heroSection.addEventListener("pointerdown", (event) => {
+          heroTouchStartX = event.clientX;
+        });
+
+        heroSection.addEventListener("pointerup", (event) => {
+          const pointerEndX = event.clientX;
+          const deltaX = pointerEndX - heroTouchStartX;
+          if (Math.abs(deltaX) > 50) {
+            if (deltaX < 0) {
+              nextHeroSlide();
+            } else {
+              prevHeroSlide();
+            }
+            resetHeroTimer();
+          }
+        });
+      }
+
+      initHeroSlider();
     </script>
-      <script src="./assets/js/index.js"></script>
-
-</body>
+  </body>
 </html>

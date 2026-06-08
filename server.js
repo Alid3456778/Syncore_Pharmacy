@@ -1753,6 +1753,63 @@ app.get("/api/orders/:orderId/payment-status", async (req, res) => {
   }
 });
 
+app.get("/api/orders/by-email/:email", async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const customerResult = await pool.query(
+      `SELECT * FROM customers WHERE email = $1`,
+      [email]
+    );
+
+    if (customerResult.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Customer not found",
+      });
+    }
+
+    const customer = customerResult.rows[0];
+
+    const ordersResult = await pool.query(
+      `SELECT order_id, total_amount, shipping, created_at, payment_status
+       FROM orders
+       WHERE user_id = $1
+       ORDER BY created_at DESC`,
+      [customer.id]
+    );
+
+    const orders = await Promise.all(
+      ordersResult.rows.map(async (order) => {
+        const itemsResult = await pool.query(
+          `SELECT name, mg, quantity, price
+           FROM order_items
+           WHERE order_id = $1`,
+          [order.order_id]
+        );
+
+        return {
+          ...order,
+          items: itemsResult.rows,
+        };
+      })
+    );
+
+    return res.json({
+      success: true,
+      customer,
+      orders,
+    });
+  } catch (err) {
+    console.error("Error fetching orders by email:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: err.message,
+    });
+  }
+});
+
 // app.post("/api/orders/:orderId/send-tracking", async (req, res) => {
 //   const { orderId } = req.params;
 //   const { trackingNumber, userId } = req.body;

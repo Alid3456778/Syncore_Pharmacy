@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #fff;
+        overflow-x: hidden;
+        color: #111;
+      }
+
+      /* ===== NAVBAR ===== */
+      header {
+        width: 100%;
+        background: #fff;
+        padding: 14px 6%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: #23479b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      nav a:hover {
+        color: #ff7300;
+      }
+      .nav-sep {
+        color: #ccc;
+        font-size: 13px;
+      }
+      a{
+        text-decoration: none;
+      }
+      /* ===== HERO BANNER ===== */
+      .hero-banner {
+        width: 100%;
+        min-height: 210px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)),
+          url("https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1400&auto=format&fit=crop")
+            center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 60px 7%;
+      }
+      .hero-banner h1 {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
+
+      /* ===== MAIN LAYOUT ===== */
+      .blog-layout {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 50px 5%;
+        display: flex;
+        gap: 50px;
+        align-items: flex-start;
+      }
+
+      /* ===== BLOG POSTS (left) ===== */
+      .blog-posts {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .blog-post {
+        margin-bottom: 46px;
+        padding-bottom: 46px;
+        border-bottom: 1px solid #eee;
+      }
+      .blog-post:last-child {
+        border-bottom: none;
+      }
+
+      .post-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #c0392b;
+        margin-bottom: 6px;
+        line-height: 1.35;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .post-title:hover {
+        color: #a93226;
+      }
+
+      .post-meta {
+        font-size: 13px;
+        color: #c0392b;
+        margin-bottom: 12px;
+      }
+      .post-meta span {
+        color: #555;
+      }
+
+      .post-excerpt {
+        font-size: 14.5px;
+        color: #333;
+        line-height: 1.85;
+        margin-bottom: 16px;
+      }
+
+      /* Tags */
+      .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        display: inline-block;
+        border: 1px solid #999;
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12.5px;
+        color: #333;
+        text-decoration: none;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .tag:hover {
+        background: #c0392b;
+        color: #fff;
+        border-color: #c0392b;
+      }
+
+      /* ===== SIDEBAR (right) ===== */
+      .blog-sidebar {
+        width: 260px;
+        flex-shrink: 0;
+      }
+
+      .sidebar-widget {
+        margin-bottom: 36px;
+      }
+
+      .sidebar-widget h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #c0392b;
+        margin-bottom: 14px;
+      }
+
+      /* Recent Posts & Archives — bordered rows */
+      .sidebar-list {
+        list-style: none;
+      }
+      .sidebar-list li {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 11px 14px;
+        margin-bottom: 8px;
+        font-size: 13.5px;
+        color: #333;
+        cursor: pointer;
+        transition: 0.2s;
+        line-height: 1.45;
+      }
+      .sidebar-list li:hover {
+        background: #f5f5f5;
+      }
+      .sidebar-list li.active {
+        background: #c0392b;
+        color: #fff;
+        border-color: #c0392b;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #0d1117;
+        color: #fff;
+        padding: 52px 6% 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .footer-box h3 {
+        color: #2f65e6;
+        margin-bottom: 14px;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .footer-box p {
+        color: #bbb;
+        line-height: 1.85;
+        font-size: 13.5px;
+        margin-bottom: 6px;
+      }
+      .footer-box a.read-more {
+        color: #2f65e6;
+        font-size: 13.5px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer-box ul {
+        list-style: none;
+      }
+      .footer-box ul li {
+        color: #bbb;
+        font-size: 13.5px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .footer-box ul li:hover {
+        color: #fff;
+      }
+      .f-arrow {
+        font-size: 9px;
+        color: #2f65e6;
+        margin-top: 5px;
+        flex-shrink: 0;
+      }
+      .contact-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .contact-icon {
+        font-size: 15px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .contact-text {
+        color: #bbb;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+      .footer-bottom {
+        margin-top: 40px;
+        background: #2f65e6;
+        margin-left: -6%;
+        width: calc(100% + 12%);
+        text-align: center;
+        padding: 14px;
+        font-size: 13.5px;
+        color: #fff;
+      }
+
+      /* ===== WHATSAPP ===== */
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 58px;
+        height: 58px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+        z-index: 999;
+        transition: 0.25s;
+      }
+      .whatsapp:hover {
+        transform: scale(1.1);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        .blog-layout {
+          flex-direction: column;
+        }
+        .blog-sidebar {
+          width: 100%;
+        }
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        nav {
+          display: none;
+        }
+        .hero-banner h1 {
+          font-size: 22px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    
+      .logo img {
+        width: 100px;
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        nav a {
+          padding: 8px 10px;
+        }
+        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
+          padding: 30px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+</style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
+  </nav>
+</header>
+
+    <!-- HERO -->
+    <section class="hero-banner"><h1>Blog</h1></section>
+
+    <!-- BLOG LAYOUT -->
+    <div class="blog-layout">
+      <!-- LEFT: POSTS -->
+      <main class="blog-posts" id="blogPosts"></main>
+
+      <!-- RIGHT: SIDEBAR -->
+      <aside class="blog-sidebar">
+        <!-- <div class="sidebar-widget">
+          <h3>Recent Posts</h3>
+          <ul class="sidebar-list" id="recentPosts"></ul>
+        </div> -->
+
+        <div class="sidebar-widget">
+          <h3>Categories</h3>
+          <ul class="sidebar-list" id="categories"></ul>
+        </div>
+
+        <!-- <div class="sidebar-widget">
+          <h3>Archives</h3>
+          <ul class="sidebar-list" id="archives"></ul>
+        </div> -->
+      </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <a href="about.html" class="read-more">Read More</a>
+        </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
+            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
+            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
+            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
+            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
+        </div>
+      </div>
+      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+    </footer>
+
+    <a
+      href="https://wa.me/12095937171"
+      class="whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      >💬</a
+    >
+
+    <script>
+      /* ============================================================
+   BLOG DATA
+   TODO: Replace with backend API fetch:
+   fetch('/api/blog/posts')
+     .then(r => r.json())
+     .then(data => { renderPosts(data.posts); renderSidebar(data); });
+   ============================================================ */
+      const posts = [
+        {
+          title: "Viagra 200mg: Dosage Information, View Uses and Side Effects",
+          date: "January 5, 2026",
+          excerpt:
+            "The guide targets adult men between 18 and 65 years who receive an erectile dysfunction (ED) diagnosis and plan to use or already have Viagra 200 mg prescription. The study provides complete details about how the drug functions together with its dosage guidelines and its possible adverse reactions and the safety measures that need to [...]",
+          tags: [
+            "Enzyme Phosphodiesterase",
+            "Headaches",
+            "Facial Flushing",
+            "Nasal Congestion",
+            "Indigestion",
+            "Dizziness",
+            "Viagra 200 mg",
+            "Erectile Dysfunction",
+            "Guanosine Monophosphate",
+            "Sildenafil in Viagra",
+          ],
+          links:"./viagra-article.html"
+        },
+        {
+          title: "Understanding Hemophilia",
+          date: "May 23, 2025",
+          excerpt:
+            "Understanding Hemophilia: A Thorough Guide for Parents and Caregivers Hemophilia is a genetic bleeding disorder that primarily impedes the normal function of clotting blood; hence, even slight bruises can become dangerous. This guide caters to parents and caregivers of children with hemophilia, explaining the disorder clearly, including its types, causes, therapies, and long-term treatment. When [...]",
+          tags: [
+            "hemophilia",
+            "bleeding disorder",
+            "awareness ribbon",
+            "blood disorder",
+            "rare disease",
+          ],
+          links:"./hemophilia-article.html"
+        },
+        {
+          title: "Vaccine Challenges in USA: Myths and Facts",
+          date: "May 20, 2025",
+          excerpt:
+            "An Educational Resource for Healthcare Professionals Introduction Public health discourse in the USA is primarily shaped by growing attention to vaccines in recent years. Healthcare professionals, infectious disease specialists, epidemiologists, family medicine physicians, nurse practitioners, and immunologists alike have to navigate through the complex vaccine narrative. Through a narrative [...]",
+          tags: [
+            "mmr vaccination",
+            "booster shot",
+            "vaccine",
+            "tetanus shot",
+            "flu vaccine",
+            "hepatitis b vaccine",
+            "travel vaccination",
+          ],
+          links:"./vaccine-challenges-article.html"
+        },
+        {
+          title: "What is Narcolepsy?",
+          date: "May 16, 2025",
+          excerpt:
+            "Narcolepsy: Diagnostic Criteria, Clinical Management, and Treatment Options This article intends to educate physicians on the latest diagnostic criteria and treatment methods for narcolepsy. Being prepared for medical students, this review covers problems of pathophysiology, clinical appearance, modern diagnostic techniques, and pharmacological as well as non-pharmacological treatments. It contains scientific and professional terminologies, symptoms, statistical [...]",
+          tags: [
+            "hypersomnia vs narcolepsy",
+            "narcolepsy orexin",
+            "narcolepsy and adhd",
+            "narcolepsy diagnosis",
+            "ketogenic diet narcolepsy",
+            "narcolepsy hypocretin",
+            "narcolepsy cataplexy",
+            "narcolepsy treatments",
+          ],
+          links:"./narcolepsy-article.html"
+        },
+        {
+          title: "The Rise Of Chronic Diseases",
+          date: "May 13, 2025",
+          excerpt:
+            "The Rise Of Chronic Diseases: Prevention And Management Strategies Chronic diseases are fast becoming the biggest threat to public health in contemporary times. With medical mechanization to extend human longevity, diseases like heart ailments, diabetes, and chronic respiratory illnesses have taken a faster toll. Therefore, this article shall offer an umbrella of discourse on the [...]",
+          tags: [
+            "chronic fatigue syndrome",
+            "fnp study guide",
+            "chronic pain management",
+            "chronic disease",
+            "invisible illness",
+          ],
+          links:"./chronic-diseases-article.html"
+        },
+        {
+          title: "Hydrocodone vs Oxycodone",
+          date: "May 9, 2025",
+          excerpt:
+            "Hydrocodone vs Oxycodone: An Educational Comparison The aim of this article is to educate the patient on the potency difference between hydrocodone and oxycodone. We want to shed light on some important factors concerning opioid potency, pain management, and the safe use of these medications. Please note that all medication use needs to be supervised [...]",
+          tags: [
+            "percocet",
+            "opioid",
+            "rx7",
+            "oxy 10",
+            "acetaminophen",
+            "purdue pharma",
+          ],
+          links:"./hydrocodone-vs-oxycodone-article.html"
+        },
+        {
+          title: "Tramadol Treken 100mg : Pain Relief",
+          date: "May 6, 2025",
+          excerpt:
+            "Welcome to your guide for Tramadol Treken 100mg. To give you a full understanding of your medication and how it is used, its benefits, dosing, common side effects, and precautionary measures, we have provided complete information. The information provided here is simple and easy to understand for your safe handling of this medication for its [...]",
+          tags: [
+            "pain management",
+            "muscle pain relief",
+            "shoulder heating pad",
+            "pain patches",
+            "sunburn relief",
+            "heat pad for cramps",
+            "pain relief",
+          ],
+        },
+        {
+          title: "Tramadol or Oxycodone?",
+          date: "May 2, 2025",
+          excerpt:
+            "Which is better for Pain: Tramadol or Oxycodone? A Comprehensive Comparison for Healthcare Professionals Effective pain management forms a stronghold against any clinical practice. Whichever analgesic is chosen plays a critical role in the care provided in either the acute or chronic settings. Tramadol and oxycodone among many other opioids are frequently used, each possessing [...]",
+          tags: [
+            "buy tramadol",
+            "tramadol medication",
+            "oxycodone",
+            "oxy 10",
+            "pharmacy tech",
+            "purdue",
+            "perc",
+            "pharmaceuticals",
+            "ultram",
+            "tramadol",
+          ],
+        },
+        {
+          title: "Tapentadol Overview",
+          date: "April 29, 2025",
+          excerpt:
+            "Tapentadol: A Comprehensive Medical Overview Tapentadol or the chemical 3-(3-dimethylaminopropyl)-1-hydroxy-2-methyl-5-(2-hydroxyeth-oxy)cyclohexyl phenol is an opioid analgesic used mainly to treat moderate to severe acute and chronic pains. Thus, it holds somewhat of a special niche in the medical system because it works by a dual mechanism of action: it binds and activates the µ-opioid receptor, and [...]",
+          tags: [
+            "fibromyalgia",
+            "pain journal",
+            "chronic pain tracker",
+            "muscle pain",
+            "body ache relief",
+            "body pain relief",
+            "body pain",
+          ],
+        },
+        {
+          title:
+            "Superman Combo: A Comprehensive Analysis of Combined Viagra and Cialis Use",
+          date: "April 25, 2025",
+          excerpt:
+            "A wide array of informal slang terms and other neologisms exist. This piece aims at reviewing the potential pharmacological rationale and the clinical interactions and regulations involved when sildenafil (Viagra) and tadalafil (Cialis) are taken together. They are both PDE5 inhibitors, and their primary indication is the treatment of ED. However, repurposing and subsequent mixing [...]",
+          tags: ["erectile", "urology", "erection", "ed209"],
+        },
+        {
+          title: "Medicine to Treat Anxiety Disorder",
+          date: "April 22, 2025",
+          excerpt:
+            "Anxiety disorders rank among the most common psychiatric disorders encountered in clinical practice. Considered at the forefront of management, the administration of prescription medications provides symptomatic relief of anxiety disorders through a multitude of mechanistic pharmacological pathways. This article is an attempt to give an exhaustive review of the principal categories of medications used in [...]",
+          tags: [
+            "stress relief",
+            "therapy tools",
+            "anxiety disorders",
+            "anxiety necklace",
+          ],
+        },
+        {
+          title: "Sleeping Pills",
+          date: "April 18, 2025",
+          excerpt:
+            "Sleeping Pills: Introduction, Types, Risks & Treatment Introduction Sleep is one of the most prominent and internal aspects of biological and human lives, which forms the basis for physical health and cognitive function and an overall quality of life. But with the rush into modern day lifestyles, disturbances in sleep patterns have become very much [...]",
+          tags: [
+            "sleeping pills",
+            "sleeping medications",
+            "natural sleep aid",
+            "sleep aid supplements",
+            "sleeping aid for adults",
+            "herbal sleep aids",
+          ],
+        },
+        {
+          title: "Xanax (Alprazolam)",
+          date: "April 15, 2025",
+          excerpt:
+            "Xanax (Alprazolam): Holistic Clinical Information for the Medics Xanax is the trade name for alprazolam; it is a benzodiazepine used commonly to manage anxiety and panic disorders. This very long paper is meant for medical practitioners, pharmacists, and informed patients who might need evidence-based authoritative prescription drug information. The resource covers pharmacology, clinical indications, dosing [...]",
+          tags: [
+            "xanax 2mg",
+            "generic xanax",
+            "alprazolam",
+            "xanax",
+            "xanax pills",
+          ],
+        },
+        {
+          title:
+            "Alprazolam: Side Effects, Dosage, Uses, Interactions, and More",
+          date: "April 11, 2025",
+          excerpt:
+            "Alprazolam, a member of the benzodiazepine family, is one commonly used medication for anxiety and panic disorders. The article provides a comprehensive review of Alprazolam according to internationally accepted health standards and scientific medical research. It is intended for adult patients prescribed Alprazolam and healthcare professionals wishing to consolidate their knowledge in clinical application and [...]",
+          tags: [
+            "alprazolam",
+            "valium",
+            "pharmacy tech",
+            "medicine",
+            "lamictal",
+          ],
+        },
+        {
+          title: "Educational Physical Intimacy Guide",
+          date: "April 8, 2025",
+          excerpt:
+            "Educational Physical Intimacy Guide: A Safe Approach to Understanding Intimacy This guide is designed for educated adults who are, or in-between, twenty-one to thirty-five years of age and seeking mature, respectful, and professional input regarding physical intimacy. The content has emphasized safety practices, clear communication, and personal limits in preparation to function well in emotional, [...]",
+          tags: [
+            "couples therapy",
+            "emotional intimacy",
+            "intimacy",
+            "physical intimacy",
+          ],
+        },
+        {
+          title: "Acute Pain Management Guide",
+          date: "April 4, 2025",
+          excerpt:
+            "Acute Pain Management Guide. A Guide to the Primary Care Physician and Emergency Medicine Specialist This guide is a comprehensive work on acute pain management, built from current clinical practice guidelines put out by recognized medical associations. It is intended to inform primary care physicians and emergency medicine specialists on definitions, causes, assessments of the [...]",
+          tags: ["heat pack", "relax", "first aid", "massage", "self care"],
+        },
+        {
+          title: "The Ultimate Guide to Insomnia",
+          date: "March 27, 2025",
+          excerpt:
+            "According to published figures, chronic insomnia affects millions of adults around the world, and it is a multifactorial disorder with far-reaching consequences for mental and physical health. This huge book on insomnia attempts to provide an overview of the subject and discuss the science behind it, its medical implications, the immediate and long-term effects, and [...]",
+          tags: [
+            "meditation for insomnia",
+            "sleep remedy",
+            "trouble sleeping",
+            "I cant sleep",
+            "natural sleep remedies",
+            "insomnia remedies",
+          ],
+        },
+        {
+          title: "Joint Pain Understanding: Causes, Diagnosis, and Treatment",
+          date: "March 20, 2025",
+          excerpt:
+            "Joint pain is a health complaint from which millions of people across the globe suffer. It can develop in people of any age and when it's there for some time can lead to drastic discomfort and a reduced quality of life. This resource is an extensive overspill on the causes, symptoms, diagnosis, treatment as well [...]",
+          tags: [
+            "nutrition guide",
+            "joint pain cream",
+            "essential oils for joint pain",
+            "rheumatoid arthritis",
+          ],
+        },
+        {
+          title: "Migraine",
+          date: "March 13, 2025",
+          excerpt:
+            "Migraine: Clinical Presentation, Diagnosis, and Management Migraine is an episodic headache that is often so painful that it renders the patient unable to continue with his normal functions. The headache is also associated with a combination of neurological and autonomic symptoms and gastrointestinal symptoms. This article reviews in detail the clinical presentation and diagnostic strategies [...]",
+          tags: [
+            "Migraine Headache",
+            "Migraine Treatment",
+            "Migraine Tablets",
+            "galectin-3",
+            "hsCRP",
+          ],
+        },
+        {
+          title:
+            "Comprehending Clinical Depression: Manifestations, Appraisal, Medical Solution and Aid",
+          date: "March 5, 2025",
+          excerpt:
+            "Clinical depression is really a medical condition fully changing the life style of the individual victims in the entire world. Generally, it may be challenging to confirm and consequently manage the disease due to its dimension. This article will discuss the symptoms and signs of clinical depression in more detail; explain the way how to [...]",
+          tags: [
+            "Clinical Depression",
+            "Poor concentration",
+            "Excessive guilt",
+            "Low Self-worth",
+            "Disrupted sleep",
+            "Appetite or Weight",
+            "Depressive disorder",
+          ],
+        },
+        {
+          title: "Adderall: Side Effects, Dosage, Uses, and More",
+          date: "February 27, 2025",
+          excerpt:
+            "Adderall is a prescription drug that is widely prescribed in treating Attention Deficit Hyperactivity Disorder (ADHD) and narcolepsy. This article contains detailed information regarding the effects of Adderall, ADHD medication use, dosage guidelines, side effects, contraindications, and other related things about prescription stimulants. Medical Warning: The educational character of this information does not render it [...]",
+          tags: [
+            "adderall tablet",
+            "adderall uses",
+            "ADHD",
+            "hyperactivity disorder",
+            "cognitive enhancer",
+            "appetite suppressant",
+          ],
+        },
+        {
+          title: "Lung Disease: Causes, Symptoms, and Prevention",
+          date: "February 20, 2025",
+          excerpt:
+            "Every year, lung diseases affect millions around the globe. This guide is particularly for the recently diagnosed and caretakers unfamiliar with their loved ones' illness. It provides clear information about lung diseases, causes, and symptoms. The present article will review important lung diseases, including chronic obstructive pulmonary disease (COPD), asthma, bronchitis, and lung cancer. The [...]",
+          tags: [
+            "bone cancer",
+            "Lung cancer",
+            "cystic fibrosis",
+            "lung transplant",
+            "pulmonary disease",
+            "respiratory therapy",
+          ],
+        },
+        {
+          title: "Dextroamphetamine and Amphetamine in ADHD Management",
+          date: "February 13, 2025",
+          excerpt:
+            "Dextroamphetamine and Amphetamine in ADHD Management – Mechanisms, Clinical Efficacy, and Safety Considerations Attention-deficit/hyperactivity disorder (ADHD), as a neurodevelopmental disorder, is characterized by pervasive patterns of inattention, hyperactivity, and impulsivity. Pharmacotherapy remains a cornerstone of ADHD management for many patients whose symptoms truly compromise academic or occupational endeavor, or social functioning. [...]",
+          tags: [
+            "adhd medication",
+            "anxiety disorder",
+            "anxiety medicine",
+            "anxiety attack",
+          ],
+        },
+        {
+          title: "Tramadol – Uses, Side Effects, and More",
+          date: "February 6, 2025",
+          excerpt:
+            "Tramadol: The Complete Guide for Patients and Caregivers Introduction Tramadol is a centrally acting analgesic that is most commonly used for the relief of mild to moderate pain. Tramadol may be useful for patients who are unlikely to benefit from non-opioid medications or to whom additional pain relief is needed in combination with other treatments. [...]",
+          tags: [
+            "Tramadol Trakem Elikem 100mg",
+            "Tramadol 50mg",
+            "Tramadol Tablet",
+            "Tramadol side effects",
+          ],
+        },
+        {
+          title: "Internist",
+          date: "January 30, 2025",
+          excerpt:
+            "The Complete Treatise on Internal Medicine Introduction Internal medicine is a specific field of healthcare dealing with the prevention, diagnosis, and treatment of adult diseases. Internists are skilled medical professionals who focus on confronting a wide variety of medical conditions: multisystem dysfunction and the chronicity of disease management. This manual will look closely into the [...]",
+          tags: [
+            "Internist Doctor",
+            "Internists",
+            "Rcc Internist Tumor",
+            "Internist Doctor Pretoria",
+          ],
+        },
+        {
+          title: "Internal Medicine",
+          date: "January 23, 2025",
+          excerpt:
+            "A Guide in General Internal Medicine for Healthcare Professionals Introduction In the land of healthcare professionals, this book is consolidated as a huge Forum on General Internal Medicine. Its real environment naturally includes a heavy dose of case studies, clinical examples, diagnostic approaches, and treatment protocols in bed [...]",
+          tags: [
+            "Alcoholism",
+            "Internal Medicine Specialist",
+            "Asthma",
+            "Bacteria",
+            "Internal Medicine Doctor",
+          ],
+        },
+        {
+          title: "High Blood Pressure",
+          date: "January 17, 2025",
+          excerpt:
+            "Hypertension Management Introduction Hypertension or high blood pressure is an established health problem that affects millions of adults across the world. Chronic health disorder with persistently elevated blood pressure in the arteries is a critical health problem leading to heart disease, stroke, and kidney failure. Despite its unabated high incidence, many people with high blood [...]",
+          tags: [
+            "high blood pressure",
+            "high blood pressure treatment",
+            "high blood pressure foods to avoid",
+          ],
+        },
+        {
+          title: "Heart Health",
+          date: "January 9, 2025",
+          excerpt:
+            "Heart Health Prevention Recommendations Heart disease remains one of the world's main causes of death, even for adults over the age of 40. Preventive care is crucial if one is committed to ensuring that the heart is still maximally maintained with as minimal attributes that come with cardiovascular issues. It looks at some practical ways [...]",
+          tags: [
+            "heart healthy foods",
+            "heart health test",
+            "heart health check",
+            "heart health supplements",
+          ],
+        },
+        {
+          title: "Diagnostic Testing",
+          date: "January 3, 2025",
+          excerpt:
+            "Guide to Diagnostic Testing Techniques of the Medical Laboratory Science Students Introduction The objective of this guide will be to advance the understanding of diagnostic testing techniques among medical laboratory students. By combining theoretical knowledge with practical applications, practical safety laboratory protocols, and involving assessment questions that aim to better learning, learners will have a [...]",
+          tags: [
+            "free diagnostic testing",
+            "diagnostic testing types",
+            "diagnostic testing in education",
+          ],
+        },
+        {
+          title: "Diabetes",
+          date: "December 26, 2024",
+          excerpt:
+            "Learning about diabetes: Signs and treatments for first-diagnosed patients. Become diagnosed with diabetes could create confusion very often, but one critical step in dealing with these kinds of conditions is to understand their symptoms and treatment. This informative guide is aimed at newly diagnosed patients as well as their caregivers and clearly explains diabetes symptoms [...]",
+          tags: [
+            "Diabetes",
+            "Diabetes Range",
+            "Diabetes Insipidus",
+            "Diabetes Mellitus",
+            "Diabetes Prevention",
+            "Diabetes Medicine",
+          ],
+        },
+        {
+          title: "Cholesterol Levels",
+          date: "December 19, 2024",
+          excerpt:
+            "Comprehending the Cholesterol Standards for the Healthy Heart Cholesterol is often questioned in the sense that it is a compound called a substance and serves a number of functions in the male condition but leads to varied degrees of ill health when it becomes unbalanced. This focuses specifically on the concerns of heart health as [...]",
+          tags: [
+            "Cholesterol Levels Normal Range",
+            "Cholesterol Levels Chart",
+            "Cholesterol Levels for Female",
+            "Cholesterol Levels for Men",
+          ],
+        },
+        {
+          title: "Cancer",
+          date: "December 12, 2024",
+          excerpt:
+            "Introduction Cancer remains one of the leading causes of morbidity and mortality worldwide, particularly among adults over the age of 40. As our bodies age, the risk of developing cancer increases, making preventative measures crucial for maintaining health and well-being. This article provides an in-depth exploration of effective cancer prevention methods tailored for adults in [...]",
+          tags: [
+            "Breast Cancer",
+            "Pediatric Cancer",
+            "Cancer-fight",
+            "Colon Cancer",
+            "Lung cancer",
+          ],
+        },
+        {
+          title: "Cardiac Testing",
+          date: "December 5, 2024",
+          excerpt:
+            "Educational Guide to Cardiac Testing Procedures This guide is designed to help patients aged 45 and older prepare for their first cardiac examination. Understanding what to expect during cardiac tests can alleviate anxiety. Each section covers a common cardiac test, including detailed procedures to follow, as well as the risks, contraindications, and post-procedure care. Always [...]",
+          tags: [
+            "echocardiography",
+            "arrhythmia",
+            "pacemaker",
+            "angioplasty",
+            "atrial fibrillation",
+          ],
+        },
+        {
+          title: "Appetite Suppressants",
+          date: "November 27, 2024",
+          excerpt:
+            "Natural Appetite Suppressants: A Comprehensive Guide for Health-Conscious Adults Weight management is a common challenge for many adults, with the quest for effective weight loss solutions leading individuals to seek methods that are both safe and sustainable. Among these solutions, natural appetite suppressants have gained popularity. These substances help control hunger, making it easier to [...]",
+          tags: [
+            "diet",
+            "high protein foods",
+            "intermittent fasting",
+            "keto diet",
+            "healthy food",
+          ],
+        },
+        {
+          title: "Weight Loss",
+          date: "November 19, 2024",
+          excerpt:
+            "INTRODUCTION Weight loss is a journey that many embark on with varying degrees of success. It's essential to understand that achieving weight loss is not just about looking good but also about feeling good and being healthy. When it comes to shedding those extra pounds, there are countless weight loss tips and strategies out there. [...]",
+          tags: [
+            "atkins diet",
+            "low carb diet",
+            "diet plans",
+            "fat burner",
+            "how to lose weight",
+          ],
+        },
+        {
+          title: "Annual Physicals",
+          date: "November 5, 2024",
+          excerpt:
+            "An annual physical, commonly referred to as an annual wellness exam or check-up, is a standard appointment with your primary care physician. This visit typically includes various health evaluations aimed at assessing your overall well-being. Although the details of each annual physical can differ depending on factors such as age, gender, and personal health issues, [...]",
+          tags: [
+            "Blood Pressure",
+            "Heart Rate",
+            "Respiratory Rate",
+            "Temperature",
+            "Physical Examination",
+          ],
+        },
+        {
+          title: "Pain Relief",
+          date: "October 29, 2024",
+          excerpt:
+            "Pain Relief: Understanding the Causes and Finding Effective Solutions Pain is a common experience that everyone goes through at some point in their lives. It can range from a mild discomfort to a debilitating sensation that affects daily activities. While pain is a natural response of the body to injury or illness, it can also [...]",
+          tags: [
+            "Analgesics",
+            "Soothing",
+            "Calming",
+            "Soporific",
+            "Sedative",
+            "Palliative",
+            "Assuage",
+          ],
+        },
+        {
+          title: "Allergies",
+          date: "October 22, 2024",
+          excerpt:
+            "Allergies occur when the immune system reacts to substances that the body erroneously perceives as dangerous, despite them being harmless. Common allergens encompass pollen, mold, pet fur, dust mites, specific foods, insect stings, and medications. Types of Allergies: Respiratory Allergies – Induced by airborne allergens such as pollen, mold, dust mites, and pet feathers. Common [...]",
+          tags: [
+            "Aversion",
+            "Hypersensitivity",
+            "Sensitivity",
+            "Susceptibility",
+            "Vulnerability",
+          ],
+        },
+      ];
+
+      const recentPosts = [
+        "Viagra 200mg: Dosage Information, View Uses and Side Effects",
+        "Understanding Hemophilia",
+        "Vaccine Challenges in USA: Myths and Facts",
+      ];
+
+      const categories = [
+        { title: "Respiratory System" ,links:"./respiratory-category.html"},
+        { title: "Pain Relief",links:"./pain-category.html" },
+        { title: "Mental Health",links:"./mental-category.html" },
+        { title: "Allergies" ,links:"./allergy-category.html"},
+        { title: "Sleep Disorder",links:"./sleep-category.html" },
+        { title: "Annual Physicals" ,links:"./annual-category.html"},
+        { title: "Weight Loss",links:"./wieght-category.html" },
+        { title: "Appetite Suppressants",links:"./appetite-category.html" },
+        { title: "Cardiology" ,links:"./cardiology-category.html"},
+        { title: "Cancer", links:"./cancer-category.html" },
+        { title: "Cholesterol Levels", links:"./cholestrol-category.html" },
+        { title: "Diabetes",links:"./diabeties-category.html" },
+        { title: "Diagnostic Testing" ,links:"./diagnostic-category.html"},
+        { title: "Heart Health",links:"./hearthealth-category.html" },
+        { title: "High Blood Pressure" ,links:"./highbp-category.html"},
+        { title: "Internal Medicine" ,links:"./internal-category.html"},
+        { title: "Internist", links:"./internist-category.html" },
+        { title: "ADHD", links:"./adhd-category.html" },
+      ];
+
+      const archives = [
+        "January 2026",
+        "May 2025",
+        "April 2025",
+        "March 2025",
+        "February 2025",
+        "January 2025",
+        "December 2024",
+        "November 2024",
+        "October 2024",
+      ];
+
+      /* Render posts */
+      function renderPosts() {
+        const container = document.getElementById("blogPosts");
+        container.innerHTML = posts
+          .map(
+            (p) => `
+    <article class="blog-post">
+      <a class="post-title" href="${p.links}">${p.title}</a>
+      <div class="post-meta">${p.date} <span>by admin</span></div>
+      <p class="post-excerpt">${p.excerpt}</p>
+      <div class="post-tags">
+        ${p.tags.map((t) => `<a class="tag" href="${p.links}">${t}</a>`).join("")}
+      </div>
+    </article>
+  `,
+          )
+          .join("");
+      }
+
+      /* Render sidebar */
+      function renderSidebar() {
+        // document.getElementById("recentPosts").innerHTML = recentPosts
+        //   .map((t, i) => `<li class="${i === 1 ? "active" : ""}">${t}</li>`)
+        //   .join("");
+
+        document.getElementById("categories").innerHTML = categories
+          .map(
+            (c, i) =>
+              `<li class="${c === "Heart Health" ? "active" : ""}"><a href="${c.links}">${c.title}</a></li>`,
+          )
+          .join("");
+
+        // document.getElementById("archives").innerHTML = archives
+        //   .map((a) => `<li>${a}</li>`)
+        //   .join("");
+      }
+
+      renderPosts();
+      renderSidebar();
+
+      /* Sidebar item click highlight */
+      document.querySelectorAll(".sidebar-list").forEach((list) => {
+        list.addEventListener("click", (e) => {
+          if (e.target.tagName === "LI") {
+            list
+              .querySelectorAll("li")
+              .forEach((li) => li.classList.remove("active"));
+            e.target.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

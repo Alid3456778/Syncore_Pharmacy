@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What is Narcolepsy? - Syncore Pharmacy</title>
+    <link rel="icon" href="./assets/image/logo.png" type="image/png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;overflow-x:hidden;color:#111;}
+
+/* NAVBAR */
+header{width:100%;background:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.07);position:sticky;top:0;z-index:1000;}
+.logo-text{font-size:22px;font-weight:700;color:#23479b;display:flex;align-items:center;gap:10px;}
+nav{display:flex;align-items:center;gap:2px;}
+nav a{text-decoration:none;color:#111;font-weight:600;font-size:14px;padding:6px 13px;transition:.2s;}
+nav a:hover{color:#c0392b;}
+.nav-sep{color:#bbb;font-size:13px;padding:0 2px;}
+
+/* ARTICLE */
+.article-wrap{max-width:1380px;margin:0 auto;padding:40px 5% 60px;}
+.article-title{font-size:24px;font-weight:700;color:#111;margin-bottom:4px;line-height:1.35;}
+.article-subtitle{font-size:16px;font-weight:600;color:#111;margin-bottom:18px;line-height:1.4;}
+
+.img-right{float:right;margin:0 0 28px 36px;width:300px;border-radius:4px;overflow:hidden;}
+.img-right img{width:100%;height:240px;object-fit:cover;display:block;}
+
+.article-body p{font-size:15px;line-height:1.9;color:#111;margin-bottom:14px;}
+.article-body h2{font-size:17px;font-weight:700;color:#111;margin:26px 0 10px;clear:none;}
+.article-body h3{font-size:15.5px;font-weight:700;color:#111;margin:18px 0 8px;}
+.article-body strong{font-weight:700;}
+.article-body ul{list-style:disc;padding-left:22px;margin-bottom:14px;}
+.article-body ul li{font-size:15px;line-height:1.85;color:#111;margin-bottom:6px;}
+.article-body ol{list-style:decimal;padding-left:22px;margin-bottom:14px;}
+.article-body ol li{font-size:15px;line-height:1.85;color:#111;margin-bottom:6px;}
+.cf::after{content:'';display:block;clear:both;}
+
+/* PRODUCT LINKS */
+.product-links{clear:both;margin-top:30px;padding-top:20px;}
+.product-links p{font-size:15px;color:#111;margin-bottom:6px;font-weight:500;}
+.product-links a{display:block;color:#2266cc;font-size:15px;text-decoration:none;margin-bottom:4px;transition:.2s;width:fit-content;}
+.product-links a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:#0d1117;color:#fff;padding:52px 5% 0;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.footer-box h3{color:#2f65e6;margin-bottom:14px;font-size:17px;font-weight:700;}
+.footer-box p{color:#bbb;line-height:1.85;font-size:13.5px;margin-bottom:6px;}
+.footer-box a.read-more{color:#2f65e6;font-size:13.5px;text-decoration:none;font-weight:600;}
+.footer-box ul{list-style:none;}
+.footer-box ul li{color:#bbb;font-size:13.5px;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
+.footer-box ul li:hover{color:#fff;}
+.f-arrow{font-size:9px;color:#2f65e6;margin-top:5px;flex-shrink:0;}
+.contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.contact-icon{font-size:15px;margin-top:2px;flex-shrink:0;}
+.contact-text{color:#bbb;font-size:13.5px;line-height:1.6;}
+.footer-bottom{margin-top:40px;background:#2f65e6;margin-left:-5%;width:calc(100% + 10%);text-align:center;padding:14px;font-size:13.5px;color:#fff;}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;right:22px;bottom:22px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,0.18);z-index:999;transition:.25s;}
+.whatsapp:hover{transform:scale(1.1);}
+
+@media(max-width:900px){.img-right{width:200px;}.footer-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){nav{display:none;}.img-right{float:none;width:100%;margin:0 0 20px 0;}.footer-grid{grid-template-columns:1fr;}}
+
+      .logo img {
+        width: 100px;
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        nav {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        nav a {
+          padding: 8px 10px;
+        }
+        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
+          padding: 30px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+      }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
+  <nav>
+    <a href="index.html">HOME</a><span class="nav-sep">|</span>
+    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+    <a href="cart.html">CART</a><span class="nav-sep">|</span>
+    <a href="oldorder.html">OLD ORDERS</a>
+  </nav>
+</header>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+<div class="article-body cf">
+
+  <!-- Float image top-right -->
+  <div class="img-right">
+    <img
+      src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=600&auto=format&fit=crop"
+      alt="Sleeping disorder narcolepsy"
+      loading="lazy"
+    />
+  </div>
+
+  <h1 class="article-title">What is Narcolepsy?</h1>
+  <p class="article-subtitle">Narcolepsy: Diagnostic Criteria, Clinical Management, and Treatment Options</p>
+
+  <p>This article intends to educate physicians on the latest diagnostic criteria and treatment methods for narcolepsy. Being prepared for medical students, this review covers problems of pathophysiology, clinical appearance, modern diagnostic techniques, and pharmacological as well as non-pharmacological treatments. It contains scientific and professional terminologies, symptoms, statistical data, and findings from various research. It focuses on the detailed understanding of a more complicated neurological disorder in an interesting and educational approach.</p>
+
+  <h2>Introduction</h2>
+  <p>Narcolepsy is a chronic neurological disorder characterized by excessive daytime sleepiness and other array of sleep disturbances. Affecting 0.02%–0.05% of the general population, narcolepsy is probably the underdiagnosed condition because of its heterogeneous presentation and the overlapping features with other sleep disorders. The disorder can grossly hinder the daily functions of individuals and can have a severe impact on the quality of life of affected individuals. In the management aspect, recognizing clues through subtle clinical presentation and the application of diagnostic criteria seems to play an important role. This article intends to review the current perspective in the pathophysiology of narcolepsy, describe clinical symptoms, standard diagnostic approaches, and current treatment and management considerations.</p>
+
+  <h2>Pathophysiology</h2>
+  <p>Narcolepsy has a complex pathophysiology relating to the loss or dysfunction of hypocretin (orexin)-producing neurons localized in the lateral hypothalamus region. Hypocretins are neuropeptides crucial for stabilizing wakefulness and the regulation of the sleep-wake cycle. Hypocretin levels, especially hypocretin-1, are significantly lower in narcoleptic subjects, particularly those with cataplexy, as proven in autopsy studies and from cerebrospinal fluid (CSF) analysis.</p>
+  <p>Immunological factors have been implicated in the etiology of narcolepsy with cataplexy, with strong associations noted between specific human leukocyte antigen (HLA) haplotypes (such as HLA-DQB1*06:02) and disease susceptibility. The findings point to an autoimmune nature of the disease, with environmental stimuli such as infections and vaccinations hastening an immune-mediated destruction of hypocretinergic neurons.</p>
+  <p>Further studies have been conducted on neurotransmitters in other neurochemical systems, with findings pointing to the involvement of dysfunction or imbalance in the dopaminergic, serotonergic, and noradrenergic systems causing symptoms of narcolepsy. Such a multifactorial etiopathogenesis underscores the utmost importance of a precise diagnosis and, hence, treatment approach tailored to the individual patient for management benefits.</p>
+
+  <h2>Clinical Symptoms</h2>
+  <p>The clinical manifestation of narcolepsy is multifaceted. The hallmark symptom is excessive daytime sleepiness characterized by sudden, overwhelming bouts of sleep occurring during a wakeful period. Autonomic symptoms may include:</p>
+  <ul>
+    <li><strong>Cataplexy:</strong> Sudden loss of muscle tone, triggered by strong emotions such as laughter, surprise, or anger. Cataplexy can cover all degrees of muscular weakness from mild facial weakness to total collapse of the body.</li>
+    <li><strong>Sleep Paralysis:</strong> Inability to move or speak just as one is falling asleep or waking up, the person is fully alert during a rejection.</li>
+    <li><strong>Hypnagogic/Hypnopompic Hallucinations:</strong> Vivid and often frightening dream-like experiences at the onset of sleep or on awakening.</li>
+    <li><strong>Fragmented Nocturnal Sleep:</strong> Patients usually develop fragmented nocturnal sleep marked by frequent awakenings, which then can accrue and cause daytime drowsiness.</li>
+  </ul>
+  <p>It is most important to note that in the clinical course, sometimes some symptoms are more prominent than others, or there can be variations in the degree to which another symptom might be expressed; therefore, the approach to diagnosis and treatment will be impacted respectively.</p>
+
+  <!-- Float image 2 -->
+  <div class="img-right">
+    <img
+      src="https://images.unsplash.com/photo-1510894347713-fc3dc6614e2d?q=80&w=600&auto=format&fit=crop"
+      alt="Sleep study diagnostic"
+      loading="lazy"
+    />
+  </div>
+
+  <h2>Diagnosis</h2>
+  <p>The diagnostic criteria for narcolepsy are well-defined and comprised of both clinical assessments, as well as objective sleep studies. The International Classification of Sleep Disorders (ICSD) and the Diagnostic and Statistical Manual of Mental Disorders (5th Ed.) (DSM-5) together provide a scheme which prescribes the following:</p>
+  <ul>
+    <li>A history of daily periods of irrepressible sleepiness lasting at least 3 months.</li>
+    <li>Two or more of cataplexy, sleep paralysis, hypnagogic or hypnopompic hallucinations, and nocturnal sleep disruption.</li>
+  </ul>
+  <p>Polysomnography followed by a Multiple Sleep Latency Test (MSLT) is considered diagnostic of EDS. The MSLT measures the severity of EDS by assessing sleep latency and number of occurrences of REM sleep onset throughout several nap opportunities. Two or more sleep-onset REM periods (called SOREMPs) during MSLT serve as a crucial factor in the diagnosis.</p>
+  <p>Additionally, CSF hypocretin-1 determination can be performed, especially in ambiguous cases. Levels below a certain threshold (commonly considered &lt;110 pg/mL) are highly suggestive of narcolepsy with cataplexy.</p>
+  <p>According to statistical data gathered from recent multicenter studies, up to 70% of patients with a narcolepsy diagnosis have low CSF hypocretin levels, completing proof for the biomarker. Also, polysomnographic recordings provide evidence of sleep latency of less than 8 minutes on average in the affected population, which is highly deviated from the normative data.</p>
+
+  <h2>Treatment</h2>
+  <p>Treatment of narcolepsy is aimed at symptom alleviation, wakefulness, and life quality improvement, employing both pharmacologic and non-pharmacologic means.</p>
+
+  <h3>Pharmacologic Therapies</h3>
+  <ol>
+    <li><strong>Stimulants:</strong> Conventional stimulants like methylphenidate and amphetamines have been directed primarily for many years at treating EDS. Wakefulness induced by these stimulants is brought on by an increased synaptic concentration of dopamine and norepinephrine.</li>
+    <li><strong>Wake-Promoting Agents:</strong> Modafinil and its derivatives are deemed preferable first-line treatments due to the better side-effect profile and diminished abuse potential. Clinical studies have successfully shown that modafinil reduces sleep latency and enhances cognitive functions in patients with narcolepsy.</li>
+    <li><strong>Sodium Oxybate:</strong> This drug uniquely treats both EDS and cataplexy. Sodium oxybate is a CNS depressant at nighttime and allows consolidation of sleep in the night hours. Also, it lessens the occurrence of daytime sleep attacks.</li>
+  </ol>
+
+  <h3>Non-Pharmacologic Treatments</h3>
+  <p>Non-pharmacologic methods play an essential role in a multifaceted managing approach. Some of these include:</p>
+  <ul>
+    <li><strong>Scheduled Naps:</strong> Brief, controlled naps in the daytime can help diminish excessive sleepiness and reduce its interference with daytime functioning.</li>
+    <li><strong>Cognitive Behavioral Therapy (CBT):</strong> CBT for sleep disorders is an important treatment modality whereby patients can develop strategies to help manage the unpredictability of their symptoms, particularly cataplexy and sleep paralysis.</li>
+    <li><strong>Sleep Hygiene Education:</strong> Education about regular sleep/wake cycles, keeping an optimized sleeping environment, and avoiding stimulants before bedtime is a must.</li>
+  </ul>
+
+  <h2>Management Strategies</h2>
+  <p>A multidisciplinary approach is warranted in order to optimally manage this chronic disorder. The critical key strategies include:</p>
+  <ul>
+    <li><strong>Patient Education and Counseling:</strong> There is crucial importance of educating the patient more about the disorder, treatment options, and possible outcomes. Counseling will include co-operation in lifestyle changes, adapting to medication, and techniques on how to cope.</li>
+    <li><strong>Regular Follow-Up:</strong> Besides the initial treatment decision, the patient may need further adjustments on an ongoing basis to counter side effects of medications or changes in symptom severity. There may be comorbid conditions affecting the patient that require adjustment.</li>
+    <li><strong>Multidisciplinary Care:</strong> The presence of depression or anxiety comorbidities commonly seen in narcoleptic patients requires a multidisciplinary approach with the sleep specialist, neurologist, psychiatrist, or primary care physician.</li>
+    <li><strong>Occupational and Academic Adjustments:</strong> Adjustments in work hours, academic accommodation, and other modifications are usually recommended for patients under academic or strenuous professional settings for enhancement of their performance and improvement of life quality.</li>
+  </ul>
+  <p>In recent times, research studies considered potential paths to immunomodulatory therapies, suggesting that an early intervention in the prodromal phase may alter the disease course; however, this is still speculative and requires further work.</p>
+
+  <h2>Conclusion</h2>
+  <p>Narcolepsy still remains difficult to diagnose and treat, given its variable clinical presentation and many factors underlying its pathogenesis. This article has reviewed a comprehensive scope of the newer diagnostic criteria, including polysomnography, MSLT, and CSF hypocretin measurements, which were used in recent multicenter validation studies. The review of both pharmacological and non-pharmacological treatments also emphasized the importance of the treatment of individual patients being tailored to a multidisciplinary approach.</p>
+  <p>Future research may uncover more biomarkers and therapeutic targets that will help improve the knowledge and treatment of narcolepsy. Continued education and incorporation of new evidence into clinical practice are also key to providing the best care to patients afflicted with this disabling disorder.</p>
+
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>It is necessary to comprehend the diagnosis of narcolepsy and the roles played by PSG, MSLT, and CSF hypocretin-1 levels.</li>
+    <li>Observe important clinical symptoms, including excessive daytime sleepiness, cataplexy, sleep paralysis, and hypnagogic/hypnopompic hallucinations, for early diagnosis and intervention.</li>
+    <li>The pharmacologic treatment comparison between stimulants, modafinil, and sodium oxybate must be made so that therapy can be tailored to the needs of the individual patient.</li>
+    <li>Nonpharmacologic treatments, such as scheduled naps, cognitive-behavioral therapy, and sleep hygiene, should be used alongside the primary treatments to maximize the effects.</li>
+    <li>The key to managing narcolepsy is multidisciplinary intervention with regular follow-up and patient education.</li>
+  </ul>
+  <p>In summary, this article is a comprehensive resource for healthcare professionals and medical students, intending to provide in-depth awareness of the complex clinical landscape of narcolepsy. With continuous advances in research and treatment modalities, the clinician is encouraged to apply this knowledge toward improving the care of subjects afflicted by this perplexing disorder.</p>
+
+  <!-- PRODUCT LINKS -->
+  <div class="product-links">
+    <p>We also deliver products in entire USA.<br>Buy out products from our website</p>
+    <a href="#">US to US Delivery</a>
+    <a href="#">Tramadol Treken 100mg</a>
+    <a href="#">Ativan (Lorazepam) 2mg</a>
+    <a href="#">Tapentadol Aspadol 100mg</a>
+    <a href="#">Xanax RLAM 1mg</a>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>About Us</h3>
+          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <a href="about.html" class="read-more">Read More</a>
+        </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oldorder.html">Old Orders</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Our Products</h3>
+          <ul>
+            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
+            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
+            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
+            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
+            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>📍 Mumbai, India</p>
+          <p>📞 +1 209 593 7171</p>
+          <p>📧 support@syncorepharma.com</p>
+        </div>
+      </div>
+      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+    </footer>
+
+<a href="https://wa.me/12095937171" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
+
+</body>
+</html>
