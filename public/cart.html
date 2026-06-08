@@ -323,7 +323,17 @@ footer{background:#05070f;color:#fff;padding:70px 6% 25px;}
           grid-template-columns: 1fr;
           gap: 18px;
         }
-      }
+      }    /* Footer text white override */
+    footer, .footer, .footer h1, .footer h2, .footer h3, .footer h4, .footer p, .footer span, .footer li, .footer a, footer a {
+      color: #fff !important;
+    }
+    .footer a, footer a {
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+    .footer a:hover, footer a:hover {
+      color: #fff !important;
+    }
 </style>
 </head>
 <body>
@@ -445,22 +455,29 @@ const paymentMethods = [
         name: "Paypal",
         sub: "(Instant Order Approval and Shipping)",
         discount: 10,
-        logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg",
+        logo: "https://usafarmacia.net/wp-content/themes/usapharmacy/images/cart-01.jpg",
         logoAlt: "PayPal"
     },
     {
         name: "Venmo",
         sub: "(Instant Order Approval and Shipping)",
         discount: 10,
-        logo: "https://upload.wikimedia.org/wikipedia/commons/8/84/Venmo_logo.svg",
+        logo: "https://usafarmacia.net/wp-content/themes/usapharmacy/images/cart-02.jpg",
         logoAlt: "Venmo"
     },
     {
         name: "Bitcoin (BTC)",
         sub: "(Instant Order Approval and Shipping)",
         discount: 10,
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg",
+        logo: "https://usafarmacia.net/wp-content/themes/usapharmacy/images/cart-05.jpg",
         logoAlt: "Bitcoin"
+    },
+    {
+        name:"Tether USDT",
+        sub: "(Instant Order Approval and Shipping)",
+        discount: 10,
+        logo: "https://usafarmacia.net/wp-content/themes/usapharmacy/images/cart-06.jpg",
+        logoAlt: "USDT"
     }
 ];
 
@@ -742,9 +759,11 @@ function renderPayments(grandTotal) {
             </td>
 
             <td>
-                <a href="checkout1.html"
-                   class="checkout-btn">
-                    ${method.logoAlt}
+                 <a href="checkout1.html"
+                  >
+                <img src="${method.logo}" alt="${method.logoAlt}" />
+               
+                    
                 </a>
             </td>
 

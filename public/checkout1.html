@@ -385,7 +385,17 @@
           grid-template-columns: 1fr;
           gap: 18px;
         }
-      }
+      }    /* Footer text white override */
+    footer, .footer, .footer h1, .footer h2, .footer h3, .footer h4, .footer p, .footer span, .footer li, .footer a, footer a {
+      color: #fff !important;
+    }
+    .footer a, footer a {
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+    .footer a:hover, footer a:hover {
+      color: #fff !important;
+    }
 </style>
   </head>
   <body>
@@ -752,7 +762,7 @@
 
             totalCost: currentCart.reduce(
               (sum, item) =>
-                sum + extractPrice(item.price) * Number(item.quantity || 1),
+                sum + extractPrice(item.price),
               0,
             ),
           };
