@@ -266,6 +266,11 @@ app.post("/api/checkout", async (req, res) => {
         },
       });
 
+      const shippingDisplay =
+  Number(shippingCost || 0) === 0
+    ? "Free Shipping"
+    : `$${Number(shippingCost).toFixed(2)}`;
+
       const htmlBody = `
               <!DOCTYPE html>
               <html lang="en">
@@ -326,9 +331,7 @@ app.post("/api/checkout", async (req, res) => {
                           </tbody>
                       </table>
                       <div class="total">
-                          <p>Shipping Cost: $${parseFloat(shippingCost).toFixed(
-                            2
-                          )}</p>
+                          <p>Shipping Cost: ${shippingDisplay}</p>
                           <p>Total Amount: $${parseFloat(totalCost).toFixed(
                             2
                           )}</p>
@@ -656,6 +659,11 @@ app.post("/api/manual-order", async (req, res) => {
         },
       });
 
+      const shippingDisplay =
+  Number(shippingCost || 0) === 0
+    ? "Free Shipping"
+    : `$${Number(shippingCost).toFixed(2)}`;
+
       const htmlBody = `
             <!DOCTYPE html>
             <html lang="en">
@@ -715,9 +723,7 @@ app.post("/api/manual-order", async (req, res) => {
                         </tbody>
                     </table>
                     <div class="total">
-                        <p>Shipping Cost: $${parseFloat(shippingCost).toFixed(
-                          2
-                        )}</p>
+                        <p>Shipping Cost: ${shippingDisplay}</p>
                         <p>Total Amount: $${parseFloat(totalCost).toFixed(
                           2
                         )}</p>
