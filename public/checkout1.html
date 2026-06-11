@@ -341,76 +341,207 @@
       /* ===========================
    RESPONSIVE
 =========================== */
+
       @media (max-width: 768px) {
-        nav {
-          display: none;
-        }
-        .page-banner h1 {
-          font-size: 24px;
-        }
-        .order-content {
-          padding: 30px 5% 60px;
-        }
-        .cart-table thead th:nth-child(3),
-        .cart-table tbody td:nth-child(3) {
-          display: none;
-        }
-        .section-heading {
-          font-size: 22px;
-        }
-      }
-    
-      .logo img {
-        width: 100px;
-        max-width: 100%;
-        height: auto;
-      }
-      @media (max-width: 768px) {
+        /* HEADER */
+
         header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 12px;
+          padding: 8px 10px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
         }
+
+        .logo img {
+          width: 110px;
+        }
+
         nav {
-          flex-wrap: wrap;
+          display: flex !important;
+          gap: 2px;
+          align-items: center;
+        }
+
+        nav a {
+          font-size: 6px;
+          padding: 2px 3px;
+          font-weight: 700;
+        }
+
+        .nav-sep {
+          font-size: 6px;
+        }
+
+        /* BANNER */
+
+        .page-banner {
+          min-height: 90px;
+          padding: 15px;
+        }
+
+        .page-banner h1 {
+          font-size: 14px;
+        }
+
+        /* MAIN */
+
+        .order-content {
+          max-width: 100%;
+          padding: 15px 8px 25px;
+        }
+
+        .section-heading {
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+
+        /* CART TABLE */
+
+        .cart-table thead th {
+          padding: 6px 4px;
+          font-size: 7px;
+        }
+
+        .cart-table tbody td {
+          padding: 6px 4px;
+          font-size: 6px;
+        }
+
+        .product-name {
+          font-size: 7px;
+          margin-bottom: 2px;
+        }
+
+        .pills-label,
+        .pills-count {
+          font-size: 5px;
+        }
+
+        /* TOTALS */
+
+        .totals-row td {
+          padding: 5px 4px;
+          font-size: 6px;
+        }
+
+        .totals-row.grand-total .total-label,
+        .totals-row.grand-total .total-value {
+          font-size: 7px;
+        }
+
+        /* FORM */
+
+        .form-field {
+          height: 22px;
+          padding: 4px 6px;
+          font-size: 6px;
+          margin-bottom: 6px;
+          border-radius: 2px;
+        }
+
+        textarea.form-field {
+          min-height: 40px;
+        }
+
+        .form-note {
+          font-size: 6px;
+          margin-bottom: 8px;
+        }
+
+        .submit-btn {
+          padding: 4px 12px;
+          font-size: 7px;
+          border-radius: 2px;
+        }
+
+        /* FOOTER */
+
+        footer {
+          padding: 15px 8px 8px;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
           gap: 8px;
         }
-        nav a {
-          padding: 8px 10px;
+
+        .footer-box h3 {
+          font-size: 9px;
+          margin-bottom: 4px;
         }
-        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
-          padding: 30px 5%;
+
+        .footer-box p,
+        .footer-box li,
+        .footer-box a {
+          font-size: 6px;
+          line-height: 1.4;
         }
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 18px;
+
+        .footer-box ul li {
+          gap: 3px;
         }
-      }    /* Footer text white override */
-    footer, .footer, .footer h1, .footer h2, .footer h3, .footer h4, .footer p, .footer span, .footer li, .footer a, footer a {
-      color: #fff !important;
-    }
-    .footer a, footer a {
-      color: #fff !important;
-      text-decoration: none !important;
-    }
-    .footer a:hover, footer a:hover {
-      color: #fff !important;
-    }
-</style>
+
+        .footer-box ul li::before {
+          font-size: 4px;
+        }
+
+        .copyright {
+          font-size: 6px;
+          margin-top: 8px;
+          padding-top: 6px;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+          right: 8px;
+          bottom: 8px;
+        }
+      }
+      /* Footer text white override */
+      footer,
+      .footer,
+      .footer h1,
+      .footer h2,
+      .footer h3,
+      .footer h4,
+      .footer p,
+      .footer span,
+      .footer li,
+      .footer a,
+      footer a {
+        color: #fff !important;
+      }
+      .footer a,
+      footer a {
+        color: #fff !important;
+        text-decoration: none !important;
+      }
+      .footer a:hover,
+      footer a:hover {
+        color: #fff !important;
+      }
+    </style>
   </head>
   <body>
     <!-- ===========================
      NAVBAR
 =========================== -->
     <header>
-  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
-  <nav>
-    <a href="index.html">HOME</a><span class="nav-sep">|</span>
-    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
-    <a href="cart.html">CART</a><span class="nav-sep">|</span>
-    <a href="oldorder.html">OLD ORDERS</a>
-  </nav>
-</header>
+      <div class="logo">
+        <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
+      </div>
+      <nav>
+        <a href="index.html">HOME</a><span class="nav-sep">|</span>
+        <a href="about.html">ABOUT US</a><span class="nav-sep">|</span
+        ><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+        <a href="cart.html">CART</a><span class="nav-sep">|</span>
+        <a href="oldorder.html">OLD ORDERS</a>
+      </nav>
+    </header>
 
     <!-- ===========================
      PAGE BANNER
@@ -549,7 +680,10 @@
       <div class="footer-grid">
         <div class="footer-box">
           <h3>About Us</h3>
-          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <p>
+            Syncore Pharmacy provides fast, secure, and trusted medicine
+            delivery with USA shipping and premium customer support.
+          </p>
           <a href="about.html" class="read-more">Read More</a>
         </div>
         <div class="footer-box">
@@ -565,11 +699,31 @@
         <div class="footer-box">
           <h3>Our Products</h3>
           <ul>
-            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
-            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
-            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
-            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
-            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+            <li>
+              <a href="product_overview.html?product_ID=11"
+                >Alprazolam-Ksalol Usa To Usa 1MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=5"
+                >Armodafinil Usa To Usa 150MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=2"
+                >Cialis USA to USA 20MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=15"
+                >Diazepam-Bensidine Usa To Usa 10MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=13"
+                >Lorazepam-Ativan Usa To Usa 2MG</a
+              >
+            </li>
           </ul>
         </div>
         <div class="footer-box">
@@ -579,7 +733,9 @@
           <p>📧 support@syncorepharma.com</p>
         </div>
       </div>
-      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+      <div class="copyright">
+        Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
+      </div>
     </footer>
 
     <a
@@ -761,8 +917,7 @@
             shippingCost: 0,
 
             totalCost: currentCart.reduce(
-              (sum, item) =>
-                sum + extractPrice(item.price),
+              (sum, item) => sum + extractPrice(item.price),
               0,
             ),
           };

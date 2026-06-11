@@ -1,289 +1,498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Product - Syncore Pharmacy</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product - Syncore Pharmacy</title>
     <link rel="icon" href="./assets/image/logo.png" type="image/png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #fff;
+        overflow-x: hidden;
+      }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#fff;overflow-x:hidden;}
-
-/* ===========================
+      /* ===========================
    NAVBAR
 =========================== */
-header{
-  width:100%;background:#fff;
-  padding:14px 7%;
-  display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 2px 8px rgba(0,0,0,0.07);
-  position:sticky;top:0;z-index:1000;
-}
-.logo{
-  font-size:22px;font-weight:700;color:#23479b;
-  display:flex;align-items:center;gap:10px;
-}
-nav{display:flex;gap:4px;align-items:center;}
-nav a{text-decoration:none;color:#111;font-weight:600;transition:.3s;font-size:14px;padding:6px 12px;}
-nav a:hover{color:#ff7300;}
-.nav-sep{color:#ccc;font-size:13px;}
+      header {
+        width: 100%;
+        background: #fff;
+        padding: 14px 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: #23479b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      nav a:hover {
+        color: #ff7300;
+      }
+      .nav-sep {
+        color: #ccc;
+        font-size: 13px;
+      }
 
-/* ===========================
+      /* ===========================
    PRODUCT BANNER
    — dynamic product name injected via JS into #productTitle
 =========================== */
-.product-banner{
-  width:100%;
-  min-height:230px;
-  /* Banner background image — replace URL with product-specific or category image if desired */
-  background:
-    linear-gradient(rgba(0,0,0,0.40),rgba(0,0,0,0.40)),
-    url('./assets/image/banner.png')
-    center top / cover no-repeat;
-  display:flex;
-  align-items:center;
-  padding:50px 8%;
-}
-.product-banner h1{
-  color:#fff;
-  font-size:34px;
-  font-weight:700;
-  letter-spacing:0.2px;
-}
+      .product-banner {
+        width: 100%;
+        min-height: 230px;
+        /* Banner background image — replace URL with product-specific or category image if desired */
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("./assets/image/banner.png") center top / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 50px 8%;
+      }
+      .product-banner h1 {
+        color: #fff;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
 
-/* ===========================
+      /* ===========================
    PRODUCT TABLE SECTION
    — rows injected via JS into #productTableBody
 =========================== */
-.product-section{
-  width:100%;
-  padding:50px 8% 80px;
-  background:#fff;
-}
+      .product-section {
+        width: 100%;
+        padding: 50px 8% 80px;
+        background: #fff;
+      }
 
-.product-table{
-  width:100%;
-  border-collapse:collapse;
-  background:#fff;
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow:0 2px 16px rgba(0,0,0,0.09);
-}
+      .product-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.09);
+      }
 
-/* Table header */
-.product-table thead tr{background:#2f65e6;}
-.product-table thead th{
-  padding:16px 18px;
-  text-align:left;
-  font-size:15px;
-  font-weight:600;
-  color:#fff;
-  letter-spacing:0.2px;
-}
+      /* Table header */
+      .product-table thead tr {
+        background: #2f65e6;
+      }
+      .product-table thead th {
+        padding: 16px 18px;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0.2px;
+      }
 
-/* Table body rows */
-.product-table tbody tr{
-  border-bottom:1px solid #e8eef8;
-  transition:background .2s;
-}
-.product-table tbody tr:last-child{border-bottom:none;}
-.product-table tbody tr:hover{background:#f4f7ff;}
+      /* Table body rows */
+      .product-table tbody tr {
+        border-bottom: 1px solid #e8eef8;
+        transition: background 0.2s;
+      }
+      .product-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .product-table tbody tr:hover {
+        background: #f4f7ff;
+      }
 
-.product-table tbody td{
-  padding:20px 18px;
-  font-size:14.5px;
-  color:#333;
-  vertical-align:middle;
-}
+      .product-table tbody td {
+        padding: 20px 18px;
+        font-size: 14.5px;
+        color: #333;
+        vertical-align: middle;
+      }
 
-/* Pills column */
-.td-pills{
-  font-weight:700;
-  font-size:16px;
-  color:#111;
-  width:80px;
-}
+      /* Pills column */
+      .td-pills {
+        font-weight: 700;
+        font-size: 16px;
+        color: #111;
+        width: 80px;
+      }
 
-/* Dosage column */
-.td-dosage{line-height:1.75;}
-.td-dosage strong{display:block;font-weight:600;color:#111;font-size:14.5px;}
-.td-dosage span{display:block;color:#555;font-size:13.5px;}
+      /* Dosage column */
+      .td-dosage {
+        line-height: 1.75;
+      }
+      .td-dosage strong {
+        display: block;
+        font-weight: 600;
+        color: #111;
+        font-size: 14.5px;
+      }
+      .td-dosage span {
+        display: block;
+        color: #555;
+        font-size: 13.5px;
+      }
 
-/* Price column */
-.td-price{
-  font-weight:700;
-  font-size:16px;
-  color:#111;
-  white-space:nowrap;
-  width:120px;
-}
+      /* Price column */
+      .td-price {
+        font-weight: 700;
+        font-size: 16px;
+        color: #111;
+        white-space: nowrap;
+        width: 120px;
+      }
 
-/* Per pill column */
-.td-perpill{
-  font-size:14.5px;
-  color:#333;
-  width:100px;
-}
+      /* Per pill column */
+      .td-perpill {
+        font-size: 14.5px;
+        color: #333;
+        width: 100px;
+      }
 
-/* Payment / BUY column */
-.td-payment{width:140px;text-align:right;}
+      /* Payment / BUY column */
+      .td-payment {
+        width: 140px;
+        text-align: right;
+      }
 
-.buy-btn{
-  display:inline-block;
-  background:#2f65e6;
-  color:#fff;
-  border:none;
-  padding:11px 30px;
-  border-radius:50px;
-  font-size:14px;
-  font-weight:700;
-  cursor:pointer;
-  text-decoration:none;
-  transition:.25s;
-  white-space:nowrap;
-  letter-spacing:0.5px;
-}
-.buy-btn:hover{background:#1a4dc4;transform:scale(1.04);}
+      .buy-btn {
+        display: inline-block;
+        background: #2f65e6;
+        color: #fff;
+        border: none;
+        padding: 11px 30px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.25s;
+        white-space: nowrap;
+        letter-spacing: 0.5px;
+      }
+      .buy-btn:hover {
+        background: #1a4dc4;
+        transform: scale(1.04);
+      }
 
-/* ===========================
+      /* ===========================
    FOOTER
 =========================== */
-footer{background:#0a0d1a;color:#fff;padding:52px 7% 20px;}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px;}
-.footer-box h3{color:#2f65e6;margin-bottom:14px;font-size:18px;font-weight:700;}
-.footer-box p,.footer-box li{color:#ccc;line-height:1.85;list-style:none;font-size:13.5px;}
-.footer-box ul li{margin-bottom:9px;}
-.copyright{text-align:center;margin-top:34px;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;color:#aaa;font-size:13px;}
+      footer {
+        background: #0a0d1a;
+        color: #fff;
+        padding: 52px 7% 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 34px;
+      }
+      .footer-box h3 {
+        color: #2f65e6;
+        margin-bottom: 14px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .footer-box p,
+      .footer-box li {
+        color: #ccc;
+        line-height: 1.85;
+        list-style: none;
+        font-size: 13.5px;
+      }
+      .footer-box ul li {
+        margin-bottom: 9px;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 34px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 20px;
+        color: #aaa;
+        font-size: 13px;
+      }
 
-/* ===========================
+      /* ===========================
    WHATSAPP BUTTON
 =========================== */
-.whatsapp{
-  position:fixed;right:22px;bottom:22px;
-  width:58px;height:58px;
-  background:#25D366;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;color:#fff;text-decoration:none;
-  box-shadow:0 8px 22px rgba(0,0,0,0.18);z-index:999;
-  transition:.25s;
-}
-.whatsapp:hover{transform:scale(1.1);}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-@media(max-width:900px){
-  /* Hide Per Pill column on smaller screens */
-  .product-table thead th:nth-child(4),
-  .product-table tbody td:nth-child(4){display:none;}
-  .product-banner h1{font-size:26px;}
-}
-@media(max-width:768px){
-  nav{display:none;}
-  .product-banner{padding:40px 5%;min-height:160px;}
-  .product-banner h1{font-size:22px;}
-  .product-section{padding:30px 5% 60px;}
-  .product-table thead th,
-  .product-table tbody td{padding:14px 12px;font-size:13px;}
-  .buy-btn{padding:9px 20px;font-size:13px;}
-}
-
-
-      .logo img {
-        width: 100px;
-        max-width: 100%;
-        height: auto;
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 58px;
+        height: 58px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+        z-index: 999;
+        transition: 0.25s;
       }
+      .whatsapp:hover {
+        transform: scale(1.1);
+      }
+
+      /* ===========================
+      RESPONSIVE
+    =========================== */
+
       @media (max-width: 768px) {
+        /* HEADER */
+
         header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 12px;
+          padding: 8px 12px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
         }
+
+        .logo img {
+          width: 110px;
+        }
+
         nav {
-          flex-wrap: wrap;
+          display: flex !important;
+          gap: 2px;
+        }
+
+        nav a {
+          font-size: 6px;
+          padding: 2px 4px;
+          font-weight: 700;
+        }
+
+        .nav-sep {
+          font-size: 6px;
+        }
+
+        /* BANNER */
+
+        .product-banner {
+          min-height: 90px;
+          padding: 20px;
+        }
+
+        .product-banner h1 {
+          font-size: 14px;
+          line-height: 1.2;
+        }
+
+        /* SECTION */
+
+        .product-section {
+          padding: 20px 8px;
+        }
+
+        /* TABLE */
+
+        .product-table {
+          box-shadow: none;
+        }
+
+        .product-table thead th {
+          font-size: 8px;
+          padding: 6px 4px;
+        }
+
+        .product-table tbody td {
+          font-size: 7px;
+          padding: 6px 4px;
+        }
+
+        .td-pills {
+          font-size: 8px;
+          width: 35px;
+        }
+
+        .td-dosage strong {
+          font-size: 7px;
+          line-height: 1.2;
+        }
+
+        .td-dosage span {
+          font-size: 6px;
+          line-height: 1.2;
+        }
+
+        .td-price {
+          font-size: 7px;
+          width: 55px;
+        }
+
+        .td-perpill {
+          font-size: 7px;
+          width: 40px;
+        }
+
+        /* BUY BUTTON */
+
+        .buy-btn {
+          padding: 3px 10px;
+          font-size: 6px;
+          border-radius: 20px;
+          min-width: 40px;
+        }
+
+        /* FOOTER */
+
+        footer {
+          padding: 15px 8px 8px;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
           gap: 8px;
         }
-        nav a {
-          padding: 8px 10px;
-        }
-        .hero, .hero-banner, .cart-banner, .product-banner, .product-section {
-          padding: 30px 5%;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 18px;
-        }
-      }    /* Footer text white override */
-    footer, .footer, .footer h1, .footer h2, .footer h3, .footer h4, .footer p, .footer span, .footer li, .footer a, footer a {
-      color: #fff !important;
-    }
-    .footer a, footer a {
-      color: #fff !important;
-      text-decoration: none !important;
-    }
-    .footer a:hover, footer a:hover {
-      color: #fff !important;
-    }
-</style>
-</head>
-<body>
 
-<!-- ===========================
+        .footer-box h3 {
+          font-size: 9px;
+          margin-bottom: 4px;
+        }
+
+        .footer-box p,
+        .footer-box li,
+        .footer-box a {
+          font-size: 6px;
+          line-height: 1.4;
+        }
+
+        .copyright {
+          margin-top: 8px;
+          padding-top: 6px;
+          font-size: 6px;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+          right: 8px;
+          bottom: 8px;
+        }
+      }
+
+      /* Footer text white override */
+      footer,
+      .footer,
+      .footer h1,
+      .footer h2,
+      .footer h3,
+      .footer h4,
+      .footer p,
+      .footer span,
+      .footer li,
+      .footer a,
+      footer a {
+        color: #fff !important;
+      }
+      .footer a,
+      footer a {
+        color: #fff !important;
+        text-decoration: none !important;
+      }
+      .footer a:hover,
+      footer a:hover {
+        color: #fff !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===========================
      NAVBAR
 =========================== -->
-<header>
-  <div class="logo"><img src="./assets/image/logo.png" alt="Syncore Pharmacy" /></div>
-  <nav>
-    <a href="index.html">HOME</a><span class="nav-sep">|</span>
-    <a href="about.html">ABOUT US</a><span class="nav-sep">|</span><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
-    <a href="cart.html">CART</a><span class="nav-sep">|</span>
-    <a href="oldorder.html">OLD ORDERS</a>
-  </nav>
-</header>
+    <header>
+      <div class="logo">
+        <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
+      </div>
+      <nav>
+        <a href="index.html">HOME</a><span class="nav-sep">|</span>
+        <a href="about.html">ABOUT US</a><span class="nav-sep">|</span
+        ><a href="blog.html">BLOG</a><span class="nav-sep">|</span>
+        <a href="cart.html">CART</a><span class="nav-sep">|</span>
+        <a href="oldorder.html">OLD ORDERS</a>
+      </nav>
+    </header>
 
-<!-- ===========================
+    <!-- ===========================
      PRODUCT BANNER
      — #productTitle is set dynamically by JS
 =========================== -->
-<section class="product-banner">
-  <h1 id="productTitle">Loading...</h1>
-</section>
+    <section class="product-banner">
+      <h1 id="productTitle">Loading...</h1>
+    </section>
 
-<!-- ===========================
+    <!-- ===========================
      PRICING TABLE
      — #productTableBody rows injected by JS
 =========================== -->
-<section class="product-section">
-  <table class="product-table">
-    <thead>
-      <tr>
-        <th>Pills</th>
-        <th>Dosage</th>
-        <th>Price Per Box</th>
-<th>Price Per Pill</th>
-        <th>Payment</th>
-      </tr>
-    </thead>
-    <tbody id="productTableBody">
-      <!-- Rows injected by renderProduct() below -->
-    </tbody>
-  </table>
-</section>
+    <section class="product-section">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Pills</th>
+            <th>Dosage</th>
+            <th>Price Per Box</th>
+            <th>Price Per Pill</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Rows injected by renderProduct() below -->
+        </tbody>
+      </table>
+    </section>
 
-<!-- ===========================
+    <!-- ===========================
      FOOTER
 =========================== -->
-<footer>
+    <footer>
       <div class="footer-grid">
         <div class="footer-box">
           <h3>About Us</h3>
-          <p>Syncore Pharmacy provides fast, secure, and trusted medicine delivery with USA shipping and premium customer support.</p>
+          <p>
+            Syncore Pharmacy provides fast, secure, and trusted medicine
+            delivery with USA shipping and premium customer support.
+          </p>
           <a href="about.html" class="read-more">Read More</a>
         </div>
         <div class="footer-box">
@@ -299,11 +508,31 @@ footer{background:#0a0d1a;color:#fff;padding:52px 7% 20px;}
         <div class="footer-box">
           <h3>Our Products</h3>
           <ul>
-            <li><a href="product_overview.html?product_ID=11">Alprazolam-Ksalol Usa To Usa 1MG</a></li>
-            <li><a href="product_overview.html?product_ID=5">Armodafinil Usa To Usa 150MG</a></li>
-            <li><a href="product_overview.html?product_ID=2">Cialis USA to USA 20MG</a></li>
-            <li><a href="product_overview.html?product_ID=15">Diazepam-Bensidine Usa To Usa 10MG</a></li>
-            <li><a href="product_overview.html?product_ID=13">Lorazepam-Ativan Usa To Usa 2MG</a></li>
+            <li>
+              <a href="product_overview.html?product_ID=11"
+                >Alprazolam-Ksalol Usa To Usa 1MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=5"
+                >Armodafinil Usa To Usa 150MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=2"
+                >Cialis USA to USA 20MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=15"
+                >Diazepam-Bensidine Usa To Usa 10MG</a
+              >
+            </li>
+            <li>
+              <a href="product_overview.html?product_ID=13"
+                >Lorazepam-Ativan Usa To Usa 2MG</a
+              >
+            </li>
           </ul>
         </div>
         <div class="footer-box">
@@ -313,121 +542,130 @@ footer{background:#0a0d1a;color:#fff;padding:52px 7% 20px;}
           <p>📧 support@syncorepharma.com</p>
         </div>
       </div>
-      <div class="copyright">Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.</div>
+      <div class="copyright">
+        Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
+      </div>
     </footer>
 
-<a href="https://wa.me/12095937171" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
+    <a
+      href="https://wa.me/12095937171"
+      class="whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      >💬</a
+    >
 
-<script>
-function getParam(name) {
-  return new URLSearchParams(window.location.search).get(name);
-}
+    <script>
+      function getParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+      }
 
-async function addToCart(
-  productId,
-  categoryId,
-  name,
-  quantity,
-  mg,
-  price,
-  imageUrl
-) {
-  try {
-    const response = await fetch("/add-to-cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify({
+      async function addToCart(
         productId,
         categoryId,
         name,
         quantity,
         mg,
         price,
-        image_url: imageUrl
-      })
-    });
+        imageUrl,
+      ) {
+        try {
+          const response = await fetch("/add-to-cart", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              productId,
+              categoryId,
+              name,
+              quantity,
+              mg,
+              price,
+              image_url: imageUrl,
+            }),
+          });
 
-    const result = await response.json();
+          const result = await response.json();
 
-    if (result.success) {
-      alert("Product added to cart successfully!");
+          if (result.success) {
+            alert("Product added to cart successfully!");
 
-       // optional redirect
-      window.location.href = "/cart";
-      
-    } else {
-      alert(result.message || "Failed to add product");
-    }
+            // optional redirect
+            window.location.href = "/cart";
+          } else {
+            alert(result.message || "Failed to add product");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Error adding product to cart");
+        }
+      }
 
-  } catch (err) {
-    console.error(err);
-    alert("Error adding product to cart");
-  }
-}
+      async function loadProduct() {
+        const productId = getParam("product_ID");
 
-async function loadProduct() {
-  const productId = getParam("product_ID");
+        if (!productId) {
+          document.getElementById("productTitle").textContent =
+            "Product Not Found";
+          return;
+        }
 
-  if (!productId) {
-    document.getElementById("productTitle").textContent =
-      "Product Not Found";
-    return;
-  }
+        try {
+          // Load product
+          const productResponse = await fetch(
+            `/api/product?product_ID=${productId}`,
+          );
 
-  try {
-    // Load product
-    const productResponse = await fetch(
-      `/api/product?product_ID=${productId}`
-    );
+          const productData = await productResponse.json();
+          // console.log("Product Data:", productData);
+          if (!productData.product) {
+            document.getElementById("productTitle").textContent =
+              "Product Not Found";
+            return;
+          }
 
-    const productData = await productResponse.json();
-    // console.log("Product Data:", productData);
-    if (!productData.product) {
-      document.getElementById("productTitle").textContent =
-        "Product Not Found";
-      return;
-    }
+          const product = productData.product;
 
-    const product = productData.product;
+          // Banner Title
+          document.title = product.product_name + " - Syncore Pharmacy";
+          document.getElementById("productTitle").textContent =
+            product.product_name;
 
-    // Banner Title
-    document.title = product.product_name + " - Syncore Pharmacy";
-    document.getElementById("productTitle").textContent =
-      product.product_name;
+          // Variants Table
+          const tbody = document.getElementById("productTableBody");
+          tbody.innerHTML = "";
 
-    // Variants Table
-    const tbody = document.getElementById("productTableBody");
-    tbody.innerHTML = "";
+          productData.variants.forEach((v) => {
+            console.log("Variant:", v);
+            const qty = String(v.qty || v.unit_value || 0);
 
-    productData.variants.forEach(v => {
-  console.log("Variant:", v);
-  const qty = String(v.qty || v.unit_value || 0);
+            //  const pricePerBox = parseFloat(
+            //   String(v.offer_price || v.price_per_box || "0")
+            //     .replace("$", "")
+            //     .replace(",", "")
+            // );
+            const pricePerBox =
+              parseFloat(
+                String(
+                  v.offer_price &&
+                    v.offer_price !== null &&
+                    v.offer_price !== ""
+                    ? v.offer_price
+                    : v.price_per_box,
+                ).replace(/[^0-9.-]+/g, ""),
+              ) || 0;
 
-//  const pricePerBox = parseFloat(
-//   String(v.offer_price || v.price_per_box || "0")
-//     .replace("$", "")
-//     .replace(",", "")
-// );
-const pricePerBox = parseFloat(
-String(
-(v.offer_price && v.offer_price !== null && v.offer_price !== "" )
-? v.offer_price
-: v.price_per_box
-).replace(/[^0-9.-]+/g, "")
-) || 0;
+            const pricePerPill = parseFloat(
+              String(v.price_per_pill || "0")
+                .replace("$", "")
+                .replace("Per Pill", "")
+                .trim(),
+            );
+            const tr = document.createElement("tr");
 
-const pricePerPill = parseFloat(
-  String(v.price_per_pill || "0")
-    .replace("$", "")
-    .replace("Per Pill", "")
-    .trim()
-);
-  const tr = document.createElement("tr");
-
-  tr.innerHTML = `
+            tr.innerHTML = `
     <td class="td-pills">${qty}</td>
 
     <td class="td-dosage">
@@ -463,22 +701,17 @@ const pricePerPill = parseFloat(
     </td>
   `;
 
-  tbody.appendChild(tr);
-});
-  } catch (error) {
-    console.error(error);
+            tbody.appendChild(tr);
+          });
+        } catch (error) {
+          console.error(error);
 
-    document.getElementById("productTitle").textContent =
-      "Failed To Load Product";
-  }
-}
+          document.getElementById("productTitle").textContent =
+            "Failed To Load Product";
+        }
+      }
 
-loadProduct();
-
-
-
-
-
-</script>
-</body>
+      loadProduct();
+    </script>
+  </body>
 </html>
