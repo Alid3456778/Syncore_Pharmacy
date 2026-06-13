@@ -224,6 +224,15 @@
         transition: 0.25s;
         background: #fff;
       }
+      .category-header.premium-category {
+        border-color: #fbbf24;
+        color: #fbbf24;
+      }
+      .category-header.premium-category:hover,
+      .category-header.premium-category.open {
+        background: #fbbf24;
+        color: #111;
+      }
       .category-header:hover,
       .category-header.open {
         background: #2f65e6;
@@ -477,10 +486,10 @@
         gap: 16px;
         margin-bottom: 12px;
       }
-      .footer-payments img{
-         width: 24px;
-          height: 24px;
-          background: transparent;
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
       }
 
       /* ===== WHATSAPP ===== */
@@ -764,18 +773,18 @@
           padding-top: 8px;
         }
 
-          .footer-payments {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .footer-payments img{
-         width: 14px;
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
           height: 14px;
           background: transparent;
-      }
+        }
 
         .whatsapp {
           width: 42px;
@@ -814,13 +823,9 @@
     <!-- ===== HEADER ===== -->
     <header>
       <a href="index.html">
-
         <div class="logo">
-
           <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
-
         </div>
-
       </a>
       <nav>
         <a href="index.html">HOME</a><span class="nav-sep">|</span>
@@ -1071,12 +1076,20 @@
         </div>
       </div>
       <div class="copyright">
-       <div class="footer-payments">
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png" />
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"/>
-       </div>
+        <div class="footer-payments">
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"
+          />
+        </div>
         Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
       </div>
     </footer>
@@ -1113,6 +1126,7 @@
             const categoryId = product.category_id;
             const categoryNames = {
               1: "USA Premium Quality",
+              11: "UK Premium Quality",
               2: "General Health",
               3: "Pain Relief",
               4: "Cardiac Care",
@@ -1157,13 +1171,24 @@
       function renderCategories() {
         categoryContainer.innerHTML = "";
 
-        Object.values(categoriesMap).forEach((category) => {
+        const categories = Object.values(categoriesMap);
+
+        categories.sort((a, b) => {
+          if (a.id === 1) return -1;
+          if (b.id === 1) return 1;
+
+          if (a.id === 11 && b.id !== 1) return -1;
+          if (b.id === 11 && a.id !== 1) return 1;
+
+          return a.id - b.id;
+        });
+
+        categories.forEach((category) => {
           const box = document.createElement("div");
 
           box.className = "category-box active";
-
           box.innerHTML = `
-      <div class="category-header open"
+      <div class="category-header open ${category.id === 1 || category.id === 11 ? "premium-category" : ""}"
            data-category="${category.id}">
         <span>${category.name}</span>
         <span class="arrow">&#9658;</span>
@@ -1217,6 +1242,7 @@
           card.className = "product-card";
 
           card.innerHTML = `
+          <a href="/product_overview.html?product_ID=${product.product_id}">
       <div class="product-top">
         ${product.product_name}
       </div>
@@ -1249,6 +1275,7 @@
           </a>`
         }
       </div>
+    </a>
     `;
 
           productGrid.appendChild(card);

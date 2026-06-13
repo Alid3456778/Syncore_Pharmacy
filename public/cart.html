@@ -652,7 +652,6 @@
             <thead>
               <tr>
                 <th>Payment</th>
-                <th>Discount</th>
                 <th>Fee</th>
                 <th>Amount</th>
                 <th>Checkout</th>
@@ -802,8 +801,8 @@ PAYMENT METHODS
       let cart = [];
 
       /* =========================================
-PRICE HELPER
-========================================= */
+      PRICE HELPER
+      ========================================= */
 
       function extractPrice(value) {
         if (!value) return 0;
@@ -812,8 +811,8 @@ PRICE HELPER
       }
 
       /* =========================================
-LOAD CART
-========================================= */
+        LOAD CART
+        ========================================= */
 
       async function loadCart() {
         try {
@@ -839,6 +838,8 @@ LOAD CART
             image: item.image_url || "",
 
             unitPrice: extractPrice(item.price),
+
+            category_id: Number(item.category_id),
           }));
 
           renderCart();
@@ -856,8 +857,8 @@ LOAD CART
       }
 
       /* =========================================
-SUBTOTAL
-========================================= */
+      SUBTOTAL
+      ========================================= */
 
       function getSubTotal() {
         return cart.reduce(
@@ -867,8 +868,8 @@ SUBTOTAL
       }
 
       /* =========================================
-RENDER CART
-========================================= */
+      RENDER CART
+      ========================================= */
 
       function renderCart() {
         const tbody = document.getElementById("cartTableBody");
@@ -938,10 +939,22 @@ RENDER CART
 
         const subTotal = getSubTotal();
 
-        const shipping = 29;
-        const discount = 29;
+        let shipping = 29;
 
-        const grandTotal = subTotal + shipping - discount;
+// Check if cart contains USA Premium or UK Premium
+const hasPremiumProduct = cart.some(
+  item =>
+    Number(item.category_id) === 1 ||
+    Number(item.category_id) === 11
+);
+
+if (hasPremiumProduct) {
+  shipping = 0;
+}
+
+const discount = 0;
+
+const grandTotal = subTotal + shipping ;
 
         totalsTable.innerHTML = `
     <tr>
@@ -951,13 +964,12 @@ RENDER CART
 
     <tr>
         <td class="label">Shipping & Handling</td>
-        <td class="value">$${shipping.toFixed(2)}</td>
+        <td class="value">${shipping === 0
+    ? "Free Shipping"
+    : `${shipping.toFixed(2)}`}</td>
     </tr>
 
-    <tr>
-        <td class="label">Discount</td>
-        <td class="value">-$${discount.toFixed(2)}</td>
-    </tr>
+   
 
     <tr class="grand-total">
         <td class="label">Grand Total</td>
@@ -1017,7 +1029,7 @@ PAYMENTS
 
         paymentMethods.forEach((method) => {
           const discountAmt = (grandTotal * method.discount) / 100;
-
+          
           const finalAmt = grandTotal - discountAmt;
 
           tbody.innerHTML += `
@@ -1033,14 +1045,10 @@ PAYMENTS
                 </span>
             </td>
 
-            <td>
-                -${method.discount}%
-            </td>
-
             <td>-</td>
 
             <td>
-                $${finalAmt.toFixed(2)}
+                $${grandTotal.toFixed(2)}
             </td>
 
             <td>
@@ -1058,8 +1066,8 @@ PAYMENTS
       }
 
       /* =========================================
-INIT
-========================================= */
+      INIT
+      ========================================= */
 
       loadCart();
     </script>

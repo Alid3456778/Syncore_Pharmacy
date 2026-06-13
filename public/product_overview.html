@@ -47,7 +47,7 @@
         align-items: center;
         gap: 10px;
       }
-       .logo img {
+      .logo img {
         width: 100px;
       }
       nav {
@@ -295,17 +295,17 @@
       footer a:hover {
         color: #fff !important;
       }
-          .footer-payments {
+      .footer-payments {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 16px;
         margin-bottom: 12px;
       }
-      .footer-payments img{
-         width: 24px;
-          height: 24px;
-          background: transparent;
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
       }
 
       /* ===========================
@@ -447,22 +447,20 @@
           right: 8px;
           bottom: 8px;
         }
-           .footer-payments {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .footer-payments img{
-         width: 14px;
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
           height: 14px;
           background: transparent;
+        }
       }
-      }
-
-      
-</style>
+    </style>
   </head>
   <body>
     <!-- ===========================
@@ -470,13 +468,9 @@
 =========================== -->
     <header>
       <a href="index.html">
-
         <div class="logo">
-
           <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
-
         </div>
-
       </a>
       <nav>
         <a href="index.html">HOME</a><span class="nav-sep">|</span>
@@ -577,12 +571,20 @@
         </div>
       </div>
       <div class="copyright">
-       <div class="footer-payments">
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png" />
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"/>
-       </div>
+        <div class="footer-payments">
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"
+          />
+        </div>
         Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
       </div>
     </footer>
@@ -677,15 +679,15 @@
           const tbody = document.getElementById("productTableBody");
           tbody.innerHTML = "";
 
+          // Sort by pills quantity ascending
+          productData.variants.sort((a, b) => {
+            return Number(a.qty || 0) - Number(b.qty || 0);
+          });
+
           productData.variants.forEach((v) => {
-            console.log("Variant:", v);
+            // console.log("Variant:", v);
             const qty = String(v.qty || v.unit_value || 0);
 
-            //  const pricePerBox = parseFloat(
-            //   String(v.offer_price || v.price_per_box || "0")
-            //     .replace("$", "")
-            //     .replace(",", "")
-            // );
             const pricePerBox =
               parseFloat(
                 String(
@@ -710,7 +712,7 @@
 
     <td class="td-dosage">
       <strong>${product.product_name}</strong>
-      <span>${v.unit_type || ""}</span>
+      <span>${v.unit_value || ""} ${v.unit_type || ""} </span>
       <span>${v.delivery_time || ""}</span>
     </td>
 
