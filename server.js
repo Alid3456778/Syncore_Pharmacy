@@ -196,6 +196,9 @@ app.post("/api/checkout", async (req, res) => {
     );
     const userId = userRes.rows[0].id;
 
+    // This preserves the customer data as it was at order time
+    const SOURCE = process.env.SOURCE || "syncore"; // set per server
+
     // 2) ✅ Insert order WITH customer snapshot
     // This preserves the customer data as it was at order time
     const orderRes = await client.query(
@@ -213,8 +216,9 @@ app.post("/api/checkout", async (req, res) => {
         customer_apartment,
         customer_city,
         customer_state,
-        customer_zip_code
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+        customer_zip_code,
+        source   -- ✅ NEW
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15)
       RETURNING order_id`,
       [
         userId,
@@ -231,6 +235,7 @@ app.post("/api/checkout", async (req, res) => {
         billingCity,
         billingState,
         billingZip,
+        SOURCE,   // ✅ THIS IS THE KEY
       ]
     );
     const orderId = orderRes.rows[0].order_id;
