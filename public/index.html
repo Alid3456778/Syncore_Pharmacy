@@ -492,11 +492,44 @@
         background: transparent;
       }
 
+      .search-box {
+        margin-bottom: 20px;
+      }
 
+      .search-box input {
+        width: 100%;
+        height: 48px;
+        border: 2px solid #2f65e6;
+        border-radius: 8px;
+        padding: 0 16px;
+        font-size: 14px;
+        font-weight: 500;
+        outline: none;
+        background: #fff;
+        transition: 0.3s;
+      }
+
+      .search-box input:focus {
+        box-shadow: 0 0 0 4px rgba(47, 101, 230, 0.12);
+      }
+
+      .search-box input::placeholder {
+        color: #999;
+      }
 
       /* ===== RESPONSIVE ===== */
 
       @media (max-width: 768px) {
+        .search-box {
+          margin-bottom: 10px;
+        }
+
+        .search-box input {
+          height: 32px;
+          font-size: 10px;
+          padding: 0 10px;
+          border-radius: 6px;
+        }
         header {
           padding: 8px 10px;
         }
@@ -989,6 +1022,13 @@
 
       <!-- PRODUCTS -->
       <div class="products">
+        <div class="search-box">
+          <input
+            type="text"
+            id="productSearch"
+            placeholder="Search medicines..."
+          />
+        </div>
         <h2 class="products-title">Our Product</h2>
         <div class="product-scroll">
           <div class="product-grid" id="productGrid"></div>
@@ -1083,18 +1123,19 @@
 
     <script>
       window.$crisp = [];
-window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
-(function () {
-  var d = document;
-  var s = d.createElement("script");
-  s.src = "https://client.crisp.chat/l.js";
-  s.async = 1;
-  d.getElementsByTagName("head")[0].appendChild(s);
-})();
+      window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
+      (function () {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
       const categoryContainer = document.getElementById("categoryContainer");
       const productGrid = document.getElementById("productGrid");
 
       let allProducts = [];
+      let currentProducts = [];
       let categoriesMap = {};
 
       // ============================================
@@ -1218,6 +1259,7 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
       // RENDER PRODUCTS
       // ============================================
       function renderProducts(products) {
+        currentProducts = products;
         productGrid.innerHTML = "";
         // console.log("Rendering products:", products);
         products.forEach((product) => {
@@ -1269,6 +1311,28 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
           productGrid.appendChild(card);
         });
       }
+
+      document.addEventListener("input", (e) => {
+        if (e.target.id !== "productSearch") return;
+
+        const search = e.target.value.toLowerCase().trim();
+
+        // If search box is empty, show current category
+        if (!search) {
+          renderProducts(currentProducts);
+          return;
+        }
+
+        // Search ALL products
+        const filtered = allProducts.filter((product) => {
+          return (
+            product.product_name?.toLowerCase().includes(search) ||
+            product.trade_names?.toLowerCase().includes(search)
+          );
+        });
+
+        renderProducts(filtered);
+      });
 
       // ============================================
       // START
