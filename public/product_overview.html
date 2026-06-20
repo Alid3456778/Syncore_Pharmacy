@@ -599,14 +599,14 @@
 
     <script>
       window.$crisp = [];
-window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
-(function () {
-  var d = document;
-  var s = d.createElement("script");
-  s.src = "https://client.crisp.chat/l.js";
-  s.async = 1;
-  d.getElementsByTagName("head")[0].appendChild(s);
-})();
+      window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
+      (function () {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
       function getParam(name) {
         return new URLSearchParams(window.location.search).get(name);
       }
@@ -697,59 +697,50 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
             // console.log("Variant:", v);
             const qty = String(v.qty || v.unit_value || 0);
 
-            const pricePerBox =
-              parseFloat(
-                String(
-                  v.offer_price &&
-                    v.offer_price !== null &&
-                    v.offer_price !== ""
-                    ? v.offer_price
-                    : v.price_per_box,
-                ).replace(/[^0-9.-]+/g, ""),
-              ) || 0;
+            const displayPrice =
+              v.offer_price && v.offer_price !== null && v.offer_price !== ""
+                ? v.offer_price
+                : v.price_per_box || "";
 
-            const pricePerPill = parseFloat(
-              String(v.price_per_pill || "0")
-                .replace("$", "")
-                .replace("Per Pill", "")
-                .trim(),
-            );
+            const displayPerPill = v.price_per_pill || "";
+            const numericPrice =
+              parseFloat(String(displayPrice).replace(/[^0-9.-]+/g, "")) || 0;
             const tr = document.createElement("tr");
 
             tr.innerHTML = `
-    <td class="td-pills">${qty}</td>
+              <td class="td-pills">${qty}</td>
 
-    <td class="td-dosage">
-      <strong>${product.product_name}</strong>
-      <span>${v.unit_value || ""} ${v.unit_type || ""} </span>
-      <span>${v.delivery_time || ""}</span>
-    </td>
+              <td class="td-dosage">
+                <strong>${product.product_name}</strong>
+                <span>${v.unit_value || ""} ${v.unit_type || ""} </span>
+                <span>${v.delivery_time || ""}</span>
+              </td>
 
-    <td class="td-price">
-      $${pricePerBox.toFixed(2)}
-    </td>
+              <td class="td-price">
+                ${displayPrice}
+              </td>
 
-    <td class="td-perpill">
-      $${pricePerPill.toFixed(2)}
-    </td>
-    
+              <td class="td-perpill">
+                ${displayPerPill}
+              </td>
+              
 
-    <td class="td-payment">
-      <button
-        class="buy-btn"
-        onclick="addToCart(
-          ${product.product_id},
-          ${product.category_id},
-          '${product.product_name.replace(/'/g, "\\'")}',
-          '${qty}',
-          '${v.unit_value || ""}',
-          '${pricePerBox}',
-          '${product.image_url || ""}'
-        )"
-      >
-        BUY
-      </button>
-    </td>
+              <td class="td-payment">
+                <button
+                  class="buy-btn"
+                  onclick="addToCart(
+                    ${product.product_id},
+                    ${product.category_id},
+                    '${product.product_name.replace(/'/g, "\\'")}',
+                    '${qty}',
+                    '${v.unit_value || ""}',
+                    '${numericPrice}',
+                    '${product.image_url || ""}'
+                  )"
+                >
+                  BUY
+                </button>
+              </td>
   `;
 
             tbody.appendChild(tr);

@@ -48,7 +48,7 @@
         align-items: center;
         gap: 10px;
       }
-       .logo img {
+      .logo img {
         width: 100px;
       }
       nav {
@@ -341,7 +341,6 @@
         transform: scale(1.1);
       }
 
-      
       /* Footer text white override */
       footer,
       .footer,
@@ -365,17 +364,17 @@
       footer a:hover {
         color: #fff !important;
       }
-          .footer-payments {
+      .footer-payments {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 16px;
         margin-bottom: 12px;
       }
-      .footer-payments img{
-         width: 24px;
-          height: 24px;
-          background: transparent;
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
       }
 
       /* ===========================
@@ -530,18 +529,18 @@
           margin-top: 8px;
           padding-top: 6px;
         }
-           .footer-payments {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .footer-payments img{
-         width: 14px;
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
           height: 14px;
           background: transparent;
-      }
+        }
 
         /* WHATSAPP */
 
@@ -553,8 +552,7 @@
           bottom: 8px;
         }
       }
-      
-</style>
+    </style>
   </head>
   <body>
     <!-- ===========================
@@ -562,13 +560,9 @@
 =========================== -->
     <header>
       <a href="index.html">
-
         <div class="logo">
-
           <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
-
         </div>
-
       </a>
       <nav>
         <a href="index.html">HOME</a><span class="nav-sep">|</span>
@@ -628,7 +622,7 @@
       <div class="shipping-section">
         <h2 class="section-heading">Shipping Address</h2>
 
-        <form id="checkout-form" onsubmit="handleSubmit(event)" novalidate>
+        <form id="checkout-form" >
           <input
             class="form-field"
             type="email"
@@ -770,16 +764,24 @@
         </div>
       </div>
       <div class="copyright">
-       <div class="footer-payments">
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png" />
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"/>
-       </div>
+        <div class="footer-payments">
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"
+          />
+        </div>
         Copyright &copy; 2026 Syncore Pharmacy. All Rights Reserved.
       </div>
     </footer>
-<!-- 
+    <!-- 
     <a
       href="https://wa.me/12095937171"
       class="whatsapp"
@@ -790,14 +792,14 @@
 
     <script>
       window.$crisp = [];
-window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
-(function () {
-  var d = document;
-  var s = d.createElement("script");
-  s.src = "https://client.crisp.chat/l.js";
-  s.async = 1;
-  d.getElementsByTagName("head")[0].appendChild(s);
-})();
+      window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
+      (function () {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
 
       async function loadCart() {
         try {
@@ -825,9 +827,11 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
       }
 
       let currentCart = [];
+      let currencySymbol = "$";
 
-      function renderCart(items) {
+      function renderCart(items) { 
         currentCart = items;
+        // console.log("Cart items:", items); 
 
         const tbody = document.getElementById("cartTableBody");
 
@@ -838,6 +842,10 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
         tbody.innerHTML = "";
 
         items.forEach((item) => {
+          
+          if(item.category_id === 11) {
+            currencySymbol = "€";
+          }
           const price = extractPrice(item.price);
 
           const qty = Number(item.quantity || 1);
@@ -860,11 +868,11 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
         <td>${qty}</td>
 
         <td>
-            $${price.toFixed(2)}
+            ${currencySymbol}${price.toFixed(2)}
         </td>
 
         <td>
-            $${rowTotal.toFixed(2)}
+            ${currencySymbol}${rowTotal.toFixed(2)}
         </td>
     </tr>
     `;
@@ -882,7 +890,7 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
         </td>
 
         <td class="total-value">
-            $${subtotal.toFixed(2)}
+            ${currencySymbol}${subtotal.toFixed(2)}
         </td>
     </tr>
 
@@ -893,18 +901,18 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
         </td>
 
         <td class="total-value">
-            $${shipping == 0 ? "Free Shipping" : shipping.toFixed(2)}
+            ${shipping == 0 ? "Free Shipping" : shipping.toFixed(2)}
         </td>
     </tr>
 
     <tr class="totals-row grand-total">
-        <td colspan="3"
+        <td colspan="3" 
             class="total-label">
             Grand Total
         </td>
 
         <td class="total-value">
-            $${grandTotal.toFixed(2)}
+            ${currencySymbol}${grandTotal.toFixed(2)}
         </td>
     </tr>
 `;
@@ -931,7 +939,7 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
 
         btn.disabled = true;
         btn.textContent = "Submitting...";
-
+        
         try {
           const orderData = {
             firstName: document.getElementById("first-name").value.trim(),
@@ -972,6 +980,7 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
               (sum, item) => sum + extractPrice(item.price),
               0,
             ),
+            currency : currencySymbol,
           };
 
           const response = await fetch("/api/checkout", {

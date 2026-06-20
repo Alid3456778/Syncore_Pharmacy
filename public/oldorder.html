@@ -335,17 +335,17 @@
       footer a:hover {
         color: #fff !important;
       }
-          .footer-payments {
+      .footer-payments {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 16px;
         margin-bottom: 12px;
       }
-      .footer-payments img{
-         width: 24px;
-          height: 24px;
-          background: transparent;
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
       }
 
       @media (max-width: 768px) {
@@ -511,33 +511,27 @@
           padding: 6px;
         }
 
-      .footer-payments {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .footer-payments img{
-         width: 14px;
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
           height: 14px;
           background: transparent;
+        }
       }
-        
-      }
-      
-</style>
+    </style>
   </head>
   <body>
     <header>
       <a href="index.html">
-
         <div class="logo">
-
           <img src="./assets/image/logo.png" alt="Syncore Pharmacy" />
-
         </div>
-
       </a>
       <nav>
         <a href="index.html">HOME</a><span class="nav-sep">|</span>
@@ -613,26 +607,34 @@
       </div>
 
       <div class="copyright">
-       <div class="footer-payments">
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png" />
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"/>
-        <img src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"/>
-       </div>
+        <div class="footer-payments">
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/cash_app.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/pay_pal.jpg"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/venmo.png"
+          />
+          <img
+            src="https://ik.imagekit.io/mfvwf4ean/Syncore/Footer%20Payment/zelle.png"
+          />
+        </div>
         Copyright © 2026 Syncore Pharmacy. All Rights Reserved.
       </div>
     </footer>
 
     <script>
       window.$crisp = [];
-window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
-(function () {
-  var d = document;
-  var s = d.createElement("script");
-  s.src = "https://client.crisp.chat/l.js";
-  s.async = 1;
-  d.getElementsByTagName("head")[0].appendChild(s);
-})();
+      window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
+      (function () {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
 
       const emailInput = document.getElementById("emailInput");
       const submitBtn = document.getElementById("submitBtn");
@@ -674,7 +676,7 @@ window.CRISP_WEBSITE_ID = "68987257-808e-403d-a06c-35b3ec18c3ef";
           );
 
           const result = await response.json();
-
+          console.log("API Response:", result);
           if (!response.ok || !result.success) {
             throw new Error(result.message || "No orders found");
           }

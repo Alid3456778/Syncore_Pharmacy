@@ -270,7 +270,7 @@ app.post("/api/checkout", async (req, res) => {
           pass: "Syn123@office",
         },
       });
-
+const currency = cartItems.currency;
       const shippingDisplay =
   Number(shippingCost || 0) === 0
     ? "Free Shipping"
