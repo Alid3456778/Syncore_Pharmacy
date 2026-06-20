@@ -5,6 +5,18 @@ on:
     branches: ["main"]
 
 jobs:
+  verify-db-url:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify DATABASE_URL in .env
+        run: |
+          if ! grep -q "DATABASE_URL=postgres://postgres:postsql@localhost:5432/datamc" .env; then
+            echo "Error: DATABASE_URL is not set correctly in .env"
+            exit 1
+          fi
   # ============================
   # 1) DEPLOYMENT JOB — RUNS AFTER CI SUCCESS
   # ============================
