@@ -17,9 +17,7 @@ jobs:
             echo "Error: DATABASE_URL is not set correctly in .env"
             exit 1
           fi
-  # ============================
-  # 1) DEPLOYMENT JOB — RUNS AFTER CI SUCCESS
-  # ============================
+
   deploy:
      # ← CI must pass first
     runs-on: ubuntu-latest
