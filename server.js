@@ -1315,7 +1315,7 @@ app.get("/products", async (req, res) => {
     let query;
     let params = [];
     if (categoryID === "all") {
-      query = "SELECT * FROM products ORDER BY product_name";
+      query = "SELECT * FROM products ORDER BY category_id";
     } else {
 //       query =
 //         `SELECT
@@ -2902,6 +2902,7 @@ app.get("/api/backup/info", async (req, res) => {
 // VPN + India geo-blocking retry route (lets a user re-check after
 // turning their VPN off, etc.). Actual blocking logic lives in vpn-blocker.js
 // and is mounted near the top of this file via app.use(vpnCountryBlocker).
+app.get("/retry", retryHandler);
 app.post("/retry", retryHandler);
 
 app.use(express.static(path.join(__dirname, "public")));
