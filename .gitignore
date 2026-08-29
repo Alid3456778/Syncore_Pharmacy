@@ -1,6 +1,9 @@
 data/
 data/list/
 
+.env
+.env.*
+
 # Logs
 logs
 *.log
