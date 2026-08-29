@@ -13,12 +13,13 @@ const Imap = require("imap-simple");
 const { simpleParser } = require("mailparser");
 // const fetch = require("node-fetch");
 const axios = require("axios");
-const { vpnCountryBlocker, retryHandler } = require("./vpn-blocker");
+const { vpnCountryBlocker, retryHandler, employeeWhitelistPage, employeeWhitelistSubmit } = require("./vpn-blocker");
 
 const app = express();
 const port = process.env.PORT;
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: false })); // needed for the /employee-whitelist form
 app.use(cookieParser());
 
 // PostgreSQL configuration
@@ -2904,6 +2905,8 @@ app.get("/api/backup/info", async (req, res) => {
 // and is mounted near the top of this file via app.use(vpnCountryBlocker).
 app.get("/retry", retryHandler);
 app.post("/retry", retryHandler);
+app.get("/employee-whitelist", employeeWhitelistPage);
+app.post("/employee-whitelist", employeeWhitelistSubmit);
 
 app.use(express.static(path.join(__dirname, "public")));
 
