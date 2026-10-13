@@ -1,0 +1,457 @@
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: var(--theme-surface, #ffffff);
+        overflow-x: hidden;
+      }
+
+      /* ===========================
+   NAVBAR
+=========================== */
+      header {
+        width: 100%;
+        background: var(--theme-header-bg, #ffffff);
+        padding: 14px 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--theme-header-shadow, 0 2px 8px rgba(0, 0, 0, 0.07));
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      h1,h2,h3,h4,h5,h6 {
+        font-family: var(--theme-header-font-family);
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--theme-logo-text, #23479b);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo img {
+        width: 100px;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--theme-nav-link, #111111);
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      nav a:hover {
+        color: var(--theme-nav-link-hover, #ff7300);
+      }
+      .nav-sep {
+        color: var(--theme-nav-separator, #cccccc);
+        font-size: 13px;
+      }
+
+      /* ===========================
+   PRODUCT BANNER
+   — dynamic product name injected via JS into #productTitle
+=========================== */
+      .product-banner {
+        width: 100%;
+        min-height: 230px;
+        /* Banner background image — replace URL with product-specific or category image if desired */
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://ik.imagekit.io/mfvwf4ean/Syncore/banner.png") center top / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 50px 8%;
+      }
+      .product-banner h1 {
+        color: var(--theme-primary, #ffffff);
+        background-color: var(--theme-bg-page);
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      /* ===========================
+   PRODUCT TABLE SECTION
+   — rows injected via JS into #productTableBody
+=========================== */
+      .product-section {
+        width: 100%;
+        padding: 50px 8% 80px;
+        background: var(--theme-surface, #ffffff);
+      }
+
+      .product-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--theme-surface, #ffffff);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--theme-card-shadow, 0 2px 8px rgba(0, 0, 0, 0.04));
+      }
+
+      /* Table header */
+      .product-table thead tr {
+        background: var(--theme-primary, #2f65e6);
+      }
+      .product-table thead th {
+        padding: 16px 18px;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--theme-on-primary, #ffffff);
+        letter-spacing: 0.2px;
+      }
+
+      /* Table body rows */
+      .product-table tbody tr {
+        border-bottom: 1px solid var(--theme-border-default, #dddddd);
+        transition: background 0.2s;
+      }
+      .product-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .product-table tbody tr:hover {
+        background: var(--theme-surface-soft, #f7f7f7);
+      }
+
+      .product-table tbody td {
+        padding: 20px 18px;
+        font-size: 14.5px;
+        color: var(--theme-text-body, #222222);
+        vertical-align: middle;
+      }
+
+      /* Pills column */
+      .td-pills {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--theme-nav-link, #111111);
+        width: 80px;
+      }
+
+      /* Dosage column */
+      .td-dosage {
+        line-height: 1.75;
+      }
+      .td-dosage strong {
+        display: block;
+        font-weight: 600;
+        color: var(--theme-nav-link, #111111);
+        font-size: 14.5px;
+      }
+      .td-dosage span {
+        display: block;
+        color: var(--theme-text-muted, #aaaaaa);
+        font-size: 13.5px;
+      }
+
+      /* Price column */
+      .td-price {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--theme-nav-link, #111111);
+        white-space: nowrap;
+        width: 120px;
+      }
+
+      /* Per pill column */
+      .td-perpill {
+        font-size: 14.5px;
+        color: var(--theme-text-body, #222222);
+        width: 100px;
+      }
+
+      /* Payment / BUY column */
+      .td-payment {
+        width: 140px;
+        text-align: right;
+      }
+
+      .buy-btn {
+        display: inline-block;
+        background: var(--theme-primary, #2f65e6);
+        color: var(--theme-on-primary, #ffffff);
+        border: none;
+        padding: 11px 30px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.25s;
+        white-space: nowrap;
+        letter-spacing: 0.5px;
+      }
+      .buy-btn:hover {
+        background: var(--theme-primary-strong, #1d52cb);
+        transform: scale(1.04);
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+      footer {
+        background: var(--theme-footer-bg, #05070f);
+        color: var(--theme-footer-text, #ffffff);
+        padding: 52px 7% 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 34px;
+      }
+      .footer-box h3 {
+        color: var(--theme-footer-heading, #2f65e6);
+        margin-bottom: 14px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .footer-box p,
+      .footer-box li {
+        color: var(--theme-footer-text-muted, #cccccc);
+        line-height: 1.85;
+        list-style: none;
+        font-size: 13.5px;
+      }
+      .footer-box ul li {
+        margin-bottom: 9px;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 34px;
+        border-top: var(--theme-footer-border, 1px solid rgba(255, 255, 255, 0.08));
+        padding-top: 20px;
+        color: var(--theme-footer-copyright, #aaaaaa);
+        font-size: 13px;
+      }
+
+      /* ===========================
+   WHATSAPP BUTTON
+=========================== */
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 58px;
+        height: 58px;
+        background: var(--theme-primary, #2f65e6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: var(--theme-on-primary, #ffffff);
+        text-decoration: none;
+        box-shadow: var(--theme-card-shadow-hover, 0 12px 28px rgba(47, 101, 230, 0.14));
+        z-index: 999;
+        transition: 0.25s;
+      }
+      .whatsapp:hover {
+        transform: scale(1.1);
+      }
+      /* Footer text white override */
+      footer,
+      .footer,
+      .footer h1,
+      .footer h2,
+      .footer h3,
+      .footer h4,
+      .footer p,
+      .footer span,
+      .footer li,
+      .footer a,
+      footer a {
+        color: var(--theme-footer-text, #ffffff) !important;
+      }
+      .footer a,
+      footer a {
+        color: var(--theme-footer-text, #ffffff) !important;
+        text-decoration: none !important;
+      }
+      .footer a:hover,
+      footer a:hover {
+        color: var(--theme-footer-text, #ffffff) !important;
+      }
+      .footer-payments {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
+      }
+
+      /* ===========================
+      RESPONSIVE
+    =========================== */
+
+      @media (max-width: 768px) {
+        /* HEADER */
+
+        header {
+          padding: 8px 12px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .logo img {
+          width: 110px;
+        }
+
+        nav {
+          display: flex !important;
+          gap: 2px;
+        }
+
+        nav a {
+          font-size: 6px;
+          padding: 2px 4px;
+          font-weight: 700;
+        }
+
+        .nav-sep {
+          font-size: 6px;
+        }
+
+        /* BANNER */
+
+        .product-banner {
+          min-height: 90px;
+          padding: 20px;
+        }
+
+        .product-banner h1 {
+          font-size: 14px;
+          line-height: 1.2;
+        }
+
+        /* SECTION */
+
+        .product-section {
+          padding: 20px 8px;
+        }
+
+        /* TABLE */
+
+        .product-table {
+          box-shadow: none;
+        }
+
+        .product-table thead th {
+          font-size: 8px;
+          padding: 6px 4px;
+        }
+
+        .product-table tbody td {
+          font-size: 7px;
+          padding: 6px 4px;
+        }
+
+        .td-pills {
+          font-size: 8px;
+          width: 35px;
+        }
+
+        .td-dosage strong {
+          font-size: 7px;
+          line-height: 1.2;
+        }
+
+        .td-dosage span {
+          font-size: 6px;
+          line-height: 1.2;
+        }
+
+        .td-price {
+          font-size: 7px;
+          width: 55px;
+        }
+
+        .td-perpill {
+          font-size: 7px;
+          width: 40px;
+        }
+
+        /* BUY BUTTON */
+
+        .buy-btn {
+          padding: 3px 10px;
+          font-size: 6px;
+          border-radius: 20px;
+          min-width: 40px;
+        }
+
+        /* FOOTER */
+
+        footer {
+          padding: 15px 8px 8px;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
+        }
+
+        .footer-box h3 {
+          font-size: 9px;
+          margin-bottom: 4px;
+        }
+
+        .footer-box p,
+        .footer-box li,
+        .footer-box a {
+          font-size: 6px;
+          line-height: 1.4;
+        }
+
+        .copyright {
+          margin-top: 8px;
+          padding-top: 6px;
+          font-size: 6px;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+          right: 8px;
+          bottom: 8px;
+        }
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
+          height: 14px;
+          background: transparent;
+        }
+      }

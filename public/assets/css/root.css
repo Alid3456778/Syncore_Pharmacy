@@ -1,0 +1,161 @@
+/* ==========================================================================
+   root.css  -  ONE place to change the colours of the whole website
+   --------------------------------------------------------------------------
+   Every page's CSS reads its colours from the --theme-... variables below,
+   so you never edit colours inside index.css / cart.css / etc.
+
+   HOW TO SWITCH THEME (2 small edits, both in this file):
+     HALLOWEEN is ACTIVE now.  To go back to NORMAL:
+       1) comment out the HALLOWEEN block: type slash-star on the line before ":root {"
+          and star-slash on the line after its closing brace
+       2) un-comment the NORMAL block: delete the slash-star line above it and the
+          star-slash line below it
+     To go to Halloween again, do the opposite.
+   Only ONE of the two blocks may be active at a time.
+
+   Keep the two blocks free of comments inside them, so wrapping works.
+   If you add a new variable, add it to BOTH blocks.
+
+   LOAD ORDER: link root.css on every page (the order relative to the other CSS files
+   does not matter):  <link rel="stylesheet" href="./assets/css/root.css" />
+
+   VARIABLE GUIDE
+     PAGE & TEXT                --theme-bg-page, --theme-text-default, ...
+     HEADER & NAV               --theme-header-bg, --theme-header-shadow, ...
+     HERO                       --theme-hero-text, --theme-hero-img-shadow, ...
+     FEATURE BOXES              --theme-feature-bg, --theme-feature-text
+     SURFACES, BORDERS, CARDS   --theme-surface, --theme-surface-soft, ...
+     BRAND COLORS               --theme-primary, --theme-primary-strong, ...
+     BUTTONS                    --theme-btn-bg, --theme-btn-text, ...
+     INPUTS & SEARCH            --theme-input-bg, --theme-input-border, ...
+     FOOTER                     --theme-footer-bg, --theme-footer-text, ...
+   ========================================================================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');   
+
+/* ===================== HALLOWEEN THEME  (ACTIVE) ===================== */
+:root {
+
+  /* --theme-header-font-family: 'Creepster', cursive; */
+  --theme-header-font-family: "Poppins", sans-serif;
+
+
+  --theme-bg-page: #140a22;
+  --theme-text-default: #efe6ff;
+  --theme-text-main: #f6eeff;
+  --theme-text-body: #e3d7f5;
+  --theme-text-muted: #a898c4;
+  --theme-text-placeholder: #8b7aa8;
+
+  --theme-header-bg: #0e0618;
+  --theme-header-shadow: 0 3px 16px rgba(255, 122, 26, 0.35);
+  --theme-logo-text: #ff8a2b;
+  --theme-nav-link: #f1e6ff;
+  --theme-nav-link-hover: #ff8a2b;
+  --theme-nav-separator: #4b3470;
+
+  --theme-hero-text: #ffffff;
+  --theme-hero-img-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  --theme-badge-bg: #1b0c2e;
+  --theme-badge-text: #ffb04d;
+  --theme-badge-shadow: 0 6px 20px rgba(255, 122, 26, 0.35);
+
+  --theme-feature-bg: #6a2cb8;
+  --theme-feature-text: #ffffff;
+
+  --theme-surface: #221136;
+  --theme-surface-soft: #2d1a48;
+  --theme-border-default: #3d2761;
+  --theme-border-card: #4a2d73;
+  --theme-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --theme-card-shadow-hover: 0 12px 28px rgba(255, 122, 26, 0.28);
+
+  --theme-primary: #ff984e;
+  --theme-primary-strong: #ff9a3d;
+  --theme-on-primary: #1c0b00;
+  --theme-premium: #ffd34d;
+  --theme-on-premium: #1c0b00;
+  --theme-danger: #ff6b6b;
+
+  --theme-btn-bg: #6a2cb8;
+  --theme-btn-text: #ffffff;
+  --theme-btn-hover-bg: #ff7a1a;
+  --theme-btn-hover-text: #1c0b00;
+
+  --theme-input-bg: #1b0c2e;
+  --theme-input-border: #ff7a1a;
+  --theme-input-text: #f6eeff;
+  --theme-focus-ring: 0 0 0 4px rgba(255, 122, 26, 0.25);
+
+  --theme-footer-bg: #07030d;
+  --theme-footer-text: #efe6ff;
+  --theme-footer-heading: #ff8a2b;
+  --theme-footer-link: #efe6ff;
+  --theme-footer-text-muted: #cdbfe4;
+  --theme-footer-border: 1px solid rgba(255, 255, 255, 0.12);
+  --theme-footer-copyright: #a898c4;
+}
+
+
+/* ===================== NORMAL THEME  (switch back: see top) ===================== */
+
+/* :root {
+
+  --theme-header-font-family: "Poppins", sans-serif;
+
+  --theme-bg-page: #f3f3f3;
+  --theme-text-default: #000000;
+  --theme-text-main: #111111;
+  --theme-text-body: #222222;
+  --theme-text-muted: #aaaaaa;
+  --theme-text-placeholder: #999999;
+
+  --theme-header-bg: #ffffff;
+  --theme-header-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --theme-logo-text: #23479b;
+  --theme-nav-link: #111111;
+  --theme-nav-link-hover: #ff7300;
+  --theme-nav-separator: #cccccc;
+
+  --theme-hero-text: #ffffff;
+  --theme-hero-img-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  --theme-badge-bg: #ffffff;
+  --theme-badge-text: #23479b;
+  --theme-badge-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+  --theme-feature-bg: #ff5567;
+  --theme-feature-text: #ffffff;
+
+  --theme-surface: #ffffff;
+  --theme-surface-soft: #f7f7f7;
+  --theme-border-default: #dddddd;
+  --theme-border-card: #c8d6f8;
+  --theme-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --theme-card-shadow-hover: 0 12px 28px rgba(47, 101, 230, 0.14);
+
+  --theme-primary: #2f65e6;
+  --theme-primary-strong: #1d52cb;
+  --theme-on-primary: #ffffff;
+  --theme-premium: #fbbf24;
+  --theme-on-premium: #111111;
+  --theme-danger: #e03030;
+
+  --theme-btn-bg: #111111;
+  --theme-btn-text: #ffffff;
+  --theme-btn-hover-bg: #ff7300;
+  --theme-btn-hover-text: #ffffff;
+
+  --theme-input-bg: #ffffff;
+  --theme-input-border: #2f65e6;
+  --theme-input-text: #000000;
+  --theme-focus-ring: 0 0 0 4px rgba(47, 101, 230, 0.12);
+
+  --theme-footer-bg: #05070f;
+  --theme-footer-text: #ffffff;
+  --theme-footer-heading: #2f65e6;
+  --theme-footer-link: #ffffff;
+  --theme-footer-text-muted: #cccccc;
+  --theme-footer-border: 1px solid rgba(255, 255, 255, 0.08);
+  --theme-footer-copyright: #aaaaaa;
+}  */

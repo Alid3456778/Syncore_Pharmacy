@@ -1,0 +1,539 @@
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: var(--theme-surface);
+        overflow-x: hidden;
+        color: var(--theme-text-main);
+      }
+
+      /* ===========================
+   NAVBAR
+=========================== */
+      header {
+        width: 100%;
+        background: var(--theme-header-bg);
+        padding: 14px 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--theme-header-shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--theme-logo-text);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo img {
+        width: 100px;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--theme-text-main);
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      nav a:hover {
+        color: var(--theme-nav-link-hover);
+      }
+      .nav-sep {
+        color: var(--theme-border-default);
+        font-size: 13px;
+      }
+
+      /* ===========================
+   BANNER
+=========================== */
+      .page-banner {
+        width: 100%;
+        min-height: 210px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
+          url("https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1400&auto=format&fit=crop")
+            center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 50px 8%;
+      }
+      .page-banner h1 {
+        color: var(--theme-hero-text);
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      /* ===========================
+   MAIN CONTENT
+=========================== */
+      .order-content {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 48px 8% 70px;
+      }
+
+      /* ===========================
+   SECTION HEADINGS
+=========================== */
+      .section-heading {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--theme-text-main);
+        margin-bottom: 22px;
+      }
+
+      /* ===========================
+   SHOPPING CART TABLE
+=========================== */
+      .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+      }
+      .cart-table thead tr {
+        background: var(--theme-primary);
+      }
+      .cart-table thead th {
+        padding: 14px 18px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--theme-surface);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .cart-table thead th:nth-child(2),
+      .cart-table thead th:nth-child(3),
+      .cart-table thead th:nth-child(4) {
+        text-align: right;
+      }
+
+      .cart-table tbody tr {
+        border-bottom: 1px solid var(--theme-border-card);
+      }
+      .cart-table tbody tr:last-child {
+        border-bottom: 1px solid var(--theme-border-card);
+      }
+      .cart-table tbody td {
+        padding: 18px 18px;
+        font-size: 14px;
+        vertical-align: top;
+      }
+      .cart-table tbody td:nth-child(2),
+      .cart-table tbody td:nth-child(3),
+      .cart-table tbody td:nth-child(4) {
+        text-align: right;
+        vertical-align: middle;
+      }
+
+      .product-name {
+        color: var(--theme-primary);
+        font-weight: 600;
+        font-size: 14.5px;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .pills-label {
+        font-size: 13px;
+        color: var(--theme-text-body);
+        font-weight: 600;
+      }
+      .pills-count {
+        font-size: 13px;
+        color: var(--theme-text-muted);
+      }
+
+      /* Totals rows at bottom of table */
+      .totals-row td {
+        padding: 10px 18px;
+        border-bottom: none !important;
+        font-size: 14px;
+      }
+      .totals-row .total-label {
+        text-align: right;
+        color: var(--theme-text-body);
+        font-weight: 500;
+      }
+      .totals-row .total-value {
+        text-align: right;
+        color: var(--theme-text-main);
+        font-weight: 600;
+        min-width: 110px;
+      }
+      .totals-row.grand-total .total-label,
+      .totals-row.grand-total .total-value {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--theme-text-main);
+      }
+      .totals-row.grand-total .total-value {
+        font-size: 16px;
+      }
+
+      /* Wrapper to contain table + totals in one bordered block */
+      .cart-wrapper {
+        border: 1px solid var(--theme-border-card);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--theme-card-shadow);
+        margin-bottom: 50px;
+      }
+
+      /* ===========================
+   SHIPPING ADDRESS FORM
+=========================== */
+      .shipping-section {
+        margin-top: 10px;
+      }
+
+      .form-field {
+        width: 100%;
+        border: 1px solid var(--theme-border-default);
+        border-radius: 5px;
+        padding: 14px 16px;
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        color: var(--theme-text-body);
+        outline: none;
+        transition: border 0.2s;
+        display: block;
+        margin-bottom: 14px;
+        background: var(--theme-surface);
+      }
+      .form-field:focus {
+        border-color: var(--theme-primary);
+        box-shadow: var(--theme-focus-ring);
+      }
+      .form-field::placeholder {
+        color: var(--theme-text-placeholder);
+      }
+
+      textarea.form-field {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      .form-note {
+        font-size: 13.5px;
+        color: var(--theme-text-body);
+        margin-bottom: 18px;
+        margin-top: 4px;
+      }
+
+      .submit-btn {
+        background: var(--theme-primary);
+        color: var(--theme-surface);
+        border: none;
+        padding: 12px 36px;
+        border-radius: 6px;
+        font-size: 14.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+        font-family: "Poppins", sans-serif;
+      }
+      .submit-btn:hover {
+        background: var(--theme-primary-strong);
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+      footer {
+        background: var(--theme-footer-bg);
+        color: var(--theme-surface);
+        padding: 52px 7% 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 34px;
+      }
+      .footer-box h3 {
+        color: var(--theme-primary);
+        margin-bottom: 14px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .footer-box p,
+      .footer-box li {
+        color: var(--theme-hero-text);
+        line-height: 1.85;
+        list-style: none;
+        font-size: 13.5px;
+      }
+      .footer-box ul li {
+        margin-bottom: 9px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer-box ul li::before {
+        content: "▶";
+        font-size: 9px;
+        color: var(--theme-primary);
+        flex-shrink: 0;
+      }
+      .footer-icon {
+        margin-right: 6px;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 34px;
+        border-top: var(--theme-footer-border);
+        padding-top: 20px;
+        color: var(--theme-footer-copyright);
+        font-size: 13px;
+      }
+
+      /* ===========================
+   WHATSAPP
+=========================== */
+      .whatsapp {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        width: 58px;
+        height: 58px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: var(--theme-surface);
+        text-decoration: none;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+        z-index: 999;
+        transition: 0.25s;
+      }
+      .whatsapp:hover {
+        transform: scale(1.1);
+      }
+
+      /* Footer text white override */
+      footer,
+      .footer,
+      .footer h1,
+      .footer h2,
+      .footer h3,
+      .footer h4,
+      .footer p,
+      .footer span,
+      .footer li,
+      .footer a,
+      footer a {
+        color: var(--theme-footer-texte) !important;
+      }
+      .footer a,
+      footer a {
+        color: var(--theme-footer-text) !important;
+        text-decoration: none !important;
+      }
+      /* .footer a:hover,
+      footer a:hover {
+        color: var(--theme-surface) !important;
+      } */
+      .footer-payments {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+      .footer-payments img {
+        width: 24px;
+        height: 24px;
+        background: transparent;
+      }
+
+      /* ===========================
+   RESPONSIVE
+=========================== */
+
+      @media (max-width: 768px) {
+        /* HEADER */
+
+        header {
+          padding: 8px 10px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .logo img {
+          width: 110px;
+        }
+
+        nav {
+          display: flex !important;
+          gap: 2px;
+          align-items: center;
+        }
+
+        nav a {
+          font-size: 6px;
+          padding: 2px 3px;
+          font-weight: 700;
+        }
+
+        .nav-sep {
+          font-size: 6px;
+        }
+
+        /* BANNER */
+
+        .page-banner {
+          min-height: 90px;
+          padding: 15px;
+        }
+
+        .page-banner h1 {
+          font-size: 14px;
+        }
+
+        /* MAIN */
+
+        .order-content {
+          max-width: 100%;
+          padding: 15px 8px 25px;
+        }
+
+        .section-heading {
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+
+        /* CART TABLE */
+
+        .cart-table thead th {
+          padding: 6px 4px;
+          font-size: 7px;
+        }
+
+        .cart-table tbody td {
+          padding: 6px 4px;
+          font-size: 6px;
+        }
+
+        .product-name {
+          font-size: 7px;
+          margin-bottom: 2px;
+        }
+
+        .pills-label,
+        .pills-count {
+          font-size: 5px;
+        }
+
+        /* TOTALS */
+
+        .totals-row td {
+          padding: 5px 4px;
+          font-size: 6px;
+        }
+
+        .totals-row.grand-total .total-label,
+        .totals-row.grand-total .total-value {
+          font-size: 7px;
+        }
+
+        /* FORM */
+
+        .form-field {
+          height: 22px;
+          padding: 4px 6px;
+          font-size: 6px;
+          margin-bottom: 6px;
+          border-radius: 2px;
+        }
+
+        textarea.form-field {
+          min-height: 40px;
+        }
+
+        .form-note {
+          font-size: 6px;
+          margin-bottom: 8px;
+        }
+
+        .submit-btn {
+          padding: 4px 12px;
+          font-size: 7px;
+          border-radius: 2px;
+        }
+
+        /* FOOTER */
+
+        footer {
+          padding: 15px 8px 8px;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
+        }
+
+        .footer-box h3 {
+          font-size: 9px;
+          margin-bottom: 4px;
+        }
+
+        .footer-box p,
+        .footer-box li,
+        .footer-box a {
+          font-size: 6px;
+          line-height: 1.4;
+        }
+
+        .footer-box ul li {
+          gap: 3px;
+        }
+
+        .footer-box ul li::before {
+          font-size: 4px;
+        }
+
+        .copyright {
+          font-size: 6px;
+          margin-top: 8px;
+          padding-top: 6px;
+        }
+        .footer-payments {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+        .footer-payments img {
+          width: 14px;
+          height: 14px;
+          background: transparent;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+          right: 8px;
+          bottom: 8px;
+        }
+      }
