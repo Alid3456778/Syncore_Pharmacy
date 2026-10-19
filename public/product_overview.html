@@ -223,13 +223,17 @@
           );
 
           const productData = await productResponse.json();
-
+          const Stockis = productData.product.stocks;
           if (!productData.product) {
             document.getElementById("productTitle").textContent =
               "Product Not Found";
             return;
           }
-
+          if(Stockis == 0){
+            document.getElementById("productTitle").textContent =
+              "Product Out of Stock";
+            return;
+          }
           const product = productData.product;
 
           // Banner Title

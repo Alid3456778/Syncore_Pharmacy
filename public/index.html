@@ -12,9 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      
-    </style>
+    <style></style>
     <link rel="stylesheet" href="./assets/css/root.css" />
     <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
@@ -448,7 +446,12 @@
       function renderProducts(products) {
         currentProducts = products;
         productGrid.innerHTML = "";
-        // console.log("Rendering products:", products);
+
+        products = [...products].sort(
+          (a, b) => Number(b.stocks) - Number(a.stocks),
+        );
+
+        console.log("Rendering products:", products);
         products.forEach((product) => {
           const image =
             product.image_url ||
@@ -459,7 +462,12 @@
           card.className = "product-card";
 
           card.innerHTML = `
-          <a href="/product_overview.html?product_ID=${product.product_id}">
+        ${
+          product.stocks != 0
+            ? `<a href="/product_overview.html?product_ID=${product.product_id}">`
+            : `<a class="out-of-stock">`
+        }
+            
       <div class="product-top">
         ${product.product_name}
       </div>
