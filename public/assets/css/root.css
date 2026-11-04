@@ -35,72 +35,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');   
 
 /* ===================== HALLOWEEN THEME  (ACTIVE) ===================== */
-:root {
-
-  /* --theme-header-font-family: 'Creepster', cursive; */
-  --theme-header-font-family: "Poppins", sans-serif;
-
-
-  --theme-bg-page: #140a22;
-  --theme-text-default: #efe6ff;
-  --theme-text-main: #f6eeff;
-  --theme-text-body: #e3d7f5;
-  --theme-text-muted: #a898c4;
-  --theme-text-placeholder: #8b7aa8;
-
-  --theme-header-bg: #0e0618;
-  --theme-header-shadow: 0 3px 16px rgba(255, 122, 26, 0.35);
-  --theme-logo-text: #ff8a2b;
-  --theme-nav-link: #f1e6ff;
-  --theme-nav-link-hover: #ff8a2b;
-  --theme-nav-separator: #4b3470;
-
-  --theme-hero-text: #ffffff;
-  --theme-hero-img-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-  --theme-badge-bg: #1b0c2e;
-  --theme-badge-text: #ffb04d;
-  --theme-badge-shadow: 0 6px 20px rgba(255, 122, 26, 0.35);
-
-  --theme-feature-bg: #6a2cb8;
-  --theme-feature-text: #ffffff;
-
-  --theme-surface: #221136;
-  --theme-surface-soft: #2d1a48;
-  --theme-border-default: #3d2761;
-  --theme-border-card: #4a2d73;
-  --theme-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --theme-card-shadow-hover: 0 12px 28px rgba(255, 122, 26, 0.28);
-
-  --theme-primary: #ff984e;
-  --theme-primary-strong: #ff9a3d;
-  --theme-on-primary: #1c0b00;
-  --theme-premium: #ffd34d;
-  --theme-on-premium: #1c0b00;
-  --theme-danger: #ff6b6b;
-
-  --theme-btn-bg: #6a2cb8;
-  --theme-btn-text: #ffffff;
-  --theme-btn-hover-bg: #ff7a1a;
-  --theme-btn-hover-text: #1c0b00;
-
-  --theme-input-bg: #1b0c2e;
-  --theme-input-border: #ff7a1a;
-  --theme-input-text: #f6eeff;
-  --theme-focus-ring: 0 0 0 4px rgba(255, 122, 26, 0.25);
-
-  --theme-footer-bg: #07030d;
-  --theme-footer-text: #efe6ff;
-  --theme-footer-heading: #ff8a2b;
-  --theme-footer-link: #efe6ff;
-  --theme-footer-text-muted: #cdbfe4;
-  --theme-footer-border: 1px solid rgba(255, 255, 255, 0.12);
-  --theme-footer-copyright: #a898c4;
-}
 
 
 /* ===================== NORMAL THEME  (switch back: see top) ===================== */
 
-/* :root {
+:root {
 
   --theme-header-font-family: "Poppins", sans-serif;
 
@@ -158,4 +97,4 @@
   --theme-footer-text-muted: #cccccc;
   --theme-footer-border: 1px solid rgba(255, 255, 255, 0.08);
   --theme-footer-copyright: #aaaaaa;
-}  */
+}  
